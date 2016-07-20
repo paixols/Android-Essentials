@@ -9,8 +9,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import fullsail.paix.com.j_anaya_ce01.DataModel.Person;
 import fullsail.paix.com.j_anaya_ce01.R;
+import fullsail.paix.com.j_anaya_ce01.Utility.StorageHelper;
 
 public class FormActivity extends AppCompatActivity implements SaveForm {
 
@@ -31,6 +34,19 @@ public class FormActivity extends AppCompatActivity implements SaveForm {
 
     @Override
     public void onSaveForm(Person person) {
-
+        //Storage Helper
+        StorageHelper storageHelper = new StorageHelper();
+        //Read for available data
+        ArrayList persons;
+        persons = storageHelper.readInternalStorage(this);
+        if (persons == null) {
+            persons = new ArrayList();
+            persons.clear();
+        }
+        //Add new data
+        persons.add(person);
+        //Save Data locally
+        storageHelper.writeInternalStorage(persons, this);
+        this.finish();
     }
 }

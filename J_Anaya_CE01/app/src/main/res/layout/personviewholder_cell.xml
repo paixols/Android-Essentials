@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="8sp">
+    <!--Display Information in ListFragment Cells-->
+    <!--First Name-->
+    <TextView
+        android:id="@+id/TextView_Cell_FirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_weight="0.33" />
+    <!--Last Name-->
+    <TextView
+        android:id="@+id/TextView_Cell_LastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_weight="0.33"/>
+    <!--Age-->
+    <TextView
+        android:id="@+id/TextView_Cell_Age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_weight="0.33"/>
+</LinearLayout>
