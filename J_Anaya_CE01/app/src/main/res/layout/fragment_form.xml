@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--User Input Fields-->
+    <!--First Name-->
+    <EditText
+        android:id="@+id/EditText_Form_FirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        android:textSize="22sp" />
+    <!--Last Name-->
+    <EditText
+        android:id="@+id/EditText_Form_LastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name"
+        android:inputType="text" />
+    <!--Age-->
+    <EditText
+        android:id="@+id/EditText_Form_Age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/age"
+        android:inputType="numberDecimal" />
+</LinearLayout>
