@@ -31,8 +31,6 @@ public class ListActivity extends AppCompatActivity implements SelectedPerson {
     public static final String EXTRA_FIRST_NAME = "com.fullsail.android.EXTRA_FIRST_NAME";
     public static final String EXTRA_LAST_NAME = "com.fullsail.android.EXTRA_LAST_NAME";
     public static final String EXTRA_AGE = "com.fullsail.android.EXTRA_AGE";
-    //Broadcast Receiver
-    UpdateReceiver mReceiver;
 
     /*Life Cycle*/
     @Override
@@ -44,23 +42,6 @@ public class ListActivity extends AppCompatActivity implements SelectedPerson {
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.FrameLayout_ContentList_FragHolder, contentListFragment).commit();
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //Update Receiver Registration & Filter
-        mReceiver = new UpdateReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(SaveDeleteReceiver.ACTION_UPDATE_LIST);
-        registerReceiver(mReceiver, filter);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Update Receiver Un-registration
-        unregisterReceiver(mReceiver);
     }
 
     /*Menu*/
@@ -89,12 +70,16 @@ public class ListActivity extends AppCompatActivity implements SelectedPerson {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case FORM_REQUEST_CODE:
+        //switch (requestCode) {
+          //  case FORM_REQUEST_CODE:
+                //Refresh Content List Fragment to show new data
+                ContentListFragment contentListFragment = new ContentListFragment();
+                getSupportFragmentManager().beginTransaction().
+                        replace(R.id.FrameLayout_ContentList_FragHolder, contentListFragment).commit();
                 //Dev
                 Log.i(TAG, "onActivityResult: " + "Back from Form Activity");
-                return;
-        }
+          //      return;
+        //}
     }
 
     /*Interface from Content List Fragment triggered when a Cell on the list is selected*/
@@ -112,16 +97,4 @@ public class ListActivity extends AppCompatActivity implements SelectedPerson {
         }
     }
 
-    /*Broadcast Receiver*/
-    private class UpdateReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //Set new Content List Fragment
-            //Set Content List Fragment
-            ContentListFragment contentListFragment = new ContentListFragment();
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.FrameLayout_ContentList_FragHolder, contentListFragment).commit();
-
-        }
-    }
 }
