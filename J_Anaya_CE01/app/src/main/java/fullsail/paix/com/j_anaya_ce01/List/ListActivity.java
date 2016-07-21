@@ -4,10 +4,7 @@
 
 package fullsail.paix.com.j_anaya_ce01.List;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +14,6 @@ import android.view.MenuItem;
 import fullsail.paix.com.j_anaya_ce01.DataModel.Person;
 import fullsail.paix.com.j_anaya_ce01.Form.FormActivity;
 import fullsail.paix.com.j_anaya_ce01.R;
-import fullsail.paix.com.j_anaya_ce01.Receivers.SaveDeleteReceiver;
 
 public class ListActivity extends AppCompatActivity implements SelectedPerson {
 
@@ -70,16 +66,12 @@ public class ListActivity extends AppCompatActivity implements SelectedPerson {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //switch (requestCode) {
-          //  case FORM_REQUEST_CODE:
-                //Refresh Content List Fragment to show new data
-                ContentListFragment contentListFragment = new ContentListFragment();
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.FrameLayout_ContentList_FragHolder, contentListFragment).commit();
-                //Dev
-                Log.i(TAG, "onActivityResult: " + "Back from Form Activity");
-          //      return;
-        //}
+        //Set Fragment every time the app comes back from another activity to refresh data.
+        ContentListFragment contentListFragment = new ContentListFragment();
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.FrameLayout_ContentList_FragHolder, contentListFragment).commit();
+        //Dev
+        Log.i(TAG, "onActivityResult: " + "Back from Form Activity");
     }
 
     /*Interface from Content List Fragment triggered when a Cell on the list is selected*/

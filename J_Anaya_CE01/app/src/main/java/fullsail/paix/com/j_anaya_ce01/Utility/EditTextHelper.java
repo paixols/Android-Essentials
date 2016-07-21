@@ -3,10 +3,8 @@
 // EditTextHelper
 package fullsail.paix.com.j_anaya_ce01.Utility;
 
-import android.os.Bundle;
-import android.widget.EditText;
 
-import fullsail.paix.com.j_anaya_ce01.DataModel.Person;
+import android.widget.EditText;
 
 public class EditTextHelper {
 

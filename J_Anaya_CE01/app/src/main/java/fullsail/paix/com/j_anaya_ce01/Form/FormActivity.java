@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import fullsail.paix.com.j_anaya_ce01.DataModel.Person;
-import fullsail.paix.com.j_anaya_ce01.List.ContentListFragment;
 import fullsail.paix.com.j_anaya_ce01.List.ListActivity;
 import fullsail.paix.com.j_anaya_ce01.R;
 import fullsail.paix.com.j_anaya_ce01.Receivers.SaveDeleteReceiver;

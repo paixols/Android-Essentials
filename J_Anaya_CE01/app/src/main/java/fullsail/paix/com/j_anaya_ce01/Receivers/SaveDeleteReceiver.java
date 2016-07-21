@@ -6,6 +6,7 @@ package fullsail.paix.com.j_anaya_ce01.Receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,34 +26,53 @@ public class SaveDeleteReceiver extends BroadcastReceiver {
     //On Receive
     @Override
     public void onReceive(Context context, Intent intent) {
-        //Check for Save or Delete
-        if (intent.getAction().equals(ACTION_SAVE_DATA)) {
+        //Storage Helper Instance
+        StorageHelper storageHelper = new StorageHelper();
+        //Read for available data
+        ArrayList persons;
+        persons = storageHelper.readInternalStorage(context);
+        //If there is no Data available
+        if (persons == null) {
+            persons = new ArrayList();
+            persons.clear();
+        }
 
-            if (intent.hasExtra(ListActivity.EXTRA_FIRST_NAME) &&
-                    intent.hasExtra(ListActivity.EXTRA_LAST_NAME) &&
-                    intent.hasExtra(ListActivity.EXTRA_AGE)) {
-                Person person = new Person(intent.getStringExtra(ListActivity.EXTRA_FIRST_NAME),
-                        intent.getStringExtra(ListActivity.EXTRA_LAST_NAME),
-                        intent.getIntExtra(ListActivity.EXTRA_AGE, 0));
-                //Storage Helper
-                StorageHelper storageHelper = new StorageHelper();
-                //Read for available data
-                ArrayList persons;
-                persons = storageHelper.readInternalStorage(context);
-                if (persons == null) {
-                    persons = new ArrayList();
-                    persons.clear();
-                }
+        //Check for Extras
+        if (intent.hasExtra(ListActivity.EXTRA_FIRST_NAME) &&
+                intent.hasExtra(ListActivity.EXTRA_LAST_NAME) &&
+                intent.hasExtra(ListActivity.EXTRA_AGE)) {
+            //New Person
+            Person person = new Person(intent.getStringExtra(ListActivity.EXTRA_FIRST_NAME),
+                    intent.getStringExtra(ListActivity.EXTRA_LAST_NAME),
+                    intent.getIntExtra(ListActivity.EXTRA_AGE, 0));
+
+            //Check for Save or Delete
+            if (intent.getAction().equals(ACTION_SAVE_DATA)) { //Save
+
                 //Add new data
                 persons.add(person);
                 //Save Data locally
                 storageHelper.writeInternalStorage(persons, context);
+
+            } else if (intent.getAction().equals(ACTION_DELETE_DATA)) { //Delete
+
+                //Check for properties and Delete if matches
+                for (int i = 0; i < persons.size(); i++) {
+                    Person personCheck = (Person) persons.get(i);
+                    if (personCheck.getFirstName().equals(person.getFirstName())) {
+                        if (personCheck.getLastName().equals(person.getLastName())) {
+                            if (personCheck.getAge() == person.getAge()) {
+                                persons.remove(i);
+                                //Dev
+                                Log.i(TAG, "onReceive: " + "Record Deleted");
+                            }
+                        }
+                    }
+                }
+                //Update Internal Storage
+                storageHelper.writeInternalStorage(persons, context);
             }
 
-        } else if (intent.getAction().equals(ACTION_DELETE_DATA)) {
-
-            //TODO delete data if firstName, lastName and Age match a Person record
-            
         }
 
         //Send Broadcast for Update
