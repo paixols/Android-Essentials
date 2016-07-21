@@ -33,6 +33,7 @@ public class ContentListAdapter extends BaseAdapter {
     public ContentListAdapter(ArrayList persons, Context context) {
         this.persons = persons;
         this.context = context;
+        layoutInflater = LayoutInflater.from(this.context);
     }
 
     /*Required Methods*/

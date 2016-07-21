@@ -3,17 +3,14 @@
 // FormActivity
 package fullsail.paix.com.j_anaya_ce01.Form;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
 
 import fullsail.paix.com.j_anaya_ce01.DataModel.Person;
+import fullsail.paix.com.j_anaya_ce01.List.ListActivity;
 import fullsail.paix.com.j_anaya_ce01.R;
-import fullsail.paix.com.j_anaya_ce01.Utility.StorageHelper;
+import fullsail.paix.com.j_anaya_ce01.Receivers.SaveDeleteReceiver;
 
 public class FormActivity extends AppCompatActivity implements SaveForm {
 
@@ -34,19 +31,14 @@ public class FormActivity extends AppCompatActivity implements SaveForm {
 
     @Override
     public void onSaveForm(Person person) {
-        //Storage Helper
-        StorageHelper storageHelper = new StorageHelper();
-        //Read for available data
-        ArrayList persons;
-        persons = storageHelper.readInternalStorage(this);
-        if (persons == null) {
-            persons = new ArrayList();
-            persons.clear();
-        }
-        //Add new data
-        persons.add(person);
-        //Save Data locally
-        storageHelper.writeInternalStorage(persons, this);
-        this.finish();
+        //Send Broadcast with data to be saved
+        Intent intent = new Intent(SaveDeleteReceiver.ACTION_SAVE_DATA);
+        intent.putExtra(ListActivity.EXTRA_FIRST_NAME, person.getFirstName());
+        intent.putExtra(ListActivity.EXTRA_LAST_NAME, person.getLastName());
+        intent.putExtra(ListActivity.EXTRA_AGE, person.getAge());
+        sendBroadcast(intent);
+        finish();
     }
+
+
 }
