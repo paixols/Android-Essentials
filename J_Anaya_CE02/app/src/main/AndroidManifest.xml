@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <!--Services-->
-
+        <service android:name=".Services.ImageDownloadService"/>
     </application>
 
 </manifest>

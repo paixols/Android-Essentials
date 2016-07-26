@@ -4,8 +4,13 @@
 package com.paix.jpam.j_anaya_ce02;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,15 +20,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.paix.jpam.j_anaya_ce02.GridView.GridViewFragment;
+import com.paix.jpam.j_anaya_ce02.NetworkUtility.NetworkUtility;
+import com.paix.jpam.j_anaya_ce02.Services.ImageDownloadService;
 
 public class MainActivity extends AppCompatActivity {
 
     //TAG
     private static final String TAG = "MainActivity";
+    //Broadcast Receiver
+    UpdateReceiver mReceiver;
     //External Storage Permission
     private static String[] PERMISSION_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 0x0001;
-    //Layout for Snackbar reference
+    //Layout for Snack_bar reference
     private View mLayout;
 
     /*LifeCycle*/
@@ -32,7 +44,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.linearLayout_activity_main);
+        //Set GridViewFragment
+        GridViewFragment gridViewFrag = new GridViewFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_GridView_FragHolder
+                , gridViewFrag, GridViewFragment.TAG).commit();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Register Broadcast Receiver
+        mReceiver = new UpdateReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ImageDownloadService.ACTION_GRIDVIEW_UPDATE);
+        registerReceiver(mReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Un-register Broadcast Receiver
+        unregisterReceiver(mReceiver);
     }
 
     /*Menu*/
@@ -55,16 +87,26 @@ public class MainActivity extends AppCompatActivity {
                         //If permissions haven't been granted, request them
                         requestExternalStoragePermissions();
                     } else {
-                        //TODO start intent service for image download
-                        //Dev
-                        Log.i(TAG, "onOptionsItemSelected: " + "Start Intent Service for Image Download");
-                        return true;
+                        //Check For Connectivity
+                        if (NetworkUtility.isConnected(this)) {
+                            //Start ImageDownloadService
+                            Intent imageDownloadServiceIntent = new Intent(this, ImageDownloadService.class);
+                            startService(imageDownloadServiceIntent);
+                            //Dev
+                            Log.i(TAG, "onOptionsItemSelected: " + "Start Intent Service for Image Download");
+                            //Service started successfully
+                            return true;
+                        } else {
+                            //Let the user know there is no Network Connection
+                            Toast.makeText(this, "No Network Connection", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         }
         return false;
     }
 
+    /*Permissions Requests*/
     //Internal Storage Permission Request (Runtime)
     private void requestExternalStoragePermissions() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -79,6 +121,29 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //Permissions for Writting to External Storage have not been granted, request directly
             ActivityCompat.requestPermissions(this, PERMISSION_STORAGE, REQUEST_WRITE_EXTERNAL_STORAGE);
+        }
+    }
+
+    /*Permissions Request Results*/
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_WRITE_EXTERNAL_STORAGE) {
+            //Received permission result for External Storage
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Snackbar.make(mLayout, "External Storage permissions granted !", Snackbar.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    /*Broadcast Receiver*/
+    private class UpdateReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Set new GridView Fragment
+            GridViewFragment gridViewFrag = (GridViewFragment) getSupportFragmentManager().findFragmentByTag(GridViewFragment.TAG);
+            gridViewFrag.refreshAdapter();
         }
     }
 }
