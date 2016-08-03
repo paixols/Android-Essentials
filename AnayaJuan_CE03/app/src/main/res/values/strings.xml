@@ -4,4 +4,7 @@
     <string name="title">Title</string>
     <string name="sub_section">Sub-section</string>
     <string name="unavailable">Unavailable</string>
+    <!--Storage-->
+    <string name="newsFeedFile">newsfeed</string>
+    <string name="newsFeedFavorite">newsfeedfavorite</string>
 </resources>
