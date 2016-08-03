@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AnayaJuan_CE03</string>
+    <string name="section">Section</string>
+    <string name="title">Title</string>
+    <string name="sub_section">Sub-section</string>
+    <string name="unavailable">Unavailable</string>
 </resources>

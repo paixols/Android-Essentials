@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--News Cell Layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4sp"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_marginTop="4sp"
+        android:orientation="horizontal">
+        <!--Layout for Thumbnail and Section-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+            <!--Thumbnail-->
+            <ImageView
+                android:id="@+id/ImageView_Cell_Thumbnail"
+                android:layout_width="48sp"
+                android:layout_height="48sp" />
+            <!--Sub-section-->
+            <TextView
+                android:id="@+id/TextView_Cell_Section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/section"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <!--Linear Layout for News Title and Sub-section-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_weight="0.2"
+            android:orientation="vertical">
+            <!--Title-->
+            <TextView
+                android:id="@+id/TextView_Cell_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextView_Cell_Subsection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:hint="@string/sub_section"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
