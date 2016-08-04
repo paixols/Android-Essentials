@@ -7,10 +7,9 @@ package com.paix.jpam.anayajuan_ce03.Utilities;
 import android.content.Context;
 import android.util.Log;
 
-import com.paix.jpam.anayajuan_ce03.News;
+import com.paix.jpam.anayajuan_ce03.NewsFeed.News;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,9 +21,9 @@ public class StorageUtility {
     /*Properties*/
     //TAG
     private static final String TAG = "StorageUtility";
-//    //File Names
-//    private String NEWSFEED_FILE = "newsfeed";
-//    private String NEWSFEED_FAVORITE_FILE = "newsfeedfavorite";
+    //File Names
+    public String NEWSFEED_FILE = "newsfeed";
+    public String NEWSFEED_FAVORITE_FILE = "newsfeedfavorite";
 
     //Write Data to Internal Storage
     public void writeInternalStorage(ArrayList<News> newsFeed, Context context, String fileName) {
@@ -48,7 +47,7 @@ public class StorageUtility {
     //Read Data from Internal Storage
     public ArrayList<News> readInternalStorage(Context context, String fileName) {
         //Data to be returned
-        ArrayList<News> newsFeed = new ArrayList<News>();
+        ArrayList<News> newsFeed = new ArrayList<>();
         //File Input Stream
         try {
             //File Input Stream
@@ -56,7 +55,8 @@ public class StorageUtility {
             //Object Input Stream
             ObjectInputStream ois = new ObjectInputStream(fis);
             //Read
-            newsFeed = (ArrayList<News>) ois.readObject(); // Can't get rid of this warning !
+            //noinspection unchecked
+            newsFeed = (ArrayList<News>) ois.readObject();
             //Close input streams
             fis.close();
             ois.close();

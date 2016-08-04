@@ -1,7 +1,8 @@
 // Juan Pablo Anaya
 // MDF3 - CE02
 // Main Activity
-package com.paix.jpam.AnayaJuan_CE02;
+
+package com.paix.jpam.anayajuan_ce02;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
@@ -22,22 +23,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.paix.jpam.AnayaJuan_CE02.Services.ImageDownloadService;
-import com.paix.jpam.AnayaJuan_CE02.GridView.GridViewFragment;
-import com.paix.jpam.AnayaJuan_CE02.NetworkUtility.NetworkUtility;
-import com.paix.jpam.j_anaya_ce02.R;
+import com.paix.jpam.anayajuan_ce02.Services.ImageDownloadService;
+import com.paix.jpam.anayajuan_ce02.GridView.GridViewFragment;
+import com.paix.jpam.anayajuan_ce02.NetworkUtility.NetworkUtility;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-
     //TAG
     private static final String TAG = "MainActivity";
     //Broadcast Receiver
-    UpdateReceiver mReceiver;
+    private UpdateReceiver mReceiver;
     //External Storage Permission
-    private static String[] PERMISSION_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static final String[] PERMISSION_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 0x0001;
     //Layout for Snack_bar reference
     private View mLayout;
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).show();
         } else {
-            //Permissions for Writting to External Storage have not been granted, request directly
+            //Permissions for Writing to External Storage have not been granted, request directly
             ActivityCompat.requestPermissions(this, PERMISSION_STORAGE, REQUEST_WRITE_EXTERNAL_STORAGE);
         }
     }
@@ -134,7 +133,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_WRITE_EXTERNAL_STORAGE) {
             //Received permission result for External Storage
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //Let the user know the permissions have been granted
                 Snackbar.make(mLayout, "External Storage permissions granted !", Snackbar.LENGTH_SHORT).show();
+                //Start the first download service
+                Intent imageDownloadServiceIntent = new Intent(this, ImageDownloadService.class);
+                startService(imageDownloadServiceIntent);
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);

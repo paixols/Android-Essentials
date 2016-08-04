@@ -1,9 +1,9 @@
 // Juan Pablo Anaya
 // MDF3 - 201608
 // NewsFeedListener
-package com.paix.jpam.anayajuan_ce03;
+package com.paix.jpam.anayajuan_ce03.NewsFeed;
 
-public interface NewsFeedListener {
+interface NewsFeedListener {
 
     //Selected Favorite News Article
     void itemSelected(News newsArticle);

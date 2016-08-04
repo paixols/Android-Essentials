@@ -1,7 +1,8 @@
 // Juan Pablo Anaya
-// MDF3 - CE02
+// MDF3 - 201608
 // GridViewAdapter
-package com.paix.jpam.AnayaJuan_CE02.GridView;
+
+package com.paix.jpam.anayajuan_ce02.GridView;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.paix.jpam.j_anaya_ce02.R;
+import com.paix.jpam.anayajuan_ce02.R;
 
 import org.apache.commons.io.IOUtils;
 
@@ -21,20 +22,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GridViewAdapter extends BaseAdapter {
+class GridViewAdapter extends BaseAdapter {
 
     //TAG
     private static final String TAG = "GridViewAdapter";
     //Context
-    Context context;
+    private final Context context;
     //ID
     private static final long ID_CONSTANT = 0xDEADBEEF;
     //Layout Inflater
-    LayoutInflater inflater;
+    private final LayoutInflater inflater;
     //Adapter Data
-    ArrayList adapterData;
-    //Data
-    byte[] data;
+    private final ArrayList adapterData;
 
     /*Constructor*/
     public GridViewAdapter(Context context, ArrayList adapterData) {
@@ -42,11 +41,6 @@ public class GridViewAdapter extends BaseAdapter {
         this.adapterData = adapterData;
         inflater = LayoutInflater.from(this.context);
     }
-//    public GridViewAdapter (Context context){
-//        this.context = context;
-//        adapterData = ExternalStorage.readExternal(this.context);
-//        inflater = LayoutInflater.from(this.context);
-//    }
 
     /*LifeCycle*/
     @Override
@@ -73,8 +67,10 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
         //New View Holder
         ViewHolder viewHolder;
+
         //If there is no view
         if (view == null) {
             view = inflater.inflate(R.layout.gridview_cell, viewGroup, false);
@@ -83,15 +79,21 @@ public class GridViewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+
         //Read Files Array
-        File[] files = context.getExternalFilesDir(null).listFiles();
-        File external = context.getExternalFilesDir(null);
-        File fileImage = new File(external, files[i].getName());
-        FileInputStream fis = null;
+        File protectedExternal = context.getExternalFilesDir(null);
+        File[] files = new File[0];
+        if (protectedExternal != null) {
+            files = protectedExternal.listFiles();
+        }
+
+        //File external = context.getExternalFilesDir(null);
+        File fileImage = new File(protectedExternal, files[i].getName());
+
         //Set Image from Bitmap
         try {
-            fis = new FileInputStream(fileImage);
-            data = IOUtils.toByteArray(fis);
+            FileInputStream fis = new FileInputStream(fileImage);
+            byte[] data = IOUtils.toByteArray(fis);
             BitmapFactory.Options bmfOptions = new BitmapFactory.Options();
             //Scale Image
             bmfOptions.inSampleSize = 4;
@@ -109,7 +111,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     /*Custom View Holder*/
     private class ViewHolder {
-        ImageView thumbnail;
+        final ImageView thumbnail;
 
         public ViewHolder(View v) {
             thumbnail = (ImageView) v.findViewById(R.id.imageView_gridView_thumbnail_cell);

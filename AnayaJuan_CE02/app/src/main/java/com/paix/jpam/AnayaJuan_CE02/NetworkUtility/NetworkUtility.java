@@ -1,7 +1,8 @@
 // Juan Pablo Anaya
-// MDF3 - CE02
+// MDF3 - 201608
 // NetworkUtility
-package com.paix.jpam.AnayaJuan_CE02.NetworkUtility;
+
+package com.paix.jpam.anayajuan_ce02.NetworkUtility;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -21,10 +22,10 @@ public class NetworkUtility {
     private static final String TAG = "NetworkUtility";
 
     //Check for network connection & Permissions
-    public static boolean isConnected(Context _context) {
+    public static boolean isConnected(Context context) {
 
         //Connectivity Manager
-        ConnectivityManager mgr = (ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         //If we have a manager, get the information
         if (mgr != null) {
             NetworkInfo info = mgr.getActiveNetworkInfo();
@@ -77,7 +78,7 @@ public class NetworkUtility {
             e.printStackTrace();
         }
 
-        //If there is no network data return "Error"
+        //If there is no network data return an empty byte array
         return new byte[0];
     }
 

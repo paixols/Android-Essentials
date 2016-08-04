@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.paix.jpam.j_anaya_ce02">
+    package="com.paix.jpam.anayajuan_ce02">
     <!--Internet Permissions-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--Activities-->
-        <activity android:name="com.paix.jpam.AnayaJuan_CE02.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <!--Services-->
-        <service android:name="com.paix.jpam.AnayaJuan_CE02.Services.ImageDownloadService"/>
+        <service android:name=".Services.ImageDownloadService" />
     </application>
 
 </manifest>

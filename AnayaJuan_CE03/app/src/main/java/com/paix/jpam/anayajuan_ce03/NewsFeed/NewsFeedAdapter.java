@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // NewsFeedAdapter
 
-package com.paix.jpam.anayajuan_ce03;
+package com.paix.jpam.anayajuan_ce03.NewsFeed;
 
 
 import android.content.Context;
@@ -13,11 +13,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.paix.jpam.anayajuan_ce03.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class NewsFeedAdapter extends BaseAdapter {
+class NewsFeedAdapter extends BaseAdapter {
 
     /*Properties*/
     //TAG
@@ -25,11 +26,11 @@ public class NewsFeedAdapter extends BaseAdapter {
     //ID
     private static final long ID_CONSTANT = 0XDEADBEEF;
     //ArrayList for News Feed
-    ArrayList<News> newsList;
+    private final ArrayList<News> newsList;
     //Context
-    Context context;
+    private final Context context;
     //Layout Inflater
-    LayoutInflater layoutInflater;
+    private final LayoutInflater layoutInflater;
 
     /*Constructor*/
     public NewsFeedAdapter(ArrayList<News> newsList, Context context) {
@@ -95,10 +96,10 @@ public class NewsFeedAdapter extends BaseAdapter {
     //Custom View Holder for the Cell of the List View
     private class NewsViewHolder {
 
-        TextView section;
-        TextView subsection;
-        TextView title;
-        ImageView thumbnail;
+        final TextView section;
+        final TextView subsection;
+        final TextView title;
+        final ImageView thumbnail;
 
         public NewsViewHolder(View v) {
             section = (TextView) v.findViewById(R.id.TextView_Cell_Section);

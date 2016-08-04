@@ -1,9 +1,9 @@
 // Juan Pablo Anaya
-// MDF3 - CE02
+// MDF3 - 201608
 // GridViewFragment
-package com.paix.jpam.AnayaJuan_CE02.GridView;
 
-import android.content.Context;
+package com.paix.jpam.anayajuan_ce02.GridView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.paix.jpam.j_anaya_ce02.R;
-import com.paix.jpam.AnayaJuan_CE02.Storage.ExternalStorage;
+import com.paix.jpam.anayajuan_ce02.R;
+import com.paix.jpam.anayajuan_ce02.Storage.ExternalStorage;
 
 import java.util.ArrayList;
 
@@ -26,22 +26,9 @@ public class GridViewFragment extends Fragment {
     //TAG
     public static final String TAG = "GridViewFragment";
     //Grid View
-    GridView mGridView;
-    //Grid View Adapter
-    GridViewAdapter adapter;
+    private GridView mGridView;
     //Images for GridViewAdapter
-    ArrayList images;
-
-    /*Life Cycle*/
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private ArrayList images;
 
     @Nullable
     @Override
@@ -75,12 +62,14 @@ public class GridViewFragment extends Fragment {
 
     /*Refresh Adapter*/
     public void refreshAdapter() {
+
         //Refresh Adapter data
         images = ExternalStorage.readExternal(getActivity());
-        adapter = new GridViewAdapter(getActivity(), images);
+        GridViewAdapter adapter = new GridViewAdapter(getActivity(), images);
         mGridView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
         //Dev
         Log.i(TAG, "refreshAdapter: " + images.size() + "/" + adapter.getCount());
     }
+
 }

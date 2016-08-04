@@ -1,14 +1,15 @@
 // Juan Pablo Anaya
-// MDF3 - CE02
+// MDF3 - 201608
 // ImageDownloadService
-package com.paix.jpam.AnayaJuan_CE02.Services;
+
+package com.paix.jpam.anayajuan_ce02.Services;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import com.paix.jpam.AnayaJuan_CE02.NetworkUtility.NetworkUtility;
-import com.paix.jpam.AnayaJuan_CE02.Storage.ExternalStorage;
+import com.paix.jpam.anayajuan_ce02.NetworkUtility.NetworkUtility;
+import com.paix.jpam.anayajuan_ce02.Storage.ExternalStorage;
 
 public class ImageDownloadService extends IntentService {
 
@@ -17,8 +18,7 @@ public class ImageDownloadService extends IntentService {
     //Broadcast Action
     public static final String ACTION_GRIDVIEW_UPDATE =
             "com.paix.jpam.j_anaya_ce02.android.ACTION_GRIDVIEW_UPDATE";
-    //Images URLs
-    private final String URL_BASE = "http://i.imgur.com/";
+    //Images suffix array
     private final String[] IMAGES = {
             "MgmzpOJ.jpg", "VZmFngH.jpg", "ptE5z9u.jpg",
             "4QKO8Up.jpg", "Vm2UdDH.jpg", "C040ctB.jpg",
@@ -32,7 +32,7 @@ public class ImageDownloadService extends IntentService {
             "wr65Geg.jpg", "7D35kbV.jpg", "Z2WQBPI.jpg"
     };
 
-    //Required Constructor
+    //Required Constructor (Thread name)
     public ImageDownloadService() {
         super("Image Download Service");
     }
@@ -40,19 +40,28 @@ public class ImageDownloadService extends IntentService {
     /*LifeCycle*/
     @Override
     protected void onHandleIntent(Intent intent) {
+
         /*Long Running Operation*/
-        for (int i = 0; i < IMAGES.length; i++) {
-            //Build URL
-            String uri = URL_BASE + IMAGES[i];
-            //Get Image as Byte Array
-            byte[] image = NetworkUtility.getNetworkData(uri);
-            //Null check
-            if (image != null) {
-                //Write to external Storage
-                ExternalStorage.writeExternal(getApplicationContext(), null, IMAGES[i], image);
-                //Send Update Broadcast to Main Activity (& Update GridViewFragment)
-                updateBroadcast();
+        for (String IMAGE : IMAGES) {
+            //Check for image duplicates
+            if (!ExternalStorage.imageExists(this, IMAGE)) {
+                //If there's no duplicate
+                //Build URL
+                String URL_BASE = "http://i.imgur.com/";
+                String uri = URL_BASE + IMAGE;
+
+                //Get Image as Byte Array
+                byte[] image = NetworkUtility.getNetworkData(uri);
+
+                //Null check
+                if (image != null) {
+                    //Write to external Storage
+                    ExternalStorage.writeExternal(getApplicationContext(), IMAGE, image);
+                }
             }
+
+            //Call Update Broadcast method
+            updateBroadcast();
         }
     }
 

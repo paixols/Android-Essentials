@@ -1,20 +1,20 @@
 // Juan Pablo Anaya
 // MDF3 - 201608
 // News
-package com.paix.jpam.anayajuan_ce03;
+package com.paix.jpam.anayajuan_ce03.NewsFeed;
 
 import java.io.Serializable;
 
 public class News implements Serializable {
 
     /*Properties*/
-    String section;
-    String subSection;
-    String title;
-    String newsUrl;
-    String thumbnailUrl;
-    String description;
-    String imageUrl;
+    private final String section;
+    private final String subSection;
+    private final String title;
+    private final String newsUrl;
+    private final String thumbnailUrl;
+    private final String description;
+    private final String imageUrl;
 
     /*Constructor*/
     public News(String section, String subsection, String title, String newsUrl,

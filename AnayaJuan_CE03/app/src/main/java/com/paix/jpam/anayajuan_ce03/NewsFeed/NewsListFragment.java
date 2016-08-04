@@ -2,16 +2,15 @@
 // MDF3 - 201608
 // NewsListFragment
 
-package com.paix.jpam.anayajuan_ce03;
+package com.paix.jpam.anayajuan_ce03.NewsFeed;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.paix.jpam.anayajuan_ce03.R;
 import com.paix.jpam.anayajuan_ce03.Utilities.StorageUtility;
 
 import java.util.ArrayList;
@@ -22,11 +21,9 @@ public class NewsListFragment extends ListFragment {
     //TAG
     private static final String TAG = "NewsListFragment";
     //Array for the News Feed
-    ArrayList<News> newsFeedFavorite;
-    //Base Adapter
-    NewsFeedAdapter adapter;
+    private ArrayList<News> newsFeedFavorite;
     //Interface for List Cell listener
-    NewsFeedListener listener;
+    private NewsFeedListener listener;
 
     /*LifeCycle*/
     @Override
@@ -49,11 +46,11 @@ public class NewsListFragment extends ListFragment {
         newsFeedFavorite = storageUtility.readInternalStorage(getContext(),
                 getContext().getString(R.string.newsFeedFavorite));
         if (newsFeedFavorite == null) {
-            newsFeedFavorite = new ArrayList<News>();
+            newsFeedFavorite = new ArrayList<>();
             newsFeedFavorite.clear();
         }
         //Set Adapter
-        adapter = new NewsFeedAdapter(newsFeedFavorite, getContext());
+        NewsFeedAdapter adapter = new NewsFeedAdapter(newsFeedFavorite, getContext());
         this.setListAdapter(adapter);
     }
 
