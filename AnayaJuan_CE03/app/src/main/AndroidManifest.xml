@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Service for News Feed & Notification-->
+        <service android:name=".Services.NewsFeedIntentService"/>
 
     </application>
 

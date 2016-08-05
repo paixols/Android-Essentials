@@ -5,8 +5,12 @@
 package com.paix.jpam.anayajuan_ce03.Services;
 
 import android.app.IntentService;
-import android.content.Context;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,11 +24,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class NewsFeedIntentService extends IntentService {
 
     /*Properties*/
     private static final String TAG = "NewsFeedIntentService";
+    //Broadcast Actions
+    public static final String NOTIFICATION_SAVE_BROADCAST =
+            "com.paix.jpam.anayajuan_ce03.NOTIFICATION_SAVE_BROADCAST";
+    //Notification
+    private static final int EXPANDED_NOTIFICATION = 0xDEADBEEA;
+
 
     /*Default Constructor*/
     public NewsFeedIntentService() {
@@ -101,10 +112,62 @@ public class NewsFeedIntentService extends IntentService {
         StorageUtility storageUtility = new StorageUtility();
         storageUtility.writeInternalStorage(newsArticles, this, this.getString(R.string.newsFeedFile));
 
-        //TODO build a notification with a random article from the feed
+        //Build Notification
+        buildNotification();
     }
 
     /*Notification Builder*/
+    //Build notification with random news article
+    private void buildNotification() {
 
+        //Get Random News Article
+        StorageUtility storageUtility = new StorageUtility();
+        ArrayList<News> newsList = storageUtility.readInternalStorage(this,
+                this.getString(R.string.newsFeedFile));
+        Random randomNewsArticleIndex = new Random();
+        int randomMaxValue = 1;
+        if(newsList.size() != 0) {
+            randomMaxValue = randomNewsArticleIndex.nextInt(newsList.size());
+        }
+        News randomNewsArticle = (News) newsList.get(randomMaxValue);
+        //Dev
+        Log.i(TAG, "buildNotification: Random News Article Name: " + randomNewsArticle.getTitle());
+
+        //Build Notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        //Standard Notification for earlier Android Versions
+        builder.setSmallIcon(R.drawable.newspin);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.newsicon));
+        builder.setContentTitle(randomNewsArticle.getTitle());
+        builder.setContentText(randomNewsArticle.getSection());
+        //Expanded Notification for new Android Versions
+        NotificationCompat.BigTextStyle bigBuilder = new NotificationCompat.BigTextStyle();
+        bigBuilder.setBigContentTitle(randomNewsArticle.getTitle());
+        bigBuilder.setSummaryText(randomNewsArticle.getSection());
+        bigBuilder.bigText(randomNewsArticle.getDescription());
+        builder.setStyle(bigBuilder);
+
+        //Notification Save Action Button (Save News Article to Favorites)
+        Intent saveNewsArticleIntent = new Intent(NOTIFICATION_SAVE_BROADCAST);
+        saveNewsArticleIntent.putExtra(this.getString(R.string.favorite_news_key),
+                randomNewsArticle);
+        PendingIntent saveNewsArticlePendingIntent = PendingIntent.getBroadcast
+                (this, 0, saveNewsArticleIntent, PendingIntent.FLAG_UPDATE_CURRENT); // Pending Intent 0
+        builder.addAction(android.R.drawable.ic_menu_add, "Save Article", saveNewsArticlePendingIntent);
+
+        //Intent to open News in default web browser
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        webIntent.setData(Uri.parse(randomNewsArticle.getNewsUrl()));
+        //Box in pending intent & set it to the Notification Body
+        PendingIntent webPendingIntent = PendingIntent.getActivity(this, 1,
+                webIntent, PendingIntent.FLAG_UPDATE_CURRENT);//Pending Intent 1
+        builder.setContentIntent(webPendingIntent);
+        builder.setAutoCancel(true);
+
+        //Notification Manager
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(EXPANDED_NOTIFICATION, builder.build());
+
+    }
 
 }//NewsFeedIntentService END

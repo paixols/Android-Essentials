@@ -44,7 +44,7 @@ public class NewsListFragment extends ListFragment {
         StorageUtility storageUtility = new StorageUtility();
         //Get Data from the News Feed Favorite File - Internal Storage
         newsFeedFavorite = storageUtility.readInternalStorage(getContext(),
-                getContext().getString(R.string.newsFeedFavorite));
+                getContext().getString(R.string.newsFeedFavoriteFile));
         if (newsFeedFavorite == null) {
             newsFeedFavorite = new ArrayList<>();
             newsFeedFavorite.clear();

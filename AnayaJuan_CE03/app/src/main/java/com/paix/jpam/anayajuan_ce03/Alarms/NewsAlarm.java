@@ -29,10 +29,11 @@ public class NewsAlarm {
             //Set Alarm
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent newsFeedIntentService = new Intent(context, NewsFeedIntentService.class);
-            PendingIntent newsFeedPendingIntentService = PendingIntent.getService(context, 0,
+            PendingIntent newsFeedPendingIntentService = PendingIntent.getService(context, 1234,
                     newsFeedIntentService, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(),
-                    SystemClock.elapsedRealtime() + 60000, newsFeedPendingIntentService);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime()+ 60000, 60000,
+                    newsFeedPendingIntentService );
             //Dev
             Log.i(TAG, "setNewsAlarm: " + "ALARM_SET");
         } else {
