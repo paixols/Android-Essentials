@@ -9,4 +9,5 @@
     <string name="newsFeedFavoriteFile">newsfeedfavorite</string>
     <!--Intent Extras-->
     <string name="favorite_news_key">favoriteNewsKey</string>
+    <string name="cancelNotification">cancelNotificationKey</string>
 </resources>

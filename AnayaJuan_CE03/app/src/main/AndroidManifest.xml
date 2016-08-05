@@ -26,6 +26,13 @@
         </activity>
         <!--Service for News Feed & Notification-->
         <service android:name=".Services.NewsFeedIntentService"/>
+        <!--Receivers-->
+        <receiver android:name=".Receivers.NewsFeedFavoriteReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.paix.jpam.anayajuan_ce03.NOTIFICATION_SAVE_BROADCAST"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 

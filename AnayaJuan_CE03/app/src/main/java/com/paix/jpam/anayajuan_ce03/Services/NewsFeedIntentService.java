@@ -151,9 +151,12 @@ public class NewsFeedIntentService extends IntentService {
         Intent saveNewsArticleIntent = new Intent(NOTIFICATION_SAVE_BROADCAST);
         saveNewsArticleIntent.putExtra(this.getString(R.string.favorite_news_key),
                 randomNewsArticle);
+        saveNewsArticleIntent.putExtra(getApplicationContext().getString(R.string.cancelNotification),
+                EXPANDED_NOTIFICATION); //Used to collapse Notification Drawer when the Save button is pressed
         PendingIntent saveNewsArticlePendingIntent = PendingIntent.getBroadcast
                 (this, 0, saveNewsArticleIntent, PendingIntent.FLAG_UPDATE_CURRENT); // Pending Intent 0
         builder.addAction(android.R.drawable.ic_menu_add, "Save Article", saveNewsArticlePendingIntent);
+
 
         //Intent to open News in default web browser
         Intent webIntent = new Intent(Intent.ACTION_VIEW);
@@ -167,6 +170,7 @@ public class NewsFeedIntentService extends IntentService {
         //Notification Manager
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(EXPANDED_NOTIFICATION, builder.build());
+
 
     }
 
