@@ -72,26 +72,4 @@ public class NetworkUtility {
         //If there is no network data return "Error"
         return "Error";
     }
-
-// --Commented out by Inspection START (8/6/16, 10:07 AM):
-//    //Get News Image and decode to Bitmap for Notification Icon
-//    public Bitmap gitBitmapFromUrl(String _thumbnailUrl) {
-//        //If there is a thumbnail Url Available
-//        if (!_thumbnailUrl.equals("")) {
-//
-//            try {
-//                URL url = new URL(_thumbnailUrl);
-//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//                connection.setDoInput(true);
-//                connection.connect();
-//                InputStream is = connection.getInputStream();
-//                return BitmapFactory.decodeStream(is);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return null;
-//    }
-// --Commented out by Inspection STOP (8/6/16, 10:07 AM)
-
 }

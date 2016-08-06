@@ -67,4 +67,6 @@ public class News implements Serializable {
         return imageUrl;
     }
 
+
+
 }
