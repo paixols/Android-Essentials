@@ -33,6 +33,12 @@
                 <action android:name="com.paix.jpam.anayajuan_ce03.NOTIFICATION_SAVE_BROADCAST"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".Receivers.NewsFeedBootReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 

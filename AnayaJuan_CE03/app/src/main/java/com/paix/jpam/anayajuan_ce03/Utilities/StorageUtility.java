@@ -21,9 +21,6 @@ public class StorageUtility {
     /*Properties*/
     //TAG
     private static final String TAG = "StorageUtility";
-    //File Names
-    public String NEWSFEED_FILE = "newsfeed";
-    public String NEWSFEED_FAVORITE_FILE = "newsfeedfavorite";
 
     //Write Data to Internal Storage
     public void writeInternalStorage(ArrayList<News> newsFeed, Context context, String fileName) {

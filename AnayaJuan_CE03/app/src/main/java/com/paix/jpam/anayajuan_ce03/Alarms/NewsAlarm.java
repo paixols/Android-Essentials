@@ -19,6 +19,8 @@ public class NewsAlarm {
 
     //TAG
     private static final String TAG = "NewsAlarm";
+    //Request Codes
+    private static final int NFIS_REQUEST_CODE = 1234;
 
     /*Method to set News Alarm*/
     public void setNewsAlarm(Context context) {
@@ -29,17 +31,16 @@ public class NewsAlarm {
             //Set Alarm
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent newsFeedIntentService = new Intent(context, NewsFeedIntentService.class);
-            PendingIntent newsFeedPendingIntentService = PendingIntent.getService(context, 1234,
-                    newsFeedIntentService, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent newsFeedPendingIntentService = PendingIntent.getService(context,
+                    NFIS_REQUEST_CODE, newsFeedIntentService, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime()+ 60000, 60000,
-                    newsFeedPendingIntentService );
+                    SystemClock.elapsedRealtime() + 60000, 60000,
+                    newsFeedPendingIntentService);
             //Dev
             Log.i(TAG, "setNewsAlarm: " + "ALARM_SET");
         } else {
             //No Network Connection
             Toast.makeText(context, "No Network Connection", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

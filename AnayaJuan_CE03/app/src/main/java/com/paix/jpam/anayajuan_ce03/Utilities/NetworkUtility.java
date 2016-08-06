@@ -5,8 +5,6 @@
 package com.paix.jpam.anayajuan_ce03.Utilities;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -18,9 +16,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class NetworkUtility {
-
-    //TAG
-    private static final String TAG = "NetworkUtility";
 
     //Check for Network Connection & Permissions
     public boolean isConnected(Context context) {
@@ -78,23 +73,25 @@ public class NetworkUtility {
         return "Error";
     }
 
-    //Get News Image and decode to Bitmap for Notification Icon
-    public Bitmap gitBitmapFromUrl(String _thumbnailUrl) {
-        //If there is a thumbnail Url Available
-        if (!_thumbnailUrl.equals("")) {
-
-            try {
-                URL url = new URL(_thumbnailUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream is = connection.getInputStream();
-                return BitmapFactory.decodeStream(is);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
+// --Commented out by Inspection START (8/6/16, 10:07 AM):
+//    //Get News Image and decode to Bitmap for Notification Icon
+//    public Bitmap gitBitmapFromUrl(String _thumbnailUrl) {
+//        //If there is a thumbnail Url Available
+//        if (!_thumbnailUrl.equals("")) {
+//
+//            try {
+//                URL url = new URL(_thumbnailUrl);
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setDoInput(true);
+//                connection.connect();
+//                InputStream is = connection.getInputStream();
+//                return BitmapFactory.decodeStream(is);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
+// --Commented out by Inspection STOP (8/6/16, 10:07 AM)
 
 }

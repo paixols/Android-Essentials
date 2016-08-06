@@ -20,9 +20,6 @@ import java.util.ArrayList;
 
 class NewsFeedAdapter extends BaseAdapter {
 
-    /*Properties*/
-    //TAG
-    private static final String TAG = "NewsFeedAdapter";
     //ID
     private static final long ID_CONSTANT = 0XDEADBEEF;
     //ArrayList for News Feed

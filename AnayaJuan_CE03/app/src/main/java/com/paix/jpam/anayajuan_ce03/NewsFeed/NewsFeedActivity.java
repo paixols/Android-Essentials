@@ -8,21 +8,22 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.paix.jpam.anayajuan_ce03.Alarms.NewsAlarm;
 import com.paix.jpam.anayajuan_ce03.R;
 import com.paix.jpam.anayajuan_ce03.Receivers.NewsFeedFavoriteReceiver;
-import com.paix.jpam.anayajuan_ce03.Services.NewsFeedIntentService;
 
 public class NewsFeedActivity extends AppCompatActivity implements NewsFeedListener {
 
     /*Properties*/
     //TAG
     private static final String TAG = "NewsFeedActivity";
-    //Broadcast Receiver
+    //Broadcast Receiver (Update UI)
     private UpdateReceiver mReceiver;
 
     /*Life Cycle*/
@@ -58,7 +59,14 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedListe
     /*Public Interface for Favorite News Article Selected on News List Fragment*/
     @Override
     public void itemSelected(News newsArticle) {
-
+        //Set Explicit Intent for Web View
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        if (!newsArticle.getNewsUrl().equals("")) {
+            webIntent.setData(Uri.parse(newsArticle.getNewsUrl()));
+        } else {
+            Toast.makeText(this, "Not Available", Toast.LENGTH_SHORT).show();
+        }
+        startActivity(webIntent);
     }
 
     /*Broadcast Receiver for UI - Updates*/

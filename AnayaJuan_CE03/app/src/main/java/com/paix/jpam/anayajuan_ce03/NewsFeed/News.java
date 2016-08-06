@@ -1,6 +1,7 @@
 // Juan Pablo Anaya
 // MDF3 - 201608
 // News
+
 package com.paix.jpam.anayajuan_ce03.NewsFeed;
 
 import java.io.Serializable;
@@ -61,6 +62,7 @@ public class News implements Serializable {
     }
 
     //Image URL
+    @SuppressWarnings("unused")
     public String getImageUrl() {
         return imageUrl;
     }

@@ -17,9 +17,6 @@ import java.util.ArrayList;
 
 public class NewsListFragment extends ListFragment {
 
-    /*Properties*/
-    //TAG
-    private static final String TAG = "NewsListFragment";
     //Array for the News Feed
     private ArrayList<News> newsFeedFavorite;
     //Interface for List Cell listener
