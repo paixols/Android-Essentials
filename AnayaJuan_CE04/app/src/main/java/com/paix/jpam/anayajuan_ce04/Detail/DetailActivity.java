@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// DetailActivity
+
 package com.paix.jpam.anayajuan_ce04.Detail;
 
 import android.support.v7.app.AppCompatActivity;
@@ -12,4 +16,5 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
     }
+
 }
