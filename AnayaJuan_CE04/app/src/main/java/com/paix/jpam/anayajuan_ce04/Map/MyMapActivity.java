@@ -23,6 +23,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
 
@@ -36,8 +39,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
 
     /*Permissions*/
     //Location
-    private static final String[] PERMISSION_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final String[] PERMISSION_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION};
     private static final int REQUEST_LOCATION = 0x0001;
 
 
@@ -46,9 +48,9 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     GoogleApiClient mGoogleApiClient;
     //Location
     LocationRequest mLocationRequest;
-    Location mLocation;
-    double mLatitude;
-    double mLongitude;
+    Location mLastLocation;
+    LatLng mLastLatLng;
+
 
     //UI
     private View mLayout;
@@ -59,18 +61,20 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_map);
 
+        //UI
+        mLayout = findViewById(R.id.LinearLayout_MapActivity);
+
         if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API).build();
-
-            //UI
-            mLayout = findViewById(R.id.LinearLayout_MapActivity);
         }
 
         //Set Map Fragment
         MyMapFragment myMapFragment = new MyMapFragment();
-        getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder, myMapFragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,
+                myMapFragment, MyMapFragment.TAG).commit();
     }
 
     @Override
@@ -79,12 +83,13 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         super.onStart();
     }
 
+
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
         super.onStop();
-
-
     }
 
     /*Map Frag Form And Detail Interface*/
@@ -105,32 +110,33 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     public void onConnected(@Nullable Bundle bundle) {
         //Request Permissions
         requestPermissions();
-        //Request Location
+        requestLocation();
+
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        //Dev
+        Log.i(TAG, "onConnectionSuspended: ");
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        //Dev
+        Log.i(TAG, "onConnectionFailed: ");
     }
 
     /*Permissions*/
-    private void requestPermissions() {
+    private Boolean requestPermissions() {
         //Check SDK version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             //> API 23 , Request Permissions at runtime
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission
-                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    != PackageManager.PERMISSION_GRANTED) {
 
                 //If permissions are not granted (Rationale?)
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION) ||
-                        ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                     //Re-direct to permissions !
                     Snackbar.make(mLayout, "I'm a Map App , I really need your location!", Snackbar.LENGTH_INDEFINITE)
                             .setAction("OK", new View.OnClickListener() {
@@ -139,36 +145,33 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
                                     ActivityCompat.requestPermissions(MyMapActivity.this, PERMISSION_LOCATION, REQUEST_LOCATION);
                                 }
                             }).show();
-
+                    return false;
                 } else {
 
                     //Request Permissions
                     ActivityCompat.requestPermissions(MyMapActivity.this, PERMISSION_LOCATION, REQUEST_LOCATION);
+                    return false;
                 }
+            } else {
+                //If permissions are granted
+                return true;
             }
         }
+        return false;
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //LOCATION PERMISSIONS
         switch (requestCode) {
             case REQUEST_LOCATION:
-
                 //If the request is cancelled the result arrays are empty
-                if ((grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) { //Coarse Location
-
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Let the user know the permissions have been granted
                     Snackbar.make(mLayout, "Location permissions granted !", Snackbar.LENGTH_SHORT).show();
                     //Request Location
                     requestLocation();
-
-                } else {
-
-                    //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
-                //return;
         }
     }
 
@@ -176,36 +179,64 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     //Request Location
     private void requestLocation() {
         /*LOCATION*/
-        //Last known location
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED) {
-            requestPermissions();
-            return;
-        }
-        mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        //
-        if (mGoogleApiClient.isConnected()) {
+        mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-            if (mLocation != null) {
+        //Last Known Location /*Location Object returned may be null in some rare cases*/
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        if (mLastLocation == null) {
+            //Check Location Permissions
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+            if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                //Execute location service call if user has explicitly granted ACCESS_FINE_LOCATION..
+                //Request Location
                 LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-                mLatitude = mLocation.getLatitude();
-                mLongitude = mLocation.getLongitude();
-
-                Log.i(TAG, "requestPermissions: " + "Lat: " + mLatitude + "   Lon: " + mLongitude);
+            } else {
+                //Request Permissions for Location
+                requestPermissions();
             }
-//            LatLng currentLatLng = new LatLng(mLatitude, mLongitude);
-//            MyMapFragment myMapFrag = new MyMapFragment().newInstanceOf(currentLatLng);
-//            getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder, myMapFrag).commit();
-        }else{
+        } else {
 
+            //Build LatLon Object
+            mLastLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            //Build Google Maps Options Object
+            GoogleMapOptions mapOptions = getGoogleMapOptions();
+            //Set Fragment
+            setMapFragment(mapOptions);
         }
+
+
     }
 
     //Location Changed
     @Override
     public void onLocationChanged(Location location) {
+        /*Location Changes*/
+        mLastLocation = location;
+        mLastLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+        //Build Google Maps Options Object
+        GoogleMapOptions mapOptions = getGoogleMapOptions();
+        setMapFragment(mapOptions);
+        //Dev
+        Log.i(TAG, "onLocationChanged:  Lat: " + mLastLatLng.latitude + "  Lon: " + mLastLatLng.longitude);
+    }
 
+    /*Google Map Options Builder*/
+    @NonNull
+    private GoogleMapOptions getGoogleMapOptions() {
+        GoogleMapOptions mapOptions = new GoogleMapOptions();
+        mapOptions.compassEnabled(true)
+                .camera(CameraPosition.fromLatLngZoom(mLastLatLng, 15))
+                .mapType(GoogleMap.MAP_TYPE_NORMAL)
+                .compassEnabled(true)
+                .mapToolbarEnabled(true);
+        return mapOptions;
+    }
+
+    /*Set MyMap Fragment*/
+    private void setMapFragment(GoogleMapOptions mapOptions) {
+        MyMapFragment myMapFragment = new MyMapFragment().newInstanceOf(mapOptions);
+        getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,
+                myMapFragment, MyMapFragment.TAG).commit();
     }
 }
