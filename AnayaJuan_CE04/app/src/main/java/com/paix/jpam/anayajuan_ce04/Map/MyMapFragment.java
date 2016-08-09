@@ -8,7 +8,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -24,7 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.paix.jpam.anayajuan_ce04.R;
 
-public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
+public class MyMapFragment extends MapFragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     //TAG
     public static final String TAG = "MyMapFragment";
@@ -42,12 +41,13 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
 
     /*Constructor*/
     //Instance Constructor
-    public MyMapFragment newInstanceOf(GoogleMapOptions options) {
+    public MyMapFragment newInstanceOf(GoogleMapOptions options, LatLng latLng) {
         //Create Instance
         MyMapFragment myMapFrag = new MyMapFragment();
         //Bundle
         Bundle args = new Bundle();
         args.putParcelable("MapOptions_key", options);
+        args.putParcelable("LatLng_key", latLng);
         myMapFrag.setArguments(args);
         //Return Instance
         return myMapFrag;
@@ -72,21 +72,28 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
         Bundle args = getArguments();
         if (!handleArguments(args)) {
             //Set Default Location (Full Sail University)
-            latLon = new LatLng(0.0, 0.0);
+            latLon = new LatLng(28.5960, 81.3019);
         } else {
+            //Get Current Location Data from custom GoogleMapOptions
             mapOptions = args.getParcelable("MapOptions_key");
+            latLon = args.getParcelable("LatLng_key");
+            //Menu
+            setHasOptionsMenu(true);
         }
 
         //Initialize Map
         getMapAsync(this);
-        //Menu
-        setHasOptionsMenu(true);
     }
 
     /*Map Callback*/
+    //Map Ready
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.i(TAG, "onMapReady: " + "MAP READY");
+
+        //Set Map Long Click Listener
+        googleMap.setOnMapLongClickListener(this);
+
+        //Handle Map Configuration
         Bundle args = getArguments();
         if (!handleArguments(args)) {
             //Handle Default Map
@@ -97,6 +104,18 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
             //Handle Map with custom GoogleMapOptions
             onMapConfigure(googleMap, mapOptions);
         }
+
+        //Dev
+        Log.i(TAG, "onMapReady: " + "MAP READY");
+    }
+
+    //Long Click
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        //MyMapActivity Interface
+        listener.toFormLongClick(latLng);
+        //Dev
+        Log.i(TAG, "onMapLongClick: " + "To Form");
     }
 
     /*Menu*/
@@ -110,7 +129,7 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
         switch (item.getItemId()) {
             case R.id.MenuItem_ToForm:
                 //MyMapActivity Interface
-                listener.toForm();//TODO implement interface correctly
+                listener.toFormMenu(latLon);
                 //DEV
                 Log.i(TAG, "onOptionsItemSelected: " + "To Form");
                 return true;
@@ -134,18 +153,24 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback {
         //Set Map Type
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //Move Camera to User's Location
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLon, zoomStreets));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLon, zoomWorld));
         Log.i(TAG, "onMapDefaultConfigure: " + "DEFAULT MAP CONFIGURED");
     }
 
     //Custom Configuration
     private void onMapConfigure(GoogleMap googleMap, GoogleMapOptions mapOptions) {
         googleMap.setMapType(mapOptions.getMapType());
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(mapOptions.getCamera()));
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(mapOptions.getCamera()));
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mapOptions.getCamera()));
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             googleMap.setMyLocationEnabled(true);
         }
+        //Current Location Marker
+        googleMap.addMarker(new MarkerOptions()
+                .position(latLon)
+                .title("Current Location")
+                .draggable(false));
         Log.i(TAG, "onMapConfigure: " + "CUSTOM MAP CONFIGURED");
     }
 

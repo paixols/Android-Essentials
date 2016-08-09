@@ -3,4 +3,8 @@
     <string name="mapediting_userInput">MapEditing</string>
     <!--Maps-->
     <string name="Current_LatLon">latLon_key</string>
+    <string name="savelocation">SaveLocation</string>
+    <string name="camera">Camera</string>
+    <string name="Latitude">Latitude</string>
+    <string name="Longitude">Longitude</string>
 </resources>

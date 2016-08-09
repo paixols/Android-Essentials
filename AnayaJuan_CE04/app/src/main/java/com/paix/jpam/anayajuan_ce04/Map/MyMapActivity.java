@@ -5,6 +5,7 @@
 package com.paix.jpam.anayajuan_ce04.Map;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.paix.jpam.anayajuan_ce04.Form.FormActivity;
 import com.paix.jpam.anayajuan_ce04.R;
 
 public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
@@ -93,10 +95,18 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     }
 
     /*Map Frag Form And Detail Interface*/
-    //Form
     @Override
-    public void toForm() {
-        //TODO transition to Form Activity
+    public void toFormMenu(LatLng latLng) {
+        Intent formIntent = new Intent(this, FormActivity.class);
+        formIntent.putExtra("LatLng_value",latLng);
+        startActivity(formIntent);
+    }
+
+    @Override
+    public void toFormLongClick(LatLng latLng) {
+        Intent formIntent = new Intent(this, FormActivity.class);
+        formIntent.putExtra("LatLng_value",latLng);
+        startActivity(formIntent);
     }
 
     //Detail
@@ -109,8 +119,9 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         //Request Permissions
-        requestPermissions();
-        requestLocation();
+        if (requestPermissions()) {
+            requestLocation();
+        }
 
     }
 
@@ -202,7 +213,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
             //Build Google Maps Options Object
             GoogleMapOptions mapOptions = getGoogleMapOptions();
             //Set Fragment
-            setMapFragment(mapOptions);
+            setMapFragment(mapOptions, mLastLatLng);
         }
 
 
@@ -216,7 +227,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         mLastLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         //Build Google Maps Options Object
         GoogleMapOptions mapOptions = getGoogleMapOptions();
-        setMapFragment(mapOptions);
+        setMapFragment(mapOptions, mLastLatLng);
         //Dev
         Log.i(TAG, "onLocationChanged:  Lat: " + mLastLatLng.latitude + "  Lon: " + mLastLatLng.longitude);
     }
@@ -234,8 +245,8 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     }
 
     /*Set MyMap Fragment*/
-    private void setMapFragment(GoogleMapOptions mapOptions) {
-        MyMapFragment myMapFragment = new MyMapFragment().newInstanceOf(mapOptions);
+    private void setMapFragment(GoogleMapOptions mapOptions, LatLng latLng) {
+        MyMapFragment myMapFragment = new MyMapFragment().newInstanceOf(mapOptions, latLng);
         getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,
                 myMapFragment, MyMapFragment.TAG).commit();
     }

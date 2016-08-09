@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--Save Location-->
+    <item
+        android:id="@+id/MenuItem_SaveLocation"
+        android:icon="@drawable/save_as"
+        android:title="@string/savelocation"
+        app:showAsAction="ifRoom" />
+    <!--Camera-->
+    <item
+        android:id="@+id/MenuItem_StartCamera"
+        android:icon="@drawable/camera"
+        android:title="@string/camera"
+        app:showAsAction="ifRoom" />
+</menu>
