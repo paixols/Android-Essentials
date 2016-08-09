@@ -97,7 +97,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     /*Map Frag Form And Detail Interface*/
     @Override
     public void toFormMenu(LatLng latLng) {
-        Intent formIntent = new Intent(this, FormActivity.class);
+        Intent formIntent = new Intent(this,FormActivity.class);
         formIntent.putExtra("LatLng_value",latLng);
         startActivity(formIntent);
     }
@@ -182,6 +182,8 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
                     Snackbar.make(mLayout, "Location permissions granted !", Snackbar.LENGTH_SHORT).show();
                     //Request Location
                     requestLocation();
+                }else {
+                    super.onRequestPermissionsResult(requestCode,permissions,grantResults);
                 }
         }
     }

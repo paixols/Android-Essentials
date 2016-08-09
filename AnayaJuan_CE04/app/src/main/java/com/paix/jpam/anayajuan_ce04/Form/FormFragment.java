@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
@@ -27,16 +27,18 @@ public class FormFragment extends Fragment {
     private static final String TAG = "FormFragment";
 
     /*Properties*/
-    //Fragment Layout
-    private int layoutId;
     //Location
     private LatLng latLng;
     //UI
     EditText editTextLat;
     EditText editTextLng;
+    ImageView locationImageView;
+
+    //Interface
+    OnFormMenuSelection listener;
 
     /*Constructor*/
-    public static FormFragment newInstanceOf(LatLng latLng) {
+    public FormFragment newInstanceOf(LatLng latLng) {
         //Set Fragment
         FormFragment formFrag = new FormFragment();
         //Set Bundle & Arguments
@@ -47,24 +49,31 @@ public class FormFragment extends Fragment {
         return formFrag;
     }
 
+    /*LifeCycle*/
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        //Outer Class Interface
+        if (context instanceof OnFormMenuSelection) {
+            listener = (OnFormMenuSelection) context;
+        } else {
+            throw new IllegalArgumentException("Please Add OnFormMenuSelection Interface");
+        }
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Get Data if available
         Bundle args = getArguments();
-        if (!handleArguments(args)) {
+        if (handleArguments(args)) {
             latLng = args.getParcelable("LatLng_key");
         } else {
-            latLng = new LatLng(0, 0); //Default
+            //Set Default Location (Full Sail University)
+            latLng = new LatLng(28.5960, 81.3019);
         }
         //Menu
         setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        //TODO implement saving interface
     }
 
     @Nullable
@@ -75,6 +84,7 @@ public class FormFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_form, container, false);
         editTextLat = (EditText) v.findViewById(R.id.EditText_Latitude);
         editTextLng = (EditText) v.findViewById(R.id.EditText_Longitude);
+        locationImageView = (ImageView) v.findViewById(R.id.ImageView_Form);
         return v;
     }
 
@@ -94,16 +104,20 @@ public class FormFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.MenuItem_SaveLocation:
                 //TODO check for empty EditText Fields
                 //TODO send broadcast to save receiver
+                //Interface to Form Activity
+                listener.saveLocation();
                 //Dev
                 Log.i(TAG, "onOptionsItemSelected: " + "Save location");
                 return true;
             case R.id.MenuItem_StartCamera:
                 //TODO start camera
                 //TODO after taking picture, display it on the Image View
+                //Interface to Start Camera
+                listener.openCamera();
                 //Dev
                 Log.i(TAG, "onOptionsItemSelected: " + "Start Camera");
                 return true;
