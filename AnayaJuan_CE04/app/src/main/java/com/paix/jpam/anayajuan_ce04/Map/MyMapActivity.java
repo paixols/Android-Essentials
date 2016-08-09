@@ -15,17 +15,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
 
 public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
+
+    //TAG
+    private static final String TAG = "MyMapActivity";
 
     /*Permissions*/
     //Location
@@ -35,8 +42,14 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
 
 
     /*Properties*/
+    //Google Api Client
     GoogleApiClient mGoogleApiClient;
+    //Location
+    LocationRequest mLocationRequest;
     Location mLocation;
+    double mLatitude;
+    double mLongitude;
+
     //UI
     private View mLayout;
 
@@ -128,6 +141,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
                             }).show();
 
                 } else {
+
                     //Request Permissions
                     ActivityCompat.requestPermissions(MyMapActivity.this, PERMISSION_LOCATION, REQUEST_LOCATION);
                 }
@@ -141,20 +155,57 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         //LOCATION PERMISSIONS
         switch (requestCode) {
             case REQUEST_LOCATION:
+
                 //If the request is cancelled the result arrays are empty
-                if((grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) || //Fine Location
-                        (grantResults.length > 0 && grantResults[1] == PackageManager.PERMISSION_GRANTED)){ //Coarse Location
+                if ((grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) { //Coarse Location
 
                     //Let the user know the permissions have been granted
                     Snackbar.make(mLayout, "Location permissions granted !", Snackbar.LENGTH_SHORT).show();
+                    //Request Location
+                    requestLocation();
 
-                    //Get Current Location
+                } else {
 
-
-                }else {
-                    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                    //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
-                return;
+                //return;
         }
+    }
+
+    /*Location*/
+    //Request Location
+    private void requestLocation() {
+        /*LOCATION*/
+        //Last known location
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+        mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        //
+        if (mGoogleApiClient.isConnected()) {
+
+            if (mLocation != null) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                mLatitude = mLocation.getLatitude();
+                mLongitude = mLocation.getLongitude();
+
+                Log.i(TAG, "requestPermissions: " + "Lat: " + mLatitude + "   Lon: " + mLongitude);
+            }
+//            LatLng currentLatLng = new LatLng(mLatitude, mLongitude);
+//            MyMapFragment myMapFrag = new MyMapFragment().newInstanceOf(currentLatLng);
+//            getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder, myMapFrag).commit();
+        }else{
+
+        }
+    }
+
+    //Location Changed
+    @Override
+    public void onLocationChanged(Location location) {
+
     }
 }
