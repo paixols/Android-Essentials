@@ -112,6 +112,7 @@ public class FormFragment extends Fragment {
         editTextLat = (EditText) v.findViewById(R.id.EditText_Latitude);
         editTextLng = (EditText) v.findViewById(R.id.EditText_Longitude);
         locationImageView = (ImageView) v.findViewById(R.id.ImageView_Form);
+//        locationImageView.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(),R.drawable.earth));
         return v;
     }
 
@@ -122,6 +123,7 @@ public class FormFragment extends Fragment {
         editTextLat.setText(String.valueOf(latLng.latitude));
         editTextLng.setText(String.valueOf(latLng.longitude));
 
+
         File image = null;
         File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"JAnayaCE04");
         if(path.exists())
@@ -130,13 +132,21 @@ public class FormFragment extends Fragment {
             Log.i(TAG, "onViewCreated: " + "Path Exists");
             String [] fileName = path.list();
             Log.i(TAG, "onViewCreated: " + fileName.length);
-            for (int i = 0; i < fileName.length ; i++) {
-                String photoName = fileName[i];
-                Log.i(TAG, "onViewCreated: " + photoName);
-                image = new File(path,photoName);
-                Log.i(TAG, "onViewCreated: " + image.getAbsolutePath());
-                locationImageView.setImageBitmap(BitmapFactory.decodeFile(image.getPath()));
-            }
+            String photoName = fileName[fileName.length - 1];
+            image = new File(path,photoName);
+            locationImageView.setImageBitmap(BitmapFactory.decodeFile(image.getPath()));
+//            for (int i = 0; i < fileName.length ; i++) {
+//                String photoName = fileName[i];
+//                Log.i(TAG, "onViewCreated: " + photoName);
+//                image = new File(path,photoName);
+//                Log.i(TAG, "onViewCreated: " + image.getAbsolutePath());
+//                locationImageView.setImageBitmap(BitmapFactory.decodeFile(image.getPath()));
+//            }
+        }
+
+        Bundle args = getArguments();
+        if(args.getString("FilePath_key") == null){
+            locationImageView.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(),R.drawable.earth));
         }
 //        for(int i = 0; i < fileame.length; i++)
 //        {
