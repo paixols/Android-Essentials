@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -27,11 +28,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
+import com.paix.jpam.anayajuan_ce04.Utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.Utilities.StorageHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -48,10 +52,8 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
     //Camera Storage
     private static final int CAPTURE_FORM_ACTIVITY_REQUEST_CODE = 0x3000;
     /*Camera*/
-    Bitmap bitmap;
-    String mCurrentPhotoPath;
-    Uri photoUri;
-    File photoFile;
+    String mCurrentPhotoPath; //Used for Fragment
+    Uri photoUri; //Used for ActionViewIntent
     /*Location*/
     LatLng latLng;
 
@@ -61,10 +63,6 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        if(savedInstanceState != null){
-            mCurrentPhotoPath = savedInstanceState.getString("filepath_key");
-        }
-
         //Snackbar Layout
         mLayout = findViewById(R.id.LinearLayout_FormActivity);
         //Get LatLng Info (From MyMapActivity)
@@ -73,30 +71,27 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         Log.i(TAG, "onCreate: " + latLng.latitude + "/" + latLng.longitude);
 
         //Set Form Fragment (Without Thumbnail)
-        FormFragment formFragment = new FormFragment().newInstanceOf(latLng, null, null);
+        FormFragment formFragment = new FormFragment().newInstanceOf(latLng, null);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.FrameLayout_FormHolder, formFragment).commit();
+        //Create Image Folder for the First Time
+        StorageHelper storageHelper = new StorageHelper();
+        storageHelper.getOutputMediaFile(StorageHelper.FOLDER_NAME);
 
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("filepath_key", mCurrentPhotoPath);
-        super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
         //Set New Fragment (With Thumbnail)
-        FormFragment formFrag = new FormFragment().newInstanceOf(latLng, bitmap, mCurrentPhotoPath);
+        FormFragment formFrag = new FormFragment().newInstanceOf(latLng, mCurrentPhotoPath);
         getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_FormHolder,
                 formFrag).commit();
     }
 
     /*Save Location*/
     @Override
-    public void saveLocation() {
+    public void saveLocation(ImageLocation imageLocation) {
         //Check SDK version (For permissions)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //If Build Version >= API 23, request permissions at runtime
@@ -105,8 +100,20 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
                 //Request Permissions
                 requestExternalStoragePermissions();
             } else {
-                //TODO Save IMAGE with LocationTag to Private External Storage
-
+                //Dev
+                Log.i(TAG, "saveLocation: " + imageLocation.getLat() + "/" + imageLocation.getLng() + "/" +
+                        imageLocation.getFilePath());
+                //Save Image with Location Data
+                StorageHelper storageHelper = new StorageHelper();
+                ArrayList<ImageLocation> imageLocations = storageHelper.readInternalStorage(this);
+                if (imageLocation == null) {
+                    imageLocations = new ArrayList<ImageLocation>();
+                    imageLocations.clear();
+                }
+                imageLocations.add(imageLocation);
+                storageHelper.writeInternalStorage(imageLocations, this);
+                //Navigate Back to Map
+                this.finish();
             }
         }
         //Dev
@@ -125,18 +132,20 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
                     != PackageManager.PERMISSION_GRANTED) {
                 //Request Permissions
                 requestExternalStoragePermissions();
+            } else {
+
+                createCameraIntent();
+
             }
         }
+
+    }
+
+    private void createCameraIntent() {
         //Create Photo File & Path
-        photoFile = null;
-       // try {
-            //photoFile = createImageFile();
-            photoFile = getOutputMediaFile();
-            photoUri = Uri.parse(mCurrentPhotoPath);
-       // }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        StorageHelper storageHelper = new StorageHelper();
+        mCurrentPhotoPath = storageHelper.getCurrentFilePath(storageHelper.getOutputMediaFile(StorageHelper.FOLDER_NAME));
+        photoUri = Uri.parse(mCurrentPhotoPath);
 
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -145,13 +154,10 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
             Log.i(TAG, "openCamera: " + "URI: " + photoUri.toString());
             startActivityForResult(takePictureIntent, CAPTURE_FORM_ACTIVITY_REQUEST_CODE);
         }
-
-
-        //TODO Put picture on the Image View of the Form Fragment ImageView (REFRESH IMAGE VIEW)
         //Dev
         Log.i(TAG, "openCamera: " + "Open Camera Interface");
-
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -159,14 +165,9 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         if (requestCode == CAPTURE_FORM_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
-                Bundle extras = data.getExtras();
-                if (extras != null) {
-                    bitmap = (Bitmap) extras.get("data");
-                    Log.i(TAG, "onActivityResult: " + bitmap);
-                }
-
+                //Dev
+                Log.i(TAG, "onActivityResult: " + "RESULT_OK");
             }
-
 
         } else if (resultCode == RESULT_CANCELED) {
 
@@ -209,7 +210,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
                 //Let the user know the permissions have been granted
                 Snackbar.make(mLayout, "External Storage permissions granted !", Snackbar.LENGTH_SHORT).show();
 
-                //TODO Save current location
+                createCameraIntent();
 
             } else {
 
@@ -217,61 +218,5 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
 
             }
         }
-    }
-
-    /*Create Image File - Android Developer Portal Code Snippet*/
-//    private File createImageFile() throws IOException {
-//        // Create an image file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_" + ".jpg";
-//        String folderName = "JAnayaCE04";
-//        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/" + folderName);
-//
-//        if(!storageDir.mkdir()){
-//            Log.i(TAG, "createImageFile: " + "STORAGE NOT CREATED");
-//        }
-//
-//        //File storageDir = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-////        File image = File.createTempFile(
-////                imageFileName,  /* prefix */
-////                ".jpg",         /* suffix */
-////                storageDir      /* directory */
-////        );
-//        File image = new File(storageDir, imageFileName);
-//
-//        // Save a file: path for use with ACTION_VIEW intents
-//        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-//        return image;
-//    }
-
-
-    public File getOutputMediaFile() {
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
-
-        File mediaStorageDir;
-        // If the external directory is writable then then return the External pictures directory.
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "JAnayaCE04");
-        } else {
-            mediaStorageDir = Environment.getDownloadCacheDirectory();
-        }
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
-
-        mCurrentPhotoPath = "file:" + mediaFile.getAbsolutePath();
-        //mCurrentPhotoPath = "IMG_" + timeStamp + ".jpg";
-        return mediaFile;
     }
 }

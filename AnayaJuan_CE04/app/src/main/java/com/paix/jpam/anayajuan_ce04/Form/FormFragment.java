@@ -23,6 +23,8 @@ import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
+import com.paix.jpam.anayajuan_ce04.Utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.Utilities.StorageHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,35 +45,19 @@ public class FormFragment extends Fragment {
     EditText editTextLat;
     EditText editTextLng;
     ImageView locationImageView;
-    //Time Stamp
-    Bitmap mBitmap;
+    //File Path
     String filePath;
-
     //Interface
     OnFormMenuSelection listener;
 
-//    /*Constructor*/
-//    public FormFragment newInstanceOf(LatLng latLng, Uri uri, String path) {
-//        //Set Fragment
-//        FormFragment formFrag = new FormFragment();
-//        //Set Bundle & Arguments
-//        Bundle args = new Bundle();
-//        args.putParcelable("LatLng_key", latLng);
-//        args.putParcelable("TimeStamp_key", uri);
-//        args.putString("FilePath_key",path);
-//        formFrag.setArguments(args);
-//        //Return Instance
-//        return formFrag;
-//    }
 
     /*Constructor*/
-    public FormFragment newInstanceOf(LatLng latLng, Bitmap bitmap, String filePath) {
+    public FormFragment newInstanceOf(LatLng latLng, String filePath) {
         //Set Fragment
         FormFragment formFrag = new FormFragment();
         //Set Bundle & Arguments
         Bundle args = new Bundle();
         args.putParcelable("LatLng_key", latLng);
-        args.putParcelable("Bitmap_key", bitmap);
         args.putString("FilePath_key", filePath);
         formFrag.setArguments(args);
         //Return Instance
@@ -107,12 +93,11 @@ public class FormFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        //Declare Custom View
+        //Declare Custom View & UI
         View v = inflater.inflate(R.layout.fragment_form, container, false);
         editTextLat = (EditText) v.findViewById(R.id.EditText_Latitude);
         editTextLng = (EditText) v.findViewById(R.id.EditText_Longitude);
         locationImageView = (ImageView) v.findViewById(R.id.ImageView_Form);
-//        locationImageView.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(),R.drawable.earth));
         return v;
     }
 
@@ -123,62 +108,18 @@ public class FormFragment extends Fragment {
         editTextLat.setText(String.valueOf(latLng.latitude));
         editTextLng.setText(String.valueOf(latLng.longitude));
 
-
-        File image = null;
-        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"JAnayaCE04");
-        if(path.exists())
-        {
-            //String[] fileNames = path.list();
-            Log.i(TAG, "onViewCreated: " + "Path Exists");
-            String [] fileName = path.list();
-            Log.i(TAG, "onViewCreated: " + fileName.length);
-            String photoName = fileName[fileName.length - 1];
-            image = new File(path,photoName);
-            locationImageView.setImageBitmap(BitmapFactory.decodeFile(image.getPath()));
-//            for (int i = 0; i < fileName.length ; i++) {
-//                String photoName = fileName[i];
-//                Log.i(TAG, "onViewCreated: " + photoName);
-//                image = new File(path,photoName);
-//                Log.i(TAG, "onViewCreated: " + image.getAbsolutePath());
-//                locationImageView.setImageBitmap(BitmapFactory.decodeFile(image.getPath()));
-//            }
+        StorageHelper storageHelper = new StorageHelper();
+        Bitmap bm = null;
+        if (storageHelper.getBitmapFromFile(StorageHelper.FOLDER_NAME) != null) {
+            bm = storageHelper.getBitmapFromFile(StorageHelper.FOLDER_NAME);
         }
-
+        if (bm != null) {
+            locationImageView.setImageBitmap(bm);
+        }
         Bundle args = getArguments();
-        if(args.getString("FilePath_key") == null){
-            locationImageView.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(),R.drawable.earth));
+        if (args.getString("FilePath_key") == null) {
+            locationImageView.setImageBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.earth));
         }
-//        for(int i = 0; i < fileame.length; i++)
-//        {
-//            Bitmap mBitmap = Bitmap.decodeFile(path.getPath()+"/"+ fileNames[i]);
-//            ///Now set this bitmap on imageview
-//        }
-
-//        if (mBitmap != null) {
-//            locationImageView.setImageBitmap(mBitmap);
-//        }
-//        //Read Image File
-//        if(filePath != null) {
-//            File mediaStorageDir;
-//            // If the external directory is writable then then return the External pictures directory.
-//            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-//                mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "JAnayaCE04");
-//            } else {
-//                mediaStorageDir = Environment.getDownloadCacheDirectory();
-//            }
-//            File image = null;
-//            // Create the storage directory if it does not exist
-//            if (mediaStorageDir.exists()) {
-//
-//                //image = new File(mediaStorageDir,filePath);
-//                image = new File(filePath);
-//                Log.i(TAG, "onViewCreated: " + "DIRECTORY EXISTS: " + mediaStorageDir.exists());
-//                Log.i(TAG, "onViewCreated: " + "IMAGE EXISTS: " + image.exists());
-//
-//            }
-//
-//        }
-
     }
 
     /*Menu*/
@@ -192,15 +133,14 @@ public class FormFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.MenuItem_SaveLocation:
                 //TODO check for empty EditText Fields
-                //TODO send broadcast to save receiver
+                ImageLocation imageLocation = new ImageLocation(latLng.latitude, latLng.longitude, filePath);
                 //Interface to Form Activity
-                listener.saveLocation();
+                listener.saveLocation(imageLocation);
                 //Dev
                 Log.i(TAG, "onOptionsItemSelected: " + "Save location");
                 return true;
             case R.id.MenuItem_StartCamera:
-                //TODO start camera
-                //TODO after taking picture, display it on the Image View
+                //TODO send data to Form Activity so it can be saved
                 //Interface to Start Camera
                 listener.openCamera();
                 //Dev
@@ -214,11 +154,11 @@ public class FormFragment extends Fragment {
     private Boolean handleArguments(Bundle args) {
         if (args != null) {
             latLng = args.getParcelable("LatLng_key");
-            mBitmap = args.getParcelable("Bitmap_key");
+            //mBitmap = args.getParcelable("Bitmap_key");
             filePath = args.getString("FilePath_key");
             //DEV
-            Log.i(TAG, "handleArguments: " + "Arguments are not Null: " + mBitmap);
-            if(filePath != null) {
+            //Log.i(TAG, "handleArguments: " + "Arguments are not Null: " + mBitmap);
+            if (filePath != null) {
                 Log.i(TAG, "handleArguments: " + "File Path: " + filePath);
             }
             return true;
