@@ -239,7 +239,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     private GoogleMapOptions getGoogleMapOptions() {
         GoogleMapOptions mapOptions = new GoogleMapOptions();
         mapOptions.compassEnabled(true)
-                .camera(CameraPosition.fromLatLngZoom(mLastLatLng, 15))
+                .camera(CameraPosition.fromLatLngZoom(mLastLatLng, 10))
                 .mapType(GoogleMap.MAP_TYPE_NORMAL)
                 .compassEnabled(true)
                 .mapToolbarEnabled(true);
