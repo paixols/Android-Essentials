@@ -2,13 +2,12 @@
 // MDF3 - 201608
 // FormFragment
 
-package com.paix.jpam.anayajuan_ce04.Form;
+package com.paix.jpam.anayajuan_ce04.form;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,14 +22,8 @@ import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
-import com.paix.jpam.anayajuan_ce04.Utilities.ImageLocation;
-import com.paix.jpam.anayajuan_ce04.Utilities.StorageHelper;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import com.paix.jpam.anayajuan_ce04.utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
 
 
 public class FormFragment extends Fragment {
@@ -42,13 +35,13 @@ public class FormFragment extends Fragment {
     //Location
     private LatLng latLng;
     //UI
-    EditText editTextLat;
-    EditText editTextLng;
-    ImageView locationImageView;
+    private EditText editTextLat;
+    private EditText editTextLng;
+    private ImageView locationImageView;
     //File Path
-    String filePath;
+    private String filePath;
     //Interface
-    OnFormMenuSelection listener;
+    private OnFormMenuSelection listener;
 
 
     /*Constructor*/
@@ -110,8 +103,8 @@ public class FormFragment extends Fragment {
 
         StorageHelper storageHelper = new StorageHelper();
         Bitmap bm = null;
-        if (storageHelper.getBitmapFromFile(StorageHelper.FOLDER_NAME) != null) {
-            bm = storageHelper.getBitmapFromFile(StorageHelper.FOLDER_NAME);
+        if (storageHelper.getBitmapFromFile() != null) {
+            bm = storageHelper.getBitmapFromFile();
         }
         if (bm != null) {
             locationImageView.setImageBitmap(bm);

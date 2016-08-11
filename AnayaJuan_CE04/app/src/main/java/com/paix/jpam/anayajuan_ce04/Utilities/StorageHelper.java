@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // StorageHelper
 
-package com.paix.jpam.anayajuan_ce04.Utilities;
+package com.paix.jpam.anayajuan_ce04.utilities;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,18 +25,16 @@ public class StorageHelper {
 
     //TAG
     private static final String TAG = "StorageHelper";
-    public static final String FOLDER_NAME = "JAnayaCE04";
-    public static final String FILE_NAME = "ImageLocationData";
+    private static final String FOLDER_NAME = "JAnayaCE04";
+    private static final String FILE_NAME = "ImageLocationData";
 
     //Generate Media File
-    public File getOutputMediaFile(String folderName) {
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
-
+    public File getOutputMediaFile() {
+        //TODO check for SD card
         File mediaStorageDir;
         // If the external directory is writable then then return the External pictures directory.
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName);
+            mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), StorageHelper.FOLDER_NAME);
         } else {
             mediaStorageDir = Environment.getDownloadCacheDirectory();
         }
@@ -54,7 +52,6 @@ public class StorageHelper {
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
 
-        //mCurrentPhotoPath = "file:" + mediaFile.getAbsolutePath();
         return mediaFile;
     }
 
@@ -64,16 +61,16 @@ public class StorageHelper {
     }
 
     //Get Last Index Bitmap from Selected Directory
-    public Bitmap getBitmapFromFile(String folderName) {
-        File image = null;
-        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folderName);
+    public Bitmap getBitmapFromFile() {
+        File image;
+        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), StorageHelper.FOLDER_NAME);
         if (path.exists()) {
             //String[] fileNames = path.list();
             Log.i(TAG, "onViewCreated: " + "Path Exists");
             if (path.list() != null) {
                 String[] fileName = path.list();
                 Log.i(TAG, "onViewCreated: " + fileName.length);
-                String photoName = "";
+                String photoName;
                 if (fileName.length == 0) {
                     //photoName = fileName[0];
                     return null;
@@ -109,17 +106,16 @@ public class StorageHelper {
     }//Write Internal Storage END
 
     //Read ImageLocation Objects from internal Storage
-    public ArrayList<ImageLocation> readInternalStorage(Context context) {
+    public ArrayList readInternalStorage(Context context) {
         //Data to be filled and returned
-        ArrayList<ImageLocation> arrayList = new ArrayList<ImageLocation>();
+        ArrayList arrayList = new ArrayList<>();
         try {
             //Create an instance of the file input stream
             FileInputStream fis = context.openFileInput(FILE_NAME);
             ObjectInputStream ois = new ObjectInputStream(fis);
             //Type cast for object reading
-            ArrayList<ImageLocation> imageLocations = (ArrayList<ImageLocation>) ois.readObject();
             //Set array to be returned
-            arrayList = imageLocations;
+            arrayList = (ArrayList) ois.readObject();
             //Close File Stream and Object Stream
             fis.close();
             ois.close();

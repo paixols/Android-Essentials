@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // DetailActivity
 
-package com.paix.jpam.anayajuan_ce04.Detail;
+package com.paix.jpam.anayajuan_ce04.detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

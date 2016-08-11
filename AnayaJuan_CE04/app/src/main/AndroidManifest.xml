@@ -15,15 +15,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Map.MyMapActivity">
+        <activity android:name=".map.MyMapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Form.FormActivity" />
-        <activity android:name=".Detail.DetailActivity"></activity>
+        <activity android:name=".form.FormActivity" />
+        <activity android:name=".detail.DetailActivity"/>
         <!--Map Version-->
         <meta-data
             android:name="com.google.android.gms.version"

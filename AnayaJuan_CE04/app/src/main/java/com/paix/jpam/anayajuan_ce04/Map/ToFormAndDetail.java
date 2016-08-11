@@ -2,11 +2,11 @@
 // MDF3 - 201608
 // ToFormAndDetail
 
-package com.paix.jpam.anayajuan_ce04.Map;
+package com.paix.jpam.anayajuan_ce04.map;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public interface ToFormAndDetail {
+interface ToFormAndDetail {
 
     //To Form Interface when Menu Button is Pressed
     void toFormMenu(LatLng latLng);

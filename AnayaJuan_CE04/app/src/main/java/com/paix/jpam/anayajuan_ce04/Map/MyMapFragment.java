@@ -2,11 +2,12 @@
 // MDF3 - 201608
 // MyMapFragment
 
-package com.paix.jpam.anayajuan_ce04.Map;
+package com.paix.jpam.anayajuan_ce04.map;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -22,6 +23,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.paix.jpam.anayajuan_ce04.R;
+import com.paix.jpam.anayajuan_ce04.utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
+
+import java.util.ArrayList;
 
 public class MyMapFragment extends MapFragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
@@ -30,14 +35,8 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
     /*Properties*/
     private LatLng latLon;
     private GoogleMapOptions mapOptions;
-    //Zoom Levels
-    int zoomWorld = 1;
-    int zoomContinent = 5;
-    int zoomCity = 10;
-    int zoomStreets = 15;
-    int zoomBuildings = 20;
     //Interface
-    ToFormAndDetail listener;
+    private ToFormAndDetail listener;
 
     /*Constructor*/
     //Instance Constructor
@@ -98,10 +97,8 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
         if (!handleArguments(args)) {
             //Handle Default Map
             onMapDefaultConfigure(googleMap);
-
         } else {
-
-            //Handle Map with custom GoogleMapOptions
+            //Handle Map with custom GoogleMapOptions (Loads Markers)
             onMapConfigure(googleMap, mapOptions);
         }
 
@@ -153,25 +150,52 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
         //Set Map Type
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //Move Camera to User's Location
+        int zoomWorld = 1;
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLon, zoomWorld));
         Log.i(TAG, "onMapDefaultConfigure: " + "DEFAULT MAP CONFIGURED");
     }
 
     //Custom Configuration
     private void onMapConfigure(GoogleMap googleMap, GoogleMapOptions mapOptions) {
+
+        //dEV
+        Log.i(TAG, "onMapConfigure: " + "CUSTOM MAP");
+
+        //Clear Map
+        googleMap.clear();
+        //Set Map Options
         googleMap.setMapType(mapOptions.getMapType());
-        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(mapOptions.getCamera()));
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mapOptions.getCamera()));
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             googleMap.setMyLocationEnabled(true);
         }
-        //Current Location Marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(latLon)
-                .title("Current Location")
-                .draggable(false));
-        Log.i(TAG, "onMapConfigure: " + "CUSTOM MAP CONFIGURED");
+
+        //Read ImageLocation Data from Storage to Make Markers
+        StorageHelper storageHelper = new StorageHelper();
+        ArrayList imageLocations;
+        imageLocations = storageHelper.readInternalStorage(getContext());
+        if (imageLocations.size() != 0) {
+            //Create Markers
+            for (int i = 0; i < imageLocations.size(); i++) {
+                //Retrieve ImageLocation Object
+                ImageLocation imageLocation = (ImageLocation) imageLocations.get(i);
+                LatLng imageLocationLatLng = new LatLng(imageLocation.getLat(), imageLocation.getLng());
+                Log.i(TAG, "onMapConfigure: " + "LATLNG: " + imageLocationLatLng);
+                String imageLocationName = "No Photo !";
+                if (imageLocation.getFilePath() != null) {
+                    imageLocationName = Uri.parse(imageLocation.getFilePath()).getLastPathSegment();
+                }
+                googleMap.addMarker(new MarkerOptions()
+                        .position(imageLocationLatLng)
+                        .title(imageLocationName)
+                        .snippet("Lat: " + imageLocation.getLat() + "\n" + "Lng: " + imageLocation.getLng())
+                        .draggable(false)
+                        .visible(true));
+            }
+            Log.i(TAG, "onMapConfigure: " + "MARKERS SET");
+        }
+
     }
 
 }

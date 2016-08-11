@@ -2,10 +2,13 @@
 // MDF3 - 201608
 // MyMapActivity
 
-package com.paix.jpam.anayajuan_ce04.Map;
+package com.paix.jpam.anayajuan_ce04.map;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -28,7 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.paix.jpam.anayajuan_ce04.Form.FormActivity;
+import com.paix.jpam.anayajuan_ce04.form.FormActivity;
 import com.paix.jpam.anayajuan_ce04.R;
 
 public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
@@ -44,14 +47,16 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     private static final String[] PERMISSION_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION};
     private static final int REQUEST_LOCATION = 0x0001;
 
+    //Broadcast Receiver (Update UI)
+    public static final String UPDATE_MAP = "com.paix.jpam.anayajuan_ce04.UPDATE_MAP";
+    private UpdateReceiver mReceiver;
+
 
     /*Properties*/
     //Google Api Client
-    GoogleApiClient mGoogleApiClient;
-    //Location
-    LocationRequest mLocationRequest;
-    Location mLastLocation;
-    LatLng mLastLatLng;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+    private LatLng mLastLatLng;
 
 
     //UI
@@ -85,6 +90,22 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         super.onStart();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Register Broadcast Receivers
+        mReceiver = new UpdateReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(UPDATE_MAP);
+        registerReceiver(mReceiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Un-register Broadcast Receivers
+        unregisterReceiver(mReceiver);
+    }
 
     @Override
     protected void onStop() {
@@ -97,15 +118,15 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     /*Map Frag Form And Detail Interface*/
     @Override
     public void toFormMenu(LatLng latLng) {
-        Intent formIntent = new Intent(this,FormActivity.class);
-        formIntent.putExtra("LatLng_value",latLng);
+        Intent formIntent = new Intent(this, FormActivity.class);
+        formIntent.putExtra("LatLng_value", latLng);
         startActivity(formIntent);
     }
 
     @Override
     public void toFormLongClick(LatLng latLng) {
         Intent formIntent = new Intent(this, FormActivity.class);
-        formIntent.putExtra("LatLng_value",latLng);
+        formIntent.putExtra("LatLng_value", latLng);
         startActivity(formIntent);
     }
 
@@ -182,8 +203,8 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
                     Snackbar.make(mLayout, "Location permissions granted !", Snackbar.LENGTH_SHORT).show();
                     //Request Location
                     requestLocation();
-                }else {
-                    super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+                } else {
+                    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
         }
     }
@@ -192,7 +213,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     //Request Location
     private void requestLocation() {
         /*LOCATION*/
-        mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationRequest mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         //Last Known Location /*Location Object returned may be null in some rare cases*/
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -251,5 +272,20 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         MyMapFragment myMapFragment = new MyMapFragment().newInstanceOf(mapOptions, latLng);
         getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,
                 myMapFragment, MyMapFragment.TAG).commit();
+    }
+
+    /*Broadcast Receiver for UI - Updates*/
+    private class UpdateReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(UPDATE_MAP)) {
+                //Set Map Fragment
+                GoogleMapOptions mapOptions = getGoogleMapOptions();
+                setMapFragment(mapOptions, mLastLatLng);
+                //Dev
+                Log.i(TAG, "onReceive: " + "UI-UPDATED");
+            }
+        }
     }
 }

@@ -2,42 +2,30 @@
 // MDF3 - 201608
 // FormActivity
 
-package com.paix.jpam.anayajuan_ce04.Form;
+package com.paix.jpam.anayajuan_ce04.form;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.paix.jpam.anayajuan_ce04.map.MyMapActivity;
 import com.paix.jpam.anayajuan_ce04.R;
-import com.paix.jpam.anayajuan_ce04.Utilities.ImageLocation;
-import com.paix.jpam.anayajuan_ce04.Utilities.StorageHelper;
+import com.paix.jpam.anayajuan_ce04.utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class FormActivity extends AppCompatActivity implements OnFormMenuSelection {
 
@@ -45,17 +33,16 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
     private static final String TAG = "FormActivity";
 
     /*Properties*/
-    View mLayout;
+    private View mLayout;
     //External Storage Permission
     private static final String[] PERMISSION_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 0x2000;
     //Camera Storage
     private static final int CAPTURE_FORM_ACTIVITY_REQUEST_CODE = 0x3000;
     /*Camera*/
-    String mCurrentPhotoPath; //Used for Fragment
-    Uri photoUri; //Used for ActionViewIntent
+    private String mCurrentPhotoPath; //Used for Fragment
     /*Location*/
-    LatLng latLng;
+    private LatLng latLng;
 
     /*LifeCycle*/
     @Override
@@ -76,7 +63,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
                 replace(R.id.FrameLayout_FormHolder, formFragment).commit();
         //Create Image Folder for the First Time
         StorageHelper storageHelper = new StorageHelper();
-        storageHelper.getOutputMediaFile(StorageHelper.FOLDER_NAME);
+        storageHelper.getOutputMediaFile();
 
     }
 
@@ -105,14 +92,17 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
                         imageLocation.getFilePath());
                 //Save Image with Location Data
                 StorageHelper storageHelper = new StorageHelper();
-                ArrayList<ImageLocation> imageLocations = storageHelper.readInternalStorage(this);
-                if (imageLocation == null) {
-                    imageLocations = new ArrayList<ImageLocation>();
+                ArrayList imageLocations;
+                imageLocations = storageHelper.readInternalStorage(this);
+                if (imageLocations == null) {
+                    imageLocations = new ArrayList<>();
                     imageLocations.clear();
                 }
                 imageLocations.add(imageLocation);
                 storageHelper.writeInternalStorage(imageLocations, this);
                 //Navigate Back to Map
+                Intent updateMapIntent = new Intent(MyMapActivity.UPDATE_MAP);
+                this.sendBroadcast(updateMapIntent);
                 this.finish();
             }
         }
@@ -144,8 +134,8 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
     private void createCameraIntent() {
         //Create Photo File & Path
         StorageHelper storageHelper = new StorageHelper();
-        mCurrentPhotoPath = storageHelper.getCurrentFilePath(storageHelper.getOutputMediaFile(StorageHelper.FOLDER_NAME));
-        photoUri = Uri.parse(mCurrentPhotoPath);
+        mCurrentPhotoPath = storageHelper.getCurrentFilePath(storageHelper.getOutputMediaFile());
+        Uri photoUri = Uri.parse(mCurrentPhotoPath);
 
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

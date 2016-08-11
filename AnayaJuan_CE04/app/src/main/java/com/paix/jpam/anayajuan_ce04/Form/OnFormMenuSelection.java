@@ -2,11 +2,11 @@
 // MDF3 - 201608
 // OnFormMenuSelection
 
-package com.paix.jpam.anayajuan_ce04.Form;
+package com.paix.jpam.anayajuan_ce04.form;
 
-import com.paix.jpam.anayajuan_ce04.Utilities.ImageLocation;
+import com.paix.jpam.anayajuan_ce04.utilities.ImageLocation;
 
-public interface OnFormMenuSelection {
+interface OnFormMenuSelection {
 
     //Save Location Data
     void saveLocation(ImageLocation imageLocation);
