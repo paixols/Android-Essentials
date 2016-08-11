@@ -7,6 +7,7 @@ package com.paix.jpam.anayajuan_ce04.utilities;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
@@ -108,6 +109,21 @@ public class StorageHelper {
         return null;
     }
 
+    //Get Bitmap from selected ImageLocation File (Scaled for InfoWindow)
+    public Bitmap getBitmapFromFile(String fileName){
+        File image;
+        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), StorageHelper.FOLDER_NAME);
+        if(path.exists()){
+            if(path.list() != null){
+               image = new File(path,fileName);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 9;
+                return BitmapFactory.decodeFile(image.getPath(),options);
+            }
+        }
+        return null;
+    }
+
     //Write ImageLocation Objects
     public void writeInternalStorage(ArrayList<ImageLocation> arrayListLocationData, Context context) {
         //Try & Catch block to save Data internally
@@ -149,4 +165,35 @@ public class StorageHelper {
         Log.i(TAG, "readInternalStorage: " + arrayList.size());
         return arrayList;
     }//Read Internal Storage END
+
+    //Delete ImageLocation Object from Internal Storage
+    public Boolean deleteFile(String fileName, Context context) {
+        //Data to be filled
+        ArrayList arrayList;
+        arrayList = readInternalStorage(context);
+        if (arrayList.size() > 0) { // If there is internal data
+            for (int i = 0; i < arrayList.size(); i++) { //Loop through all the records
+                ImageLocation imageLocation = (ImageLocation) arrayList.get(i);
+                //Dev
+                Log.i(TAG, "deleteFile: " + imageLocation.getFilePath());
+                if (imageLocation.getFilePath() == null) {
+                    arrayList.remove(i);
+                    writeInternalStorage(arrayList, context);
+                    return true;
+                }
+                if (!imageLocation.getFilePath().equals("No Photo !")) { // If there is a File Path Available
+                    Uri uri = Uri.parse(imageLocation.getFilePath());
+                    String photoNameFromPath = uri.getLastPathSegment();
+                    //Dev
+                    Log.i(TAG, "deleteFile: " + photoNameFromPath + "////" + fileName);
+                    if (photoNameFromPath.equals(fileName)) {
+                        arrayList.remove(i);
+                        writeInternalStorage(arrayList, context);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

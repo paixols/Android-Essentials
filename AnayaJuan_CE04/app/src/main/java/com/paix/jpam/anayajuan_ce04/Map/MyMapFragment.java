@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -227,9 +228,15 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback,
             LatLng latLng = marker.getPosition();
             TextView title = (TextView) v.findViewById(R.id.TextView_InfoWindow_title);
             TextView snippet = (TextView) v.findViewById(R.id.TextView_InfoWindow_snippet);
+            ImageView imageView = (ImageView) v.findViewById(R.id.ImageView_InfoWindow);
             title.setText(marker.getTitle());
             String snippetTex = "Lat: " + latLng.latitude + "\n" + "Lng: " + latLng.longitude;
             snippet.setText(snippetTex);
+            //Get Bitmap for Image View
+            StorageHelper storageHelper = new StorageHelper();
+            if(!marker.getTitle().equals("No Photo!")){
+                imageView.setImageBitmap(storageHelper.getBitmapFromFile(marker.getTitle()));
+            }
 
             return v;
         }

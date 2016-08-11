@@ -11,9 +11,8 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
+import com.paix.jpam.anayajuan_ce04.map.MyMapActivity;
 import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
-
-import java.io.File;
 
 public class DetailActivity extends AppCompatActivity implements OnDetailMenuSelection {
 
@@ -21,12 +20,9 @@ public class DetailActivity extends AppCompatActivity implements OnDetailMenuSel
     private static final String TAG = "DetailActivity";
 
     /*Properties*/
-    //Details Shownn
-    LatLng latLng;
-    String imageName;
-    //Files
-    String currentFilePath;
-    File currentFile;
+    //Details Shown
+    private LatLng latLng;
+    private String imageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +38,13 @@ public class DetailActivity extends AppCompatActivity implements OnDetailMenuSel
     @Override
     public void selectedWindow() {
         //Todo Should delete current ImageLocation Object
-        //Todo Should send an update Map broadcast to MyMapActivity
-
+        StorageHelper storageHelper = new StorageHelper();
+        if (storageHelper.deleteFile(imageName, this)) {
+            Log.i(TAG, "selectedWindow: " + "FILE DELETED");
+        }
+        //Update Map Broadcast
+        Intent updateMapIntent = new Intent(MyMapActivity.UPDATE_MAP);
+        this.sendBroadcast(updateMapIntent);
         //Return to Map
         finish();
     }

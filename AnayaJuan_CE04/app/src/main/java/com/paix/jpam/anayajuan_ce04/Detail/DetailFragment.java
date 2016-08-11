@@ -34,14 +34,14 @@ public class DetailFragment extends Fragment {
     /*Properties*/
     private TextView latText;
     private TextView lngText;
-    ImageView image;
+    private ImageView image;
     //Bundle properties
     private LatLng latLng;
     private String imageName;
     //Interface
     private OnDetailMenuSelection listener;
     //Files
-    File currentFile;
+    private File currentFile;
 
 
     /*Constructor*/
@@ -113,8 +113,7 @@ public class DetailFragment extends Fragment {
         if (handleArguments(args)) {
             latText.setText(String.valueOf(latLng.latitude));
             lngText.setText(String.valueOf(latLng.longitude));
-            //TODO set the Image to the Image View
-
+            //Set Image on ImageView
             StorageHelper storageHelper = new StorageHelper();
             currentFile = storageHelper.getFileFromName(imageName);
             if (currentFile != null) {
