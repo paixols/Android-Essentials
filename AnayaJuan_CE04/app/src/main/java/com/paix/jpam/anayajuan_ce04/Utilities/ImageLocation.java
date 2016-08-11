@@ -12,12 +12,14 @@ public class ImageLocation implements Serializable {
     private final double lat;
     private final double lng;
     private final String filePath;
+
     /*Constructor*/
     public ImageLocation(double lat, double lng, String filePath) {
         this.lat = lat;
         this.lng = lng;
         this.filePath = filePath;
     }
+
     /*Getters*/
     public double getLat() {
         return lat;

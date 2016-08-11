@@ -103,8 +103,8 @@ public class FormFragment extends Fragment {
 
         StorageHelper storageHelper = new StorageHelper();
         Bitmap bm = null;
-        if (storageHelper.getBitmapFromFile() != null) {
-            bm = storageHelper.getBitmapFromFile();
+        if (storageHelper.getLastBitmapFromFileFolder() != null) {
+            bm = storageHelper.getLastBitmapFromFileFolder();
         }
         if (bm != null) {
             locationImageView.setImageBitmap(bm);
@@ -133,7 +133,6 @@ public class FormFragment extends Fragment {
                 Log.i(TAG, "onOptionsItemSelected: " + "Save location");
                 return true;
             case R.id.MenuItem_StartCamera:
-                //TODO send data to Form Activity so it can be saved
                 //Interface to Start Camera
                 listener.openCamera();
                 //Dev

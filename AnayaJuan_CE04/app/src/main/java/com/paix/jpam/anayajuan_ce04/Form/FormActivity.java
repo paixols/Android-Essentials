@@ -52,6 +52,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
 
         //Snackbar Layout
         mLayout = findViewById(R.id.LinearLayout_FormActivity);
+
         //Get LatLng Info (From MyMapActivity)
         Intent intent = getIntent();
         latLng = intent.getParcelableExtra("LatLng_value");
@@ -61,16 +62,17 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         FormFragment formFragment = new FormFragment().newInstanceOf(latLng, null);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.FrameLayout_FormHolder, formFragment).commit();
+
         //Create Image Folder for the First Time
         StorageHelper storageHelper = new StorageHelper();
         storageHelper.getOutputMediaFile();
-
+        //TODO fix storage !!
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        //Set New Fragment (With Thumbnail)
+        //Set New Fragment (With Image)
         FormFragment formFrag = new FormFragment().newInstanceOf(latLng, mCurrentPhotoPath);
         getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_FormHolder,
                 formFrag).commit();
@@ -130,7 +132,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         }
 
     }
-
+    //Open Camera
     private void createCameraIntent() {
         //Create Photo File & Path
         StorageHelper storageHelper = new StorageHelper();
@@ -148,13 +150,12 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         Log.i(TAG, "openCamera: " + "Open Camera Interface");
     }
 
-
+    /*Activity Result*/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == CAPTURE_FORM_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-
                 //Dev
                 Log.i(TAG, "onActivityResult: " + "RESULT_OK");
             }

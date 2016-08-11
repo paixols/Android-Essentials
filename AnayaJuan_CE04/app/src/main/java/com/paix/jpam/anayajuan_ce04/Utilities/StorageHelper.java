@@ -60,8 +60,31 @@ public class StorageHelper {
         return "file:" + file.getAbsolutePath();
     }
 
+    //Query File and return if it exists receiving the File Name
+    public File getFileFromName(String fileName) {
+        File imageLocationResult;
+        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), StorageHelper.FOLDER_NAME);
+        if (path.exists()) {
+            //Dev
+            Log.i(TAG, "getFileFromName: " + "Path Exists");
+            if (path.list() != null) {
+                //Loop through the available files on the FOLDER_NAME folder
+                String[] availableFiles = path.list();
+                for (String availableFile : availableFiles) {
+                    Log.i(TAG, "getFileFromName: " + availableFile);
+                    if (availableFile.equals(fileName)) {
+                        imageLocationResult = new File(path, fileName);
+                        return imageLocationResult;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
     //Get Last Index Bitmap from Selected Directory
-    public Bitmap getBitmapFromFile() {
+    public Bitmap getLastBitmapFromFileFolder() {
         File image;
         File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), StorageHelper.FOLDER_NAME);
         if (path.exists()) {

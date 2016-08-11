@@ -5,6 +5,8 @@
 package com.paix.jpam.anayajuan_ce04.detail;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,10 +17,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.paix.jpam.anayajuan_ce04.R;
+import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
+
+import java.io.File;
 
 public class DetailFragment extends Fragment {
 
@@ -28,12 +34,14 @@ public class DetailFragment extends Fragment {
     /*Properties*/
     private TextView latText;
     private TextView lngText;
-    //ImageView image;
+    ImageView image;
     //Bundle properties
     private LatLng latLng;
-    //private String imageName;
+    private String imageName;
     //Interface
     private OnDetailMenuSelection listener;
+    //Files
+    File currentFile;
 
 
     /*Constructor*/
@@ -93,7 +101,7 @@ public class DetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
         latText = (TextView) v.findViewById(R.id.TextView_Detail_Lat);
         lngText = (TextView) v.findViewById(R.id.TextView_Detail_Lng);
-        //image = (ImageView) v.findViewById(R.id.ImageView_Detail);
+        image = (ImageView) v.findViewById(R.id.ImageView_Detail);
         return v;
     }
 
@@ -106,13 +114,24 @@ public class DetailFragment extends Fragment {
             latText.setText(String.valueOf(latLng.latitude));
             lngText.setText(String.valueOf(latLng.longitude));
             //TODO set the Image to the Image View
+
+            StorageHelper storageHelper = new StorageHelper();
+            currentFile = storageHelper.getFileFromName(imageName);
+            if (currentFile != null) {
+                Bitmap bitmap = BitmapFactory.decodeFile(currentFile.getPath());
+                image.setImageBitmap(bitmap);
+            } else {
+                Log.i(TAG, "selectedWindow: " + "File has no Photo");
+                Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.earth);
+                image.setImageBitmap(bitmap);
+            }
         }
     }
 
     private Boolean handleArguments(Bundle args) {
         if (args != null) {
             latLng = args.getParcelable("LatLng_key");
-            //imageName = args.getString("ImageName_key");
+            imageName = args.getString("ImageName_key");
             return true;
         }
         return false;

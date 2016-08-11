@@ -53,14 +53,11 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
     public static final String UPDATE_MAP = "com.paix.jpam.anayajuan_ce04.UPDATE_MAP";
     private UpdateReceiver mReceiver;
 
-
     /*Properties*/
     //Google Api Client
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     private LatLng mLastLatLng;
-
-
     //UI
     private View mLayout;
 
@@ -72,15 +69,14 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
 
         //UI
         mLayout = findViewById(R.id.LinearLayout_MapActivity);
-
+        //Google API Client
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API).build();
         }
-
-        //Set Map Fragment
+        //Set empty Map Fragment
         MyMapFragment myMapFragment = new MyMapFragment();
         getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,
                 myMapFragment, MyMapFragment.TAG).commit();
@@ -117,7 +113,8 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         super.onStop();
     }
 
-    /*Map Frag Form And Detail Interface*/
+    /*Map Fragment Interfaces*/
+    //To Form - Menu Item
     @Override
     public void toFormMenu(LatLng latLng) {
         Intent formIntent = new Intent(this, FormActivity.class);
@@ -125,6 +122,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         startActivity(formIntent);
     }
 
+    //To Form - Long Map Click
     @Override
     public void toFormLongClick(LatLng latLng) {
         Intent formIntent = new Intent(this, FormActivity.class);
@@ -132,7 +130,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         startActivity(formIntent);
     }
 
-    //Detail
+    //To Detail
     @Override
     public void toDetail(Marker marker) {
         //TODO transition to Detail Activity
@@ -165,7 +163,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         Log.i(TAG, "onConnectionFailed: ");
     }
 
-    /*Permissions*/
+    /*Location Permissions*/
     private Boolean requestPermissions() {
         //Check SDK version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -216,8 +214,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         }
     }
 
-    /*Location*/
-    //Request Location
+    /*Location Request*/
     private void requestLocation() {
         /*LOCATION*/
         LocationRequest mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -245,8 +242,6 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
             //Set Fragment
             setMapFragment(mapOptions, mLastLatLng);
         }
-
-
     }
 
     //Location Changed
@@ -262,7 +257,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         Log.i(TAG, "onLocationChanged:  Lat: " + mLastLatLng.latitude + "  Lon: " + mLastLatLng.longitude);
     }
 
-    /*Google Map Options Builder*/
+    /*Google Map Options Build Method*/
     @NonNull
     private GoogleMapOptions getGoogleMapOptions() {
         GoogleMapOptions mapOptions = new GoogleMapOptions();
@@ -274,7 +269,7 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
         return mapOptions;
     }
 
-    /*Set MyMap Fragment*/
+    /*Set MyMap Fragment Method*/
     private void setMapFragment(GoogleMapOptions mapOptions, LatLng latLng) {
         MyMapFragment myMapFragment = new MyMapFragment().newInstanceOf(mapOptions, latLng);
         getFragmentManager().beginTransaction().replace(R.id.FrameLayout_Map_FragHolder,

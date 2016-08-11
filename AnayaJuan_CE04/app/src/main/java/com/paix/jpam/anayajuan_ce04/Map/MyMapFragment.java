@@ -163,7 +163,7 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback,
     //Custom Configuration
     private void onMapConfigure(GoogleMap googleMap, GoogleMapOptions mapOptions) {
 
-        //dEV
+        //Dev
         Log.i(TAG, "onMapConfigure: " + "CUSTOM MAP");
 
         //Clear Map
@@ -204,16 +204,15 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback,
     }
 
     /*Info Window*/
+    //Info Window Listener
     @Override
     public void onInfoWindowClick(Marker marker) {
         //Interface handled in MyMapActivity (Details Screen)
         listener.toDetail(marker);
     }
 
+    //Info Window Adapter
     private class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
-
-        //TAG
-        //private static final String TAG = "MyInfoWindowAdapter";
 
         @Override
         public View getInfoWindow(Marker marker) {
