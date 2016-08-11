@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.paix.jpam.anayajuan_ce04.R;
 import com.paix.jpam.anayajuan_ce04.utilities.ImageLocation;
@@ -28,7 +31,8 @@ import com.paix.jpam.anayajuan_ce04.utilities.StorageHelper;
 
 import java.util.ArrayList;
 
-public class MyMapFragment extends MapFragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class MyMapFragment extends MapFragment implements OnMapReadyCallback,
+        GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
 
     //TAG
     public static final String TAG = "MyMapFragment";
@@ -91,6 +95,7 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
 
         //Set Map Long Click Listener
         googleMap.setOnMapLongClickListener(this);
+        googleMap.setOnInfoWindowClickListener(this);
 
         //Handle Map Configuration
         Bundle args = getArguments();
@@ -170,7 +175,7 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             googleMap.setMyLocationEnabled(true);
         }
-
+        googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
         //Read ImageLocation Data from Storage to Make Markers
         StorageHelper storageHelper = new StorageHelper();
         ArrayList imageLocations;
@@ -196,6 +201,39 @@ public class MyMapFragment extends MapFragment implements OnMapReadyCallback, Go
             Log.i(TAG, "onMapConfigure: " + "MARKERS SET");
         }
 
+    }
+
+    /*Info Window*/
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        //Interface handled in MyMapActivity (Details Screen)
+        listener.toDetail(marker);
+    }
+
+    private class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        //TAG
+        //private static final String TAG = "MyInfoWindowAdapter";
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            //Default Info Window
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            View v = getActivity().getLayoutInflater().inflate(R.layout.info_window_content, null, false);
+            LatLng latLng = marker.getPosition();
+            TextView title = (TextView) v.findViewById(R.id.TextView_InfoWindow_title);
+            TextView snippet = (TextView) v.findViewById(R.id.TextView_InfoWindow_snippet);
+            title.setText(marker.getTitle());
+            String snippetTex = "Lat: " + latLng.latitude + "\n" + "Lng: " + latLng.longitude;
+            snippet.setText(snippetTex);
+
+            return v;
+        }
     }
 
 }

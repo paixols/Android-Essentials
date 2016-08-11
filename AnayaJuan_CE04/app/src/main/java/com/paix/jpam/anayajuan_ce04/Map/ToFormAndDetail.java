@@ -5,6 +5,7 @@
 package com.paix.jpam.anayajuan_ce04.map;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 interface ToFormAndDetail {
 
@@ -15,5 +16,5 @@ interface ToFormAndDetail {
     void toFormLongClick(LatLng latLng);
 
     //To Detail Interface
-    void toDetail();
+    void toDetail(Marker marker);
 }

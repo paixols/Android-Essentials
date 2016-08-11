@@ -31,6 +31,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.paix.jpam.anayajuan_ce04.detail.DetailActivity;
 import com.paix.jpam.anayajuan_ce04.form.FormActivity;
 import com.paix.jpam.anayajuan_ce04.R;
 
@@ -132,8 +134,13 @@ public class MyMapActivity extends AppCompatActivity implements ToFormAndDetail,
 
     //Detail
     @Override
-    public void toDetail() {
+    public void toDetail(Marker marker) {
         //TODO transition to Detail Activity
+        Log.i(TAG, "toDetail: " + "Marker: " + marker.getTitle());
+        Intent detailIntent = new Intent(MyMapActivity.this, DetailActivity.class);
+        detailIntent.putExtra("LatLng_key", marker.getPosition());
+        detailIntent.putExtra("PhotoName_key", marker.getTitle());
+        startActivity(detailIntent);
     }
 
     /*Google API Client*/
