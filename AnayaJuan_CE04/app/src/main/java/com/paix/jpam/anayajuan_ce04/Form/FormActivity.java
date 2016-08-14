@@ -69,6 +69,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
         //TODO fix storage !!
     }
 
+
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -158,6 +159,7 @@ public class FormActivity extends AppCompatActivity implements OnFormMenuSelecti
             if (resultCode == RESULT_OK) {
                 //Dev
                 Log.i(TAG, "onActivityResult: " + "RESULT_OK");
+
             }
 
         } else if (resultCode == RESULT_CANCELED) {
