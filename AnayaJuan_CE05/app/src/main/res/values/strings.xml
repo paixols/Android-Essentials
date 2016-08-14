@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AnayaJuan_CE05</string>
     <string name="song">Song</string>
+    <string name="Artist_Name">Artist: </string>
+    <string name="Album_Name">Album: </string>
+    <string name="Song_Name">Song: </string>
 </resources>
