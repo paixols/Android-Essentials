@@ -2,7 +2,7 @@
 // MDF3 ­ 201608
 // Song
 
-package com.paix.jpam.anayajuan_ce05;
+package com.paix.jpam.anayajuan_ce05.dataModel;
 
 import java.io.Serializable;
 

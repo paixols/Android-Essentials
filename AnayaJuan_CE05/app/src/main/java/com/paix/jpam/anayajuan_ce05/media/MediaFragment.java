@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // MediaFragment
 
-package com.paix.jpam.anayajuan_ce05;
+package com.paix.jpam.anayajuan_ce05.media;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.paix.jpam.anayajuan_ce05.R;
+import com.paix.jpam.anayajuan_ce05.dataModel.Song;
 import com.paix.jpam.anayajuan_ce05.services.AudioService;
 
 public class MediaFragment extends Fragment implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {

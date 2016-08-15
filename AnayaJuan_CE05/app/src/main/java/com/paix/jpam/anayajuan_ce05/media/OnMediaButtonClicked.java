@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // OnMediaButtonClicked
 
-package com.paix.jpam.anayajuan_ce05;
+package com.paix.jpam.anayajuan_ce05.media;
 
 public interface OnMediaButtonClicked {
     //Loop

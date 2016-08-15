@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // MediaActivity
 
-package com.paix.jpam.anayajuan_ce05;
+package com.paix.jpam.anayajuan_ce05.media;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.paix.jpam.anayajuan_ce05.R;
+import com.paix.jpam.anayajuan_ce05.receivers.NotificationReceiver;
 import com.paix.jpam.anayajuan_ce05.services.AudioService;
 
 /*Implement the ServiceConnection Interface in the activity that is doing the binding, in this case
@@ -53,10 +55,14 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         seekBarStoppedChanges = false;
         newSeekBarValue = 0;
 
-        //Register Local Broadcast Receivers -> Next Song
+        //Register Local Broadcast Receivers -> Next Song, Previous Song & Song has finished playing
+        IntentFilter filterNextPreviousFinished = new IntentFilter();
+        filterNextPreviousFinished.addAction(AudioService.SONG_HAS_FINISHED_PLAY_NEXT);
+        filterNextPreviousFinished.addAction(NotificationReceiver.CHANGE_NEXT);
+        filterNextPreviousFinished.addAction(NotificationReceiver.CHANGE_PREVIOUS);
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(mNextSongReceiver,
-                        new IntentFilter(AudioService.SONG_HAS_FINISHED_PLAY_NEXT));
+                        filterNextPreviousFinished);
 
     }
 
@@ -210,8 +216,24 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     private BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            //Play Next Song
-            mService.play();
+
+            //Notification Broadcasts
+            if (intent.getAction().equals(NotificationReceiver.CHANGE_NEXT)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "CHANGE NEXT SONG ON MEDIA ACTIVITY");
+                mService.next();
+                mService.play();
+            } else if (intent.getAction().equals(NotificationReceiver.CHANGE_PREVIOUS)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "CHANGE PREVIOUS SONG ON MEDIA ACTIVITY");
+                mService.previous();
+                mService.play();
+            } else if (intent.getAction().equals(AudioService.SONG_HAS_FINISHED_PLAY_NEXT)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "SONG HAS FINISHED, PLAY NEXT");
+                //Play Next Song
+                mService.play();
+            }
         }
     };
 

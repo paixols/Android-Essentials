@@ -16,7 +16,7 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce05.R;
-import com.paix.jpam.anayajuan_ce05.Song;
+import com.paix.jpam.anayajuan_ce05.dataModel.Song;
 
 import java.util.Random;
 
@@ -46,18 +46,18 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     private Handler mHandler = new Handler();
 
     //Song Position update for Seek Bar -> Local Broadcast for Media Player Fragment
-    public static final String SONG_CURRENT_POSITION_UPDATE = "com.paix.jpam.j_anaya_ce05_mProgress";
+    public static final String SONG_CURRENT_POSITION_UPDATE = "com.paix.jpam.anayajuan_ce05_mProgress";
     //Song Finished & Should Play Next one notification
-    public static final String SONG_HAS_FINISHED_PLAY_NEXT = "com.paix.jpam.j_anaya_ce05_mNext";
+    public static final String SONG_HAS_FINISHED_PLAY_NEXT = "com.paix.jpam.anayajuan_ce05_mNext";
     //Song Information to populate User Interface
-    public static final String SONG_INFORMATION = "com.paix.jpam.j_anaya_ce05_mSongInfo";
+    public static final String SONG_INFORMATION = "com.paix.jpam.anayajuan_ce05_mSongInfo";
 
     //Foreground Notification
     private static final int FOREGROUND_NOTIFICATION = 0x10101;
 
     //Notification Next and Previous Intents
-    private static final String SONG_NEXT = "com.paix.jpam.j_anaya_ce05_mSongNext";
-    private static final String SONG_PREVIOUS = "com.paix.jpam.j_anaya_ce05_mSongPrevious";
+    public static final String SONG_NEXT = "com.paix.jpam.anayajuan_ce05_mSongNext";
+    public static final String SONG_PREVIOUS = "com.paix.jpam.anayajuan_ce05_mSongPrevious";
 
     //Media Player
     public MediaPlayer mPlayer;
