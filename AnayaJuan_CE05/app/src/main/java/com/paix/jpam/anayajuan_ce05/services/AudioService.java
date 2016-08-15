@@ -20,6 +20,7 @@ import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce05.R;
 import com.paix.jpam.anayajuan_ce05.dataModel.Song;
+import com.paix.jpam.anayajuan_ce05.media.MediaActivity;
 import com.paix.jpam.anayajuan_ce05.receivers.NotificationReceiver;
 
 import java.util.Random;
@@ -62,9 +63,9 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     //Notification Next and Previous Intents
     public static final String SONG_NEXT = "com.paix.jpam.anayajuan_ce05_mSongNext";
     public static final String SONG_PREVIOUS = "com.paix.jpam.anayajuan_ce05_mSongPrevious";
-
+//    public static final String UPDATE_UI = "com.paix.jpam.anayajuan_ce05_updateUi";
     //Notification Finish Service
-    public static final String FINISH_SERVICE = "com.paix.jpam.anayajuan_ce05_finishService";
+
 
     //Media Player
     public MediaPlayer mPlayer;
@@ -72,7 +73,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     //Song ArrayList
     Song[] songs;
     int songIndex;
-    Song currentSong;
+    public static Song currentSong;
 
     //Shuffle Flag
     boolean isShuffling;
@@ -146,11 +147,13 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         //Service Active
         if (!mRunning) {
             //Start Sticky Service
-            if (intent.getAction().equals("hola")) {
-                Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
-                mRunning = true;
-                //Todo Start Foreground Notification Here , not on the Binding
-                return Service.START_STICKY;
+            if (intent != null) {
+                if (intent.getAction().equals("hola")) {
+                    Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
+                    mRunning = true;
+                    //Todo Start Foreground Notification Here , not on the Binding
+                    return Service.START_STICKY;
+                }
             }
         }//Else
         return super.onStartCommand(intent, flags, startId);
@@ -406,12 +409,10 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         Intent nextSongIntent = new Intent(SONG_NEXT);
         PendingIntent nextSongPendingIntent = PendingIntent.getBroadcast(this, 0, nextSongIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.addAction(new android.support.v4.app.NotificationCompat.Action(R.drawable.next, "Next", nextSongPendingIntent));
-        //Pending Intent for Dismissing the Notification & Stopping the Service
-        Intent finishService = new Intent(FINISH_SERVICE);
-        PendingIntent finishServicePendingIntent = PendingIntent.getBroadcast(this, 2, finishService, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setDeleteIntent(finishServicePendingIntent);
-
-        //Intent to open the Activity from the notification
+        //Pending Intent to open Activity
+        Intent openActivity = new Intent(this, MediaActivity.class);
+        PendingIntent openActivityPendingIntent = PendingIntent.getActivity(this, 2, openActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(openActivityPendingIntent);
 
         //Start Notification
         startForeground(FOREGROUND_NOTIFICATION, builder.build());
@@ -440,11 +441,6 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
                 Log.i(TAG, "onReceive: " + "SONG HAS FINISHED, PLAY NEXT");
                 //Play Next Song
                 play();
-            } else if (intent.getAction().equals(FINISH_SERVICE)) { //Does not work on the Notification Dismiss :(
-                //Dev
-                Log.i(TAG, "onReceive: " + "FINISH SERVICE");
-                //Stop Service
-                stopSelf();
             }
         }
     };

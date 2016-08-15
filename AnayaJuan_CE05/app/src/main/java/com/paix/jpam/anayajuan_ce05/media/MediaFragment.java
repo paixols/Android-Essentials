@@ -264,17 +264,19 @@ public class MediaFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
     private BroadcastReceiver mSongInformation = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            //When Song is preparing receive information to display when it's playing
-            currentSong = (Song) intent.getSerializableExtra("songInfo_key");
-            //Set UI with current song information
-            ImageView albumCover = (ImageView) getActivity().findViewById(R.id.ImageView_MediaPlayer_AlbumCover);
-            TextView artistInfo = (TextView) getActivity().findViewById(R.id.TextView_MediaPlayer_SongName);
-            if (currentSong != null) {
-                albumCover.setImageResource(currentSong.getArtwork());
-                String artistInfoText = getResources().getString(R.string.Artist_Name) + currentSong.getArtist().toUpperCase() + "\n" +
-                        getResources().getString(R.string.Album_Name) + currentSong.getSongName().toUpperCase() + "\n" +
-                        getResources().getString(R.string.Song_Name) + currentSong.getSongName().toUpperCase();
-                artistInfo.setText(artistInfoText); //Avoid String Concatenation
+            if(intent != null) {
+                //When Song is preparing receive information to display when it's playing
+                currentSong = (Song) intent.getSerializableExtra("songInfo_key");
+                //Set UI with current song information
+                ImageView albumCover = (ImageView) getActivity().findViewById(R.id.ImageView_MediaPlayer_AlbumCover);
+                TextView artistInfo = (TextView) getActivity().findViewById(R.id.TextView_MediaPlayer_SongName);
+                if (currentSong != null) {
+                    albumCover.setImageResource(currentSong.getArtwork());
+                    String artistInfoText = getResources().getString(R.string.Artist_Name) + currentSong.getArtist().toUpperCase() + "\n" +
+                            getResources().getString(R.string.Album_Name) + currentSong.getSongName().toUpperCase() + "\n" +
+                            getResources().getString(R.string.Song_Name) + currentSong.getSongName().toUpperCase();
+                    artistInfo.setText(artistInfoText); //Avoid String Concatenation
+                }
             }
         }
     };

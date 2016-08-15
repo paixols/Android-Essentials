@@ -20,10 +20,6 @@ import com.paix.jpam.anayajuan_ce05.R;
 import com.paix.jpam.anayajuan_ce05.receivers.NotificationReceiver;
 import com.paix.jpam.anayajuan_ce05.services.AudioService;
 
-/*Implement the ServiceConnection Interface in the activity that is doing the binding, in this case
-Main Activity is doing the binding with the AudioService. The ServiceConnection interface contains
- two callbacks that are used to relay information about the connection with the bound service.
- onServiceConnected() & onServiceDisconnected() */
 public class MediaActivity extends AppCompatActivity implements ServiceConnection, OnMediaButtonClicked {
 
     //TAG
@@ -73,33 +69,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-         /*Set the Bound Flag to False when Activity Resumes, this stops the playback when we leave
-        * the activity*/
-        //mBound = false;
-        /*Bind to the service using the bindService() method, and pass in the same intent that we
-        * would use to start a service if it doesn't exist and don't let id die until we unbind.
-        * Binding to a service happens asynchronously so don't treat your service as bound
-         * immediately after calling bindService(). You will need to wait until the
-         * onServiceConnected() callback and then cast the iBinder Object to your Binder type and
-         * call any methods you wish to call on the Binder or the returned service. */
-        //Intent intent = new Intent(this, AudioService.class);
-        //bindService(intent, this, BIND_AUTO_CREATE);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        /*It's important to note that we should not attempt to unbind from a service if we're not
-        * already bound, as attempting to do so will throw an IllegalArgumentException. Also since
-        * bound services can't stop while bound , do not try calling stopService() while the service
-        * is bound, as nothing will happen and it will be hard to debug.*/
-        //mBound = false;
-        //unbindService(this);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         //Unregister Local Broadcast Receivers -> Next Song
@@ -107,7 +76,7 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         //Unbind Service
         mBound = false;
         unbindService(this);
-        if(!mService.mRunning){
+        if (!mService.mRunning) {
             mService.stopSelf();
         }
     }
@@ -129,6 +98,12 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         /*Service bound, it's time to update the Boolean Flag to let the Main Activity it can
         * use the Service methods. */
         mBound = true;
+        //Broadcast for Current Song info to the Fragment (UPDATE UI)
+        if (AudioService.currentSong != null) {
+            Intent updateUi = new Intent(AudioService.SONG_INFORMATION);
+            updateUi.putExtra("songInfo_key", AudioService.currentSong);
+            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(updateUi);
+        }
         //Dev
         Log.i(TAG, "onServiceConnected: " + "SERVICE CONNECTED");
     }
