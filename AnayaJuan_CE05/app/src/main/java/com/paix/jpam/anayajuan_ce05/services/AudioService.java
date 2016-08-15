@@ -2,7 +2,10 @@ package com.paix.jpam.anayajuan_ce05.services;
 
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -17,6 +20,7 @@ import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce05.R;
 import com.paix.jpam.anayajuan_ce05.dataModel.Song;
+import com.paix.jpam.anayajuan_ce05.receivers.NotificationReceiver;
 
 import java.util.Random;
 
@@ -59,15 +63,21 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     public static final String SONG_NEXT = "com.paix.jpam.anayajuan_ce05_mSongNext";
     public static final String SONG_PREVIOUS = "com.paix.jpam.anayajuan_ce05_mSongPrevious";
 
+    //Notification Finish Service
+    public static final String FINISH_SERVICE = "com.paix.jpam.anayajuan_ce05_finishService";
+
     //Media Player
     public MediaPlayer mPlayer;
 
     //Song ArrayList
     Song[] songs;
     int songIndex;
+    Song currentSong;
 
     //Shuffle Flag
     boolean isShuffling;
+    //Service Active Flag
+    public boolean mRunning;
 
     /*To implement a Binder, the First thing we need to do is create a public inner class in our
     * service that extends Binder, then we can add whatever methods we want to that binder to
@@ -84,8 +94,17 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     public void onCreate() {
         super.onCreate();
 
-        //Notification to start service on foreground
+        //Active Service Flag
+        mRunning = false;
 
+        //Register Local Broadcast Receivers -> Next Song, Previous Song & Song has finished playing
+        IntentFilter filterNextPreviousFinished = new IntentFilter();
+        filterNextPreviousFinished.addAction(AudioService.SONG_HAS_FINISHED_PLAY_NEXT);
+        filterNextPreviousFinished.addAction(NotificationReceiver.CHANGE_NEXT);
+        filterNextPreviousFinished.addAction(NotificationReceiver.CHANGE_PREVIOUS);
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mNextSongReceiver,
+                        filterNextPreviousFinished);
 
         //Populate Array with songs
         songs = new Song[]{new Song("Gessaffelstain", "Aleph", "Aleph", R.drawable.gessaffelstein_aleph, R.raw.aleph),
@@ -117,6 +136,24 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
             mState = STATE_END;
             mPlayer = null;
         }
+        //Unregister Local Broadcast Receivers -> Next Song
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mNextSongReceiver);
+        stopSelf();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        //Service Active
+        if (!mRunning) {
+            //Start Sticky Service
+            if (intent.getAction().equals("hola")) {
+                Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
+                mRunning = true;
+                //Todo Start Foreground Notification Here , not on the Binding
+                return Service.START_STICKY;
+            }
+        }//Else
+        return super.onStartCommand(intent, flags, startId);
     }
 
     /*PLAY*/
@@ -150,15 +187,15 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
                     //When Song is preparing send Local Broadcast with Song Information for UI
                     Intent intent = new Intent(SONG_INFORMATION);
                     //Current Song
-                    Song currentSong = songs[songIndex];
+                    currentSong = songs[songIndex];
                     intent.putExtra("songInfo_key", currentSong);
                     LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
-                    //Start Notification
-                    foregroundNotification(currentSong.getArtwork(), currentSong.getArtist(), currentSong.getSongName());
-
                 }
             }
+
+            //Start Notification
+            foregroundNotification(currentSong.getArtwork(), currentSong.getArtist(), currentSong.getSongName());
         }
     }
 
@@ -168,6 +205,9 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
             mPlayer.pause();
             mState = STATE_PAUSED;
         }
+        //Remove notification if playback is paused
+        stopForeground(true);
+        mRunning = false;
     }//Finished
 
     /*STOP*/
@@ -179,6 +219,9 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
             //Stop Song Current Position Runnable
             mHandler.removeCallbacks(songCurrentPositionUpdate);
         }
+        //Remove notification if playback is stopped
+        stopForeground(true);
+        mRunning = false;
     }
 
     /*Loop*/
@@ -363,7 +406,46 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         Intent nextSongIntent = new Intent(SONG_NEXT);
         PendingIntent nextSongPendingIntent = PendingIntent.getBroadcast(this, 0, nextSongIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.addAction(new android.support.v4.app.NotificationCompat.Action(R.drawable.next, "Next", nextSongPendingIntent));
+        //Pending Intent for Dismissing the Notification & Stopping the Service
+        Intent finishService = new Intent(FINISH_SERVICE);
+        PendingIntent finishServicePendingIntent = PendingIntent.getBroadcast(this, 2, finishService, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setDeleteIntent(finishServicePendingIntent);
+
+        //Intent to open the Activity from the notification
+
         //Start Notification
         startForeground(FOREGROUND_NOTIFICATION, builder.build());
     }
+
+    /*Broadcasts*/
+    //Broadcast Receiver on Song Completion & Not Looping -> Should Play Next Song
+    /*Broadcast Receivers*/
+    private BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            //Notification Broadcasts
+            if (intent.getAction().equals(NotificationReceiver.CHANGE_NEXT)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "CHANGE NEXT SONG ON MEDIA ACTIVITY");
+                next();
+                play();
+            } else if (intent.getAction().equals(NotificationReceiver.CHANGE_PREVIOUS)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "CHANGE PREVIOUS SONG ON MEDIA ACTIVITY");
+                previous();
+                play();
+            } else if (intent.getAction().equals(AudioService.SONG_HAS_FINISHED_PLAY_NEXT)) {
+                //Dev
+                Log.i(TAG, "onReceive: " + "SONG HAS FINISHED, PLAY NEXT");
+                //Play Next Song
+                play();
+            } else if (intent.getAction().equals(FINISH_SERVICE)) { //Does not work on the Notification Dismiss :(
+                //Dev
+                Log.i(TAG, "onReceive: " + "FINISH SERVICE");
+                //Stop Service
+                stopSelf();
+            }
+        }
+    };
 }

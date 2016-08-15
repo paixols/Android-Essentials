@@ -43,6 +43,11 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media);
 
+        //Start Service (First Step so the service can live without the Activity)
+        Intent startAudioService = new Intent(this, AudioService.class);
+        startAudioService.setAction("hola");
+        startService(startAudioService);
+        //Bind to Service (After Service has been started so it can live without the Activity)
         Intent intent = new Intent(this, AudioService.class);
         bindService(intent, this, BIND_AUTO_CREATE);
 
@@ -54,6 +59,7 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         seekBarWillChange = false;
         seekBarStoppedChanges = false;
         newSeekBarValue = 0;
+
 
         //Register Local Broadcast Receivers -> Next Song, Previous Song & Song has finished playing
         IntentFilter filterNextPreviousFinished = new IntentFilter();
@@ -101,6 +107,9 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         //Unbind Service
         mBound = false;
         unbindService(this);
+        if(!mService.mRunning){
+            mService.stopSelf();
+        }
     }
 
     /*Custom Methods*/

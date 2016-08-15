@@ -24,7 +24,7 @@
         <receiver
             android:name=".receivers.NotificationReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <!--Next Song-->
             <intent-filter>
                 <action android:name="com.paix.jpam.anayajuan_ce05_mSongNext" />
