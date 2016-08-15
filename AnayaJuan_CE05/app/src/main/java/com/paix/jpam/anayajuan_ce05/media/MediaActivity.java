@@ -41,7 +41,7 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
 
         //Start Service (First Step so the service can live without the Activity)
         Intent startAudioService = new Intent(this, AudioService.class);
-        startAudioService.setAction("hola");
+        //startAudioService.setAction("hola");
         startService(startAudioService);
         //Bind to Service (After Service has been started so it can live without the Activity)
         Intent intent = new Intent(this, AudioService.class);

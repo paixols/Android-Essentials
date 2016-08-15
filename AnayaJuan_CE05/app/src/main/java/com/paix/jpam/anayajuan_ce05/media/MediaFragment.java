@@ -276,6 +276,9 @@ public class MediaFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
                             getResources().getString(R.string.Album_Name) + currentSong.getSongName().toUpperCase() + "\n" +
                             getResources().getString(R.string.Song_Name) + currentSong.getSongName().toUpperCase();
                     artistInfo.setText(artistInfoText); //Avoid String Concatenation
+                    playButton.setBackgroundResource(R.drawable.play_playing);
+                    playing = true;
+                    listener.onPlayClicked();
                 }
             }
         }

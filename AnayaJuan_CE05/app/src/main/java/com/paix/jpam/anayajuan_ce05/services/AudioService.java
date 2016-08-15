@@ -140,6 +140,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         //Unregister Local Broadcast Receivers -> Next Song
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mNextSongReceiver);
         stopSelf();
+        mRunning = false;
     }
 
     @Override
@@ -147,14 +148,14 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         //Service Active
         if (!mRunning) {
             //Start Sticky Service
-            if (intent != null) {
-                if (intent.getAction().equals("hola")) {
+            //if (intent != null) {
+                //if (intent.getAction().equals("hola")) {
                     Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
                     mRunning = true;
                     //Todo Start Foreground Notification Here , not on the Binding
                     return Service.START_STICKY;
-                }
-            }
+                //}
+            //}
         }//Else
         return super.onStartCommand(intent, flags, startId);
     }
@@ -196,7 +197,6 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
 
                 }
             }
-
             //Start Notification
             foregroundNotification(currentSong.getArtwork(), currentSong.getArtist(), currentSong.getSongName());
         }
@@ -210,7 +210,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         }
         //Remove notification if playback is paused
         stopForeground(true);
-        mRunning = false;
+        //mRunning = false;
     }//Finished
 
     /*STOP*/
@@ -224,7 +224,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         }
         //Remove notification if playback is stopped
         stopForeground(true);
-        mRunning = false;
+        //mRunning = false;
     }
 
     /*Loop*/
