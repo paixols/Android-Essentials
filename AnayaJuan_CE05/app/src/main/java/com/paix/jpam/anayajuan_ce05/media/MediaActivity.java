@@ -24,14 +24,11 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
 
     //TAG
     private static final String TAG = "MediaActivity";
-    //Bound Flag
-    boolean mBound;
     //Media Player Service
-    AudioService mService;
-    //SeekBar Flags (Fragment -> Activity Interface Flags)
-    boolean seekBarWillChange;
-    boolean seekBarStoppedChanges;
-    int newSeekBarValue;
+    private AudioService mService;
+    //SeekBar Flags (Fragment -> Activity. Interface Flags)
+    private boolean seekBarWillChange;
+    private int newSeekBarValue;
 
     /*LifeCycle*/
     @Override
@@ -41,7 +38,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
 
         //Start Service (First Step so the service can live without the Activity)
         Intent startAudioService = new Intent(this, AudioService.class);
-        //startAudioService.setAction("hola");
         startService(startAudioService);
         //Bind to Service (After Service has been started so it can live without the Activity)
         Intent intent = new Intent(this, AudioService.class);
@@ -50,13 +46,9 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         //Set Media Player Fragment
         MediaFragment mPlayerFragment = new MediaFragment();
         setMediaPlayerFragment(mPlayerFragment);
-
         //Initialize SeekBar Flags & Value
         seekBarWillChange = false;
-        seekBarStoppedChanges = false;
         newSeekBarValue = 0;
-
-
         //Register Local Broadcast Receivers -> Next Song, Previous Song & Song has finished playing
         IntentFilter filterNextPreviousFinished = new IntentFilter();
         filterNextPreviousFinished.addAction(AudioService.SONG_HAS_FINISHED_PLAY_NEXT);
@@ -65,7 +57,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(mNextSongReceiver,
                         filterNextPreviousFinished);
-
     }
 
     @Override
@@ -74,8 +65,8 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         //Unregister Local Broadcast Receivers -> Next Song
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mNextSongReceiver);
         //Unbind Service
-        mBound = false;
         unbindService(this);
+        //Service Stop check (don't kill service if it's playing)
         if (!mService.mRunning) {
             mService.stopSelf();
         }
@@ -83,9 +74,9 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
 
     /*Custom Methods*/
     //Set Media Player Fragment Method
-    private void setMediaPlayerFragment(MediaFragment mPlayerfragment) {
+    private void setMediaPlayerFragment(MediaFragment mPlayerFragment) {
         getSupportFragmentManager().beginTransaction().replace
-                (R.id.FrameLayout_MediaActivity, mPlayerfragment).commit();
+                (R.id.FrameLayout_MediaActivity, mPlayerFragment).commit();
     }
 
     /*SERVICE*/
@@ -93,15 +84,19 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         AudioService.AudioServiceBinder binder =
                 (AudioService.AudioServiceBinder) iBinder;
-        /*Once the Service is Connected , get the Service from the  casted iBinder Object*/
-        mService = binder.getService();
-        /*Service bound, it's time to update the Boolean Flag to let the Main Activity it can
-        * use the Service methods. */
-        mBound = true;
+        /*Once the Service is Connected , get the Service instance*/
+        mService = binder.getService(); // Todo (If !service should be handled)
         //Broadcast for Current Song info to the Fragment (UPDATE UI)
         if (AudioService.currentSong != null) {
             Intent updateUi = new Intent(AudioService.SONG_INFORMATION);
             updateUi.putExtra("songInfo_key", AudioService.currentSong);
+            //Shuffle & Looping Controls Check
+            if (mService.mPlayer.isLooping()) {
+                updateUi.putExtra("loop_key", true);
+            }
+            if (AudioService.isShuffling) {
+                updateUi.putExtra("shuffle_key", true);
+            }
             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(updateUi);
         }
         //Dev
@@ -112,9 +107,10 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     public void onServiceDisconnected(ComponentName componentName) {
         //Dev
         Log.i(TAG, "onServiceDisconnected: " + "SERVICE DISCONNECTED");
+        //TODO Change UI (PlayList)
     }
 
-    /*OnMediaButtonClicked INTERFACE*/
+    /*UI Fragment - INTERFACE*/
     //Loop
     @Override
     public void onLoopClicked() {
@@ -126,8 +122,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     public void onNextClicked() {
         //Next
         mService.next();
-        //Play
-        mService.play();
     }
 
     //Pause
@@ -147,8 +141,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     public void onPreviousClicked() {
         //Previous
         mService.previous();
-        //Play
-        mService.play();
     }
 
     //Shuffle
@@ -168,7 +160,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     @Override
     public void onSeekBarStartedTrackingChanges() {
         //SeekBarFlags
-        seekBarStoppedChanges = false;
         seekBarWillChange = true;
     }
 
@@ -177,7 +168,6 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
     public void onSeekBarStoppedTrackingChanges() {
         //SeekBarFlags
         seekBarWillChange = false;
-        seekBarStoppedChanges = true;
     }
 
     //Value Changed
@@ -188,33 +178,31 @@ public class MediaActivity extends AppCompatActivity implements ServiceConnectio
         //Change Song Value
         if (seekBarWillChange && mService.mPlayer.isPlaying()) {
             mService.mPlayer.seekTo(newSeekBarValue * 1000);
-            Log.i(TAG, "onSeekBarValueChanged: " + "SONG SECOND: " + mService.mPlayer.getCurrentPosition());
+            //Dev
+            //Log.i(TAG, "onSeekBarValueChanged: " + "SONG SECOND: " + mService.mPlayer.getCurrentPosition());
         }
         //Dev
-        Log.i(TAG, "onSeekBarValueChanged: " + newSeekBarValue);
+        //Log.i(TAG, "onSeekBarValueChanged: " + newSeekBarValue);
     }
 
-    /*Broadcasts*/
-    //Broadcast Receiver on Song Completion & Not Looping -> Should Play Next Song
     /*Broadcast Receivers*/
-    private BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
             //Notification Broadcasts
             if (intent.getAction().equals(NotificationReceiver.CHANGE_NEXT)) {
                 //Dev
-                Log.i(TAG, "onReceive: " + "CHANGE NEXT SONG ON MEDIA ACTIVITY");
+                //Log.i(TAG, "onReceive: " + "CHANGE NEXT SONG ON MEDIA ACTIVITY");
                 mService.next();
                 mService.play();
             } else if (intent.getAction().equals(NotificationReceiver.CHANGE_PREVIOUS)) {
                 //Dev
-                Log.i(TAG, "onReceive: " + "CHANGE PREVIOUS SONG ON MEDIA ACTIVITY");
+                //Log.i(TAG, "onReceive: " + "CHANGE PREVIOUS SONG ON MEDIA ACTIVITY");
                 mService.previous();
                 mService.play();
             } else if (intent.getAction().equals(AudioService.SONG_HAS_FINISHED_PLAY_NEXT)) {
                 //Dev
-                Log.i(TAG, "onReceive: " + "SONG HAS FINISHED, PLAY NEXT");
+                //Log.i(TAG, "onReceive: " + "SONG HAS FINISHED, PLAY NEXT");
                 //Play Next Song
                 mService.play();
             }

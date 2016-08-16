@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// AudioService
+
 package com.paix.jpam.anayajuan_ce05.services;
 
 import android.app.PendingIntent;
@@ -29,12 +33,14 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
 
     //TAG
     private static final String TAG = "AudioService";
-    /*States for Media Player Lifecycle: State Diagram: https://goo.gl/ii8xIP */
+
 //    @Retention(RetentionPolicy.class)
 //    @IntDef({STATE_IDLE,STATE_INITIALIZED,STATE_PREPARING,STATE_PREPARED,
 //            STATE_STARTED,STATE_PAUSED,STATE_STOPPED,STATE_PLAYBACK_COMPLETED,
 //            STATE_END})
 //    private interface PlayerState{}
+
+    /*States for Media Player Lifecycle: State Diagram: https://goo.gl/ii8xIP */
     private static final int STATE_IDLE = 0;
     private static final int STATE_INITIALIZED = 1;
     private static final int STATE_PREPARING = 2;
@@ -47,8 +53,8 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     //Media Player State tracker
     private int mState;
     //Media Player Progress
-    public int mSongDuration;
-    private Handler mHandler = new Handler();
+    private int mSongDuration;
+    private final Handler mHandler = new Handler();
 
     //Song Position update for Seek Bar -> Local Broadcast for Media Player Fragment
     public static final String SONG_CURRENT_POSITION_UPDATE = "com.paix.jpam.anayajuan_ce05_mProgress";
@@ -71,12 +77,12 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     public MediaPlayer mPlayer;
 
     //Song ArrayList
-    Song[] songs;
-    int songIndex;
+    private Song[] songs;
+    private int songIndex;
     public static Song currentSong;
 
     //Shuffle Flag
-    boolean isShuffling;
+    public static boolean isShuffling;
     //Service Active Flag
     public boolean mRunning;
 
@@ -108,10 +114,10 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
                         filterNextPreviousFinished);
 
         //Populate Array with songs
-        songs = new Song[]{new Song("Gessaffelstain", "Aleph", "Aleph", R.drawable.gessaffelstein_aleph, R.raw.aleph),
-                new Song("Kimbra", "Settle Down", "Settle Down", R.drawable.kimbra_settle_down, R.raw.settle_down),
-                new Song("Soja", "Amid The Noise And Haste", "Your Song", R.drawable.soja, R.raw.your_song),
-                new Song("Broke Fro Free", "Something EP", "Something Elated", R.drawable.something_elated, R.raw.something_elated)};
+        songs = new Song[]{new Song("Gessaffelstain", "Aleph", R.drawable.gessaffelstein_aleph, R.raw.aleph),
+                new Song("Kimbra", "Settle Down", R.drawable.kimbra_settle_down, R.raw.settle_down),
+                new Song("Soja", "Your Song", R.drawable.soja, R.raw.your_song),
+                new Song("Broke Fro Free", "Something Elated", R.drawable.something_elated, R.raw.something_elated)};
         songIndex = 0;
 
         Log.i(TAG, "onCreate: " + songs.length);
@@ -149,12 +155,12 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
         if (!mRunning) {
             //Start Sticky Service
             //if (intent != null) {
-                //if (intent.getAction().equals("hola")) {
-                    Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
-                    mRunning = true;
-                    //Todo Start Foreground Notification Here , not on the Binding
-                    return Service.START_STICKY;
-                //}
+            //if (intent.getAction().equals("hola")) {
+            Log.i(TAG, "onStartCommand: " + "SERVICE STARTED");
+            mRunning = true;
+            //Todo Start Foreground Notification Here , not on the Binding
+            return Service.START_STICKY;
+            //}
             //}
         }//Else
         return super.onStartCommand(intent, flags, startId);
@@ -322,7 +328,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     thread's message queue. When you create a new Handler, it is bound to the thread / message
     queue of the thread that is creating it -- from that point on, it will deliver messages and
     runnables to that message queue and execute them as they come out of the message queue.*/
-    private Runnable songCurrentPositionUpdate = new Runnable() {
+    private final Runnable songCurrentPositionUpdate = new Runnable() {
         @Override
         public void run() {
             if (mState == STATE_STARTED) {
@@ -384,12 +390,15 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     /*Random Song Index*/
     private void randomSongIndex() {
         Random randomNumber = new Random();
-        songIndex = randomNumber.nextInt(songs.length);
+        if (songs != null) {
+            songIndex = randomNumber.nextInt(songs.length);
+
+        }
         //TODO random number generation should have logic if the Audio is streamed
     }
 
     //Foreground Notification
-    public void foregroundNotification(int icon, String artist, String songTitle) {
+    private void foregroundNotification(int icon, String artist, String songTitle) {
 
         //Notification Builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
@@ -421,7 +430,7 @@ public class AudioService extends Service implements MediaPlayer.OnPreparedListe
     /*Broadcasts*/
     //Broadcast Receiver on Song Completion & Not Looping -> Should Play Next Song
     /*Broadcast Receivers*/
-    private BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNextSongReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 

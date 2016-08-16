@@ -4,7 +4,7 @@
 
 package com.paix.jpam.anayajuan_ce05.media;
 
-public interface OnMediaButtonClicked {
+interface OnMediaButtonClicked {
     //Loop
     void onLoopClicked();
 

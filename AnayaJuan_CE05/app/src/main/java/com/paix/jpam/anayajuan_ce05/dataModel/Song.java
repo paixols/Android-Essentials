@@ -9,16 +9,14 @@ import java.io.Serializable;
 public class Song implements Serializable {
 
     /*Properties*/
-    String artist;
-    String album;
-    String songName;
-    int artwork;
-    int song;
+    private final String artist;
+    private final String songName;
+    private final int artwork;
+    private final int song;
 
     /*Constructor*/
-    public Song(String artist, String album, String songName, int artwork, int song) {
+    public Song(String artist, String songName, int artwork, int song) {
         this.artist = artist;
-        this.album = album;
         this.artwork = artwork;
         this.song = song;
         this.songName = songName;
@@ -30,11 +28,6 @@ public class Song implements Serializable {
     //Album Artwork
     public int getArtwork() {
         return artwork;
-    }
-
-    //Album Name
-    public String getAlbum() {
-        return album;
     }
 
     //Artist
