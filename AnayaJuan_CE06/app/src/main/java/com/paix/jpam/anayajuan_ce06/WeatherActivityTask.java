@@ -33,10 +33,23 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
 
     /*Properties*/
     Context mContext;
+    OnWeatherApiResult onWeatherApiResult;
 
     /*Constructor*/
     public WeatherActivityTask(Context context) {
         this.mContext = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        //Declare Interface
+        //Outer Class Interface
+        if (mContext instanceof OnWeatherApiResult) {
+            onWeatherApiResult = (OnWeatherApiResult) mContext;
+        } else {
+            throw new IllegalArgumentException("Please Add OnFormMenuSelection Interface");
+        }
     }
 
     @Override
@@ -47,9 +60,9 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
 
         if (NetworkUtility.isConnected(mContext)) {
             //Fixed URL
-            String apiUrl = "http://api.worldweatheronline.com/premium/v1/weather.ashx?" +
-                    "key=%20990c8537d96c4d4fb9d180539161608&q=MexicoCity&num_of_days=3&tp=12&" +
-                    "format=json%20&showlocaltime=yes&showmap=yes";
+            String apiUrl = "https://api.worldweatheronline.com/premium/v1/weather.ashx" +
+                    "?key=990c8537d96c4d4fb9d180539161608&q=MexicoCity&format=json&num_of_days=3" +
+                    "&tp=12&showlocaltime=yes&showmap=yes";
             String api = NetworkUtility.getNetworkData(apiUrl);
             //Data Checkpoint
             if (api.equals("Error")) {
@@ -194,6 +207,7 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
         if (weather != null) {
             //Dev
             Log.i(TAG, "onPostExecute: " + "Data Retrieved");
+            onWeatherApiResult.onWeatherApiResult(weather);
         } else {
             Toast.makeText(mContext, "No Data Available", Toast.LENGTH_SHORT).show();
         }

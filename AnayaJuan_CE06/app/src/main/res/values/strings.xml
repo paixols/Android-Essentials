@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">AnayaJuan_CE06</string>
+    <string name="city">City</string>
+    <string name="local_time">Local Time</string>
+    <string name="utc_offset">Utc Offset</string>
+    <!--Fragment Keys-->
+    <string name="weather_key">weather_key</string>
+    <string name="observation_Time">Observation Time</string>
+    <string name="temp_c">Temp C</string>
+    <string name="temp_f">Temp F</string>
+    <string name="temps_feels_like_f">Temps Feels like F</string>
+    <string name="temp_feels_like_c">Temp Feels like C</string>
+    <string name="weather_description">WeatherDescription</string>
+    <string name="wind_mi">Wind Mi</string>
+    <string name="wind_km">Wind Km</string>
+    <string name="weather_online">Weather Online</string>
+    <string name="humidity">Humidity</string>
+    <string name="c_celsius">C</string>
+    <string name="F_fahrenheit">F</string>
+    <string name="api_icon">API_ICON</string>
+    <string name="humidity_icon">Humidity_Icon</string>
+    <string name="thermometer_icon">Thermometer_Icon</string>
+    <string name="miles_per_hour">Mph</string>
+    <string name="kmph">KMph</string>
 </resources>

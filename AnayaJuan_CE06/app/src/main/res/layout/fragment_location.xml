@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="18sp"
+    android:background="@color/colorPrimaryTransparent"
+    android:layout_marginLeft="8sp"
+    android:layout_marginBottom="8sp"
+    android:layout_marginTop="8sp"
+    android:layout_marginRight="8sp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryTransparent">
+        <!--City-->
+        <TextView
+            android:id="@+id/TextView_Location_City"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8sp"
+            android:hint="@string/city"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"/>
+        <!--Utc Offset-->
+        <TextView
+            android:id="@+id/TextView_Location_UtcOffset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/utc_offset"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>
