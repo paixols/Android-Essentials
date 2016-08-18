@@ -51,22 +51,22 @@ public class DayForecast implements Serializable {
 
     //Max Temp C
     public String getMaxTempC() {
-        return maxTempC;
+        return "Max: " + maxTempC;
     }
 
     //Min Temp C
     public String getMinTempC() {
-        return minTempC;
+        return "Min: " + minTempC;
     }
 
     //Max Temp F
     public String getMaxTempF() {
-        return maxTempF;
+        return "Max: " + maxTempF;
     }
 
     //Min Temp F
     public String getMinTempF() {
-        return minTempF;
+        return "Min: " + minTempF;
     }
 
     //Weather Icon
@@ -81,7 +81,7 @@ public class DayForecast implements Serializable {
 
     //Humidity
     public String getHumidity() {
-        return humidity;
+        return humidity + " %";
     }
 
 }

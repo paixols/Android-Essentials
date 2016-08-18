@@ -22,4 +22,13 @@
     <string name="thermometer_icon">Thermometer_Icon</string>
     <string name="miles_per_hour">Mph</string>
     <string name="kmph">KMph</string>
+    <string name="windmill_icon">Windmill</string>
+    <string name="max">MAX</string>
+    <string name="min">MIN</string>
+    <string name="_3_day_forecast">3 Day Forecast</string>
+    <string name="sun_icon">Sun</string>
+    <string name="moonrise_moonset">MoonRise/Moonset</string>
+    <string name="sunrise_sunset">Sunrise/Sunset</string>
+    <string name="date_">Date</string>
+    <string name="time_">Time</string>
 </resources>

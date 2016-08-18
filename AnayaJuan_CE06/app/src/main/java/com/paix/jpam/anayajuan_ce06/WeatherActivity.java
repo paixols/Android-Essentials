@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
+import com.paix.jpam.anayajuan_ce06.fragments.AstronomyFragment;
 import com.paix.jpam.anayajuan_ce06.fragments.CurrentConditionFragment;
+import com.paix.jpam.anayajuan_ce06.fragments.ForecastFragment;
 import com.paix.jpam.anayajuan_ce06.fragments.LocationFragment;
 
 public class WeatherActivity extends AppCompatActivity implements OnWeatherApiResult {
@@ -41,7 +43,10 @@ public class WeatherActivity extends AppCompatActivity implements OnWeatherApiRe
         CurrentConditionFragment currentConditionFrag = new CurrentConditionFragment().newInstanceOf(this,weather);
         getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_CurrentCondition_FragHolder,currentConditionFrag).commit();
         //Weather Forecast
-
-
+        ForecastFragment forecastFragment = new ForecastFragment().newInstanceOf(this,weather);
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_3DayForecast_FragHolder,forecastFragment).commit();
+        //Astronomy
+        AstronomyFragment astronomyFragment = new AstronomyFragment().newInstanceOf(this,weather);
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_Astronomy_FragHolder,astronomyFragment).commit();
     }
 }

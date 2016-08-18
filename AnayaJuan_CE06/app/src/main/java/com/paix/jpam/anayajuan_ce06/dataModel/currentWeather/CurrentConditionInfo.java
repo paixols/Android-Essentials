@@ -75,6 +75,6 @@ public class CurrentConditionInfo implements Serializable {
     }
     //Humidity %
     public String getHumidity() {
-        return humidity;
+        return humidity + " %";
     }
 }

@@ -1,6 +1,577 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryTransparent"
+    android:orientation="vertical">
+    <!-- 3 Day Weather Forecast -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_day_forecast"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"/>
+            <!--First Day-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--Observation Time-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:orientation="vertical">
+                    <!--Weather Icon-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryTransparent"
+                        android:orientation="horizontal">
+                        <!--Icon-->
+                        <ImageView
+                            android:id="@+id/ImageView_ForecastOne_Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:src="@drawable/wind_gauge" />
+                        <!--Time-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastOne_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/observation_Time"
+                            android:textAlignment="textEnd"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <!--Weather Description-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--Description-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastOne_Description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/weather_description"
+                            android:textAlignment="textStart"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <!--Temperature-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp"
+                        android:orientation="horizontal">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/thermometer_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/temperature" />
+                        <!--Celsius-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Celsius Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/c_celsius"
+                                android:textAlignment="center" />
+                            <!--C-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastOne_TempC"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_c"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Fahrenheit Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/F_fahrenheit"
+                                android:textAlignment="center" />
+                            <!--F-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastOne_TempF"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_f"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--Temperature Feel-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/barometer" />
+                        <!--Feels C-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastOne_TempFeelsC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/max"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                        <!--Feels F-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastOne_TempFeelsF"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/min"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <!--Humidity-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp">
+                        <!--Barometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/humidity_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/humidity" />
+                        <!--Humidity-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastOne_Humidity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/humidity"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                        <!--API Icon-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.33"
+                            android:contentDescription="@string/api_icon"
+                            android:src="@drawable/weather_online" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!--Second Day-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--Observation Time-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:orientation="vertical">
+                    <!--Weather Icon-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryTransparent"
+                        android:orientation="horizontal">
+                        <!--Icon-->
+                        <ImageView
+                            android:id="@+id/ImageView_ForecastTwo_Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:src="@drawable/wind_gauge" />
+                        <!--Time-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastTwo_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/observation_Time"
+                            android:textAlignment="textEnd"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <!--Weather Description-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--Description-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastTwo_Description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/weather_description"
+                            android:textAlignment="textStart"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <!--Temperature-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp"
+                        android:orientation="horizontal">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/thermometer_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/temperature" />
+                        <!--Celsius-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Celsius Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/c_celsius"
+                                android:textAlignment="center" />
+                            <!--C-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastTwo_TempC"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_c"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Fahrenheit Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/F_fahrenheit"
+                                android:textAlignment="center" />
+                            <!--F-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastTwo_TempF"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_f"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--Temperature Feel-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/dust" />
+                        <!--Feels C-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastTwo_TempFeelsC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/temp_feels_like_c"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                        <!--Feels F-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastTwo_TempFeelsF"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/temps_feels_like_f"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <!--Humidity-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp">
+                        <!--Barometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/humidity_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/humidity" />
+                        <!--Humidity-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastTwo_Humidity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/humidity"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                        <!--API Icon-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.33"
+                            android:contentDescription="@string/api_icon"
+                            android:src="@drawable/weather_online" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!--Third Day-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--Observation Time-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:orientation="vertical">
+                    <!--Weather Icon-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryTransparent"
+                        android:orientation="horizontal">
+                        <!--Icon-->
+                        <ImageView
+                            android:id="@+id/ImageView_ForecastThree_Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:src="@drawable/wind_gauge" />
+                        <!--Time-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastThree_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/observation_Time"
+                            android:textAlignment="textEnd"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <!--Weather Description-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--Description-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastThree_Description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/weather_description"
+                            android:textAlignment="textStart"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <!--Temperature-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp"
+                        android:orientation="horizontal">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/thermometer_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/temperature" />
+                        <!--Celsius-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Celsius Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/c_celsius"
+                                android:textAlignment="center" />
+                            <!--C-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastThree_TempC"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_c"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:orientation="vertical">
+                            <!--Fahrenheit Desc-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/F_fahrenheit"
+                                android:textAlignment="center" />
+                            <!--F-->
+                            <TextView
+                                android:id="@+id/TextView_ForecastThree_TempF"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimaryTransparent"
+                                android:hint="@string/temp_f"
+                                android:padding="8sp"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--Temperature Feel-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp">
+                        <!--Thermometer-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="0.44"
+                            android:contentDescription="@string/thermometer_icon"
+                            android:scaleX="0.4"
+                            android:scaleY="0.4"
+                            android:src="@drawable/dust" />
+                        <!--Feels C-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastThree_TempFeelsC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/temp_feels_like_c"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                        <!--Feels F-->
+                        <TextView
+                            android:id="@+id/TextView_ForecastThree_TempFeelsF"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.33"
+                            android:background="@color/colorPrimaryTransparent"
+                            android:hint="@string/temps_feels_like_f"
+                            android:padding="8sp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--Humidity-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8sp">
+                    <!--Barometer-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="0.44"
+                        android:contentDescription="@string/humidity_icon"
+                        android:scaleX="0.4"
+                        android:scaleY="0.4"
+                        android:src="@drawable/humidity" />
+                    <!--Humidity-->
+                    <TextView
+                        android:id="@+id/TextView_ForecastThree_Humidity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:background="@color/colorPrimaryTransparent"
+                        android:hint="@string/humidity"
+                        android:padding="8sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                    <!--API Icon-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:contentDescription="@string/api_icon"
+                        android:src="@drawable/weather_online" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

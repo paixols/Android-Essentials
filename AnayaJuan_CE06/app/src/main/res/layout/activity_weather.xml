@@ -17,19 +17,36 @@
         android:layout_weight="0.5"
         android:baselineAligned="false"
         android:orientation="horizontal">
-        <!-- City Fragment -->
-        <FrameLayout
-            android:id="@+id/FrameLayout_City_FragHolder"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            tools:ignore="NestedWeights" />
-        <!-- Current Weather Condition-->
-        <FrameLayout
-            android:id="@+id/FrameLayout_CurrentCondition_FragHolder"
+            android:orientation="vertical">
+            <!-- City Fragment -->
+            <FrameLayout
+                android:id="@+id/FrameLayout_City_FragHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="NestedWeights" />
+
+            <FrameLayout
+                android:id="@+id/FrameLayout_Astronomy_FragHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5">
+            <!-- Current Weather Condition-->
+            <FrameLayout
+                android:id="@+id/FrameLayout_CurrentCondition_FragHolder"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
+        </LinearLayout>
     </LinearLayout>
     <!-- Bottom Fragments -->
     <LinearLayout
