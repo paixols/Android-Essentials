@@ -26,7 +26,7 @@
         </activity>
 
         <!--Widget Preferences-->
-        <activity android:name=".widget.WeatherWidgetPreferencesAct"></activity>
+        <activity android:name=".widget.preferences.WeatherWidgetPreferencesAct"></activity>
 
         <!--Widget Provider-->
         <receiver android:name=".widget.WeatherWidgetProvider">
@@ -36,8 +36,10 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/weather_widget_provider" />
-            
         </receiver>
+
+        <!--Weather Widget API Service-->
+        <service android:name=".services.WeatherWidgetService"/>
     </application>
 
 </manifest>

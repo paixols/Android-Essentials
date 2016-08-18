@@ -3,8 +3,7 @@
     <string name="city">City</string>
     <string name="local_time">Local Time</string>
     <string name="utc_offset">Utc Offset</string>
-    <!--Fragment Keys-->
-    <string name="weather_key">weather_key</string>
+    <!--App Resources-->
     <string name="observation_Time">Observation Time</string>
     <string name="temp_c">Temp C</string>
     <string name="temp_f">Temp F</string>
@@ -54,4 +53,18 @@
     <string name="dec">Dec</string>
     <string name="mont_average">Month Avg</string>
     <string name="weather_icon">Weather_Icon</string>
+    <!--Data-->
+    <string-array name="Cities">
+        <item>Orlando</item>
+        <item>MexicoCity</item>
+        <item>SanFrancisco</item>
+        <item>Barcelona</item>
+    </string-array>
+    <string-array name="Theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <!--KEYS-->
+    <string name="weather_key">weather_key</string>
+    <string name="widget_id">widget_id_key</string>
 </resources>

@@ -12,9 +12,10 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.paix.jpam.anayajuan_ce06.R;
+import com.paix.jpam.anayajuan_ce06.widget.preferences.WeatherWidgetPreferencesAct;
 
 public class WidgetHelper {
-    
+
     //TAG
     private static final String TAG = "WidgetHelper";
 
@@ -28,9 +29,14 @@ public class WidgetHelper {
         configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, configIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setOnClickPendingIntent(R.id.ImageButton_WidgetConfig, pendingIntent);
-        
+
         //Dev
         Log.i(TAG, "updateWidget: " + "UPDATE_WIDGET");
+
+        //Update Widget
+        manager.updateAppWidget(widgetId,remoteViews);
     }
+
+    //TODO Update Widget Theme and Info with Saved Weather Information
 
 }

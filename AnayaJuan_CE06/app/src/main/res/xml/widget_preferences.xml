@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="Orlando"
+        android:entries="@array/Cities"
+        android:entryValues="@array/Cities"
+        android:key="CITY_WIDGET"
+        android:summary="Select the wanted City"
+        android:title="City" />
+    <ListPreference
+        android:defaultValue="Light Theme"
+        android:entries="@array/Theme"
+        android:entryValues="@array/Theme"
+        android:key="THEME_WIDGET"
+        android:summary="Select Your Theme"
+        android:title="Theme" />
+</PreferenceScreen>
