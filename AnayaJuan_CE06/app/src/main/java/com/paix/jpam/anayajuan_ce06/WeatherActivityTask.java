@@ -34,6 +34,7 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
     /*Properties*/
     Context mContext;
     OnWeatherApiResult onWeatherApiResult;
+    ProgressDialog progressDialog;
 
     /*Constructor*/
     public WeatherActivityTask(Context context) {
@@ -50,6 +51,12 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
         } else {
             throw new IllegalArgumentException("Please Add OnFormMenuSelection Interface");
         }
+        //Progress Dialog
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setTitle("World Weather Online");
+        progressDialog.setMessage("Downloading Weather Data...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
     }
 
     @Override
@@ -208,6 +215,7 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
             //Dev
             Log.i(TAG, "onPostExecute: " + "Data Retrieved");
             onWeatherApiResult.onWeatherApiResult(weather);
+            progressDialog.dismiss();
         } else {
             Toast.makeText(mContext, "No Data Available", Toast.LENGTH_SHORT).show();
         }

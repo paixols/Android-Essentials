@@ -69,7 +69,6 @@ public class MonthlyAverageFragment extends Fragment {
                 tv.setText(weather.getClimateAverageYear().getNovember().getAbsMaxBoth());
                 tv = (TextView) view.findViewById(R.id.TextView_MonthAverage_Dec);
                 tv.setText(weather.getClimateAverageYear().getDecember().getAbsMaxBoth());
-
             }
         }
         return view;
