@@ -68,8 +68,7 @@ public class CurrentConditionFragment extends Fragment {
                 tv = (TextView) view.findViewById(R.id.TextView_CurrentCondition_WindKm);
                 tv.setText(weather.getCurrentConditionInfo().getWindSpeedKm());
                 tv = (TextView) view.findViewById(R.id.TextView_CurrentCondition_Humidity);
-                String humidity = weather.getCurrentConditionInfo().getHumidity() + "%";
-                tv.setText(humidity);
+                tv.setText(weather.getCurrentConditionInfo().getHumidity());
             }
         }
         //Dev

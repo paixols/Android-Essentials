@@ -36,7 +36,7 @@ public class MonthAverage implements Serializable {
     }
 
     public String getAvgMinTemp_C() {
-        return avgMinTemp_C;
+        return avgMinTemp_C + " C";
     }
 
     public String getAvgMinTemp_F() {
@@ -50,4 +50,6 @@ public class MonthAverage implements Serializable {
     public String getAbsMinTemp_F() {
         return absMinTemp_F;
     }
+
+    public String getAbsMaxBoth(){return absMaxTemp_C + " C / " + getAbsMinTemp_F() + " F";}
 }

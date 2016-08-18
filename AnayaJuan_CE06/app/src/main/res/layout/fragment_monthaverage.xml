@@ -1,6 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4sp"
+            android:background="@color/colorPrimaryTransparent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/mont_average"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+            <!--January-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/jan"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Jan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+            <!--February-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/feb"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Feb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--March-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/mar"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Mar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+            <!--April-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="Apr"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_April"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:background="@color/colorPrimaryTransparent"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--May-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/may"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_May"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--June-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/june"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Jun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--July-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/july"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Jul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--August-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/aug"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Aug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--September-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/sep"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Sep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--October-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/oct"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Oct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--November-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/nov"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Nov"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+            <!--December-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="@string/dec"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/TextView_MonthAverage_Dec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:textSize="12sp"
+                    android:background="@color/colorPrimaryTransparent" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

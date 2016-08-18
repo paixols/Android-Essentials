@@ -20,6 +20,7 @@ public class CurrentConditionInfo implements Serializable {
     String windSpeedMiles;
     String windSpeedKm;
     String humidity; // %
+
     /*Constructor*/
     public CurrentConditionInfo(String observationTime, String tempC, String tempF,
                                 String feelsLikeTempC, String feelsLikeTempF, String weatherIconUrl,
@@ -36,43 +37,53 @@ public class CurrentConditionInfo implements Serializable {
         this.windSpeedKm = windSpeedKm;
         this.humidity = humidity;
     }
+
     /*Getters*/
     //Observation Time
     public String getObservationTime() {
         return observationTime;
     }
+
     //Temperature in Celsius
     public String getTempC() {
         return tempC;
     }
+
     //Temperature in Fahrenheit
     public String getTempF() {
         return tempF;
     }
+
     //Temperature feels like in Celsius
     public String getFeelsLikeTempC() {
         return feelsLikeTempC;
     }
+
     //Temperature feels like in Fahrenheit
     public String getFeelsLikeTempF() {
         return feelsLikeTempF;
     }
+
     //Weather Icon
     public String getWeatherIconUrl() {
         return weatherIconUrl;
     }
+
     //Current Weather Description
     public String getWeatherDescription() {
         return weatherDescription;
     }
+
     //Wind Speed in Miles
     public String getWindSpeedMiles() {
         return windSpeedMiles;
     }
+
     //Wind Speed in KM
     public String getWindSpeedKm() {
         return windSpeedKm;
     }
+
     //Humidity %
     public String getHumidity() {
         return humidity + " %";
