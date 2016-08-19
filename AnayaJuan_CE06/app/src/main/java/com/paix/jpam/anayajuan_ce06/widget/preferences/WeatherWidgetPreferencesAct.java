@@ -6,12 +6,8 @@ package com.paix.jpam.anayajuan_ce06.widget.preferences;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.paix.jpam.anayajuan_ce06.R;
 import com.paix.jpam.anayajuan_ce06.services.WeatherWidgetService;
@@ -19,10 +15,10 @@ import com.paix.jpam.anayajuan_ce06.services.WeatherWidgetService;
 public class WeatherWidgetPreferencesAct extends AppCompatActivity implements OnSelectedPreferences {
 
     //TAG
-    private static final String TAG = "WeatherWidgetPrefAct";
+    //private static final String TAG = "WeatherWidgetPrefAct";
 
     /*Properties*/
-    int widgetId;
+    private int widgetId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +43,7 @@ public class WeatherWidgetPreferencesAct extends AppCompatActivity implements On
 
 
     @Override
-    public void selectedCityAndTheme(String city, String theme) {
-//        //Dev
-//        Log.i(TAG, "selectedCityAndTheme: " + "City: " + city + "/ Theme: " + theme);
-//        Log.i(TAG, "selectedCityAndTheme: " + "Widget ID: " + widgetId);
+    public void selectedCityAndTheme() {
         Intent serviceIntent = new Intent(getApplicationContext(), WeatherWidgetService.class);
         serviceIntent.putExtra(getString(R.string.widget_id), widgetId);
         getApplicationContext().startService(serviceIntent);

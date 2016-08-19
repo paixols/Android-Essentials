@@ -9,9 +9,9 @@ import java.io.Serializable;
 public class ThreeDayWeatherForecast implements Serializable {
 
     /*Properties*/
-    DayForecast firstDay;
-    DayForecast secondDay;
-    DayForecast thirdDay;
+    private final DayForecast firstDay;
+    private final DayForecast secondDay;
+    private final DayForecast thirdDay;
 
     /*Constructor*/
     public ThreeDayWeatherForecast(DayForecast firstDay, DayForecast secondDay, DayForecast thirdDay) {

@@ -9,10 +9,10 @@ import java.io.Serializable;
 public class AstronomyInfo implements Serializable {
 
     /*Properties*/
-    String sunrise;
-    String sunset;
-    String moonrise;
-    String moonset;
+    private final String sunrise;
+    private final String sunset;
+    private final String moonrise;
+    private final String moonset;
 
     /*Constructor*/
     public AstronomyInfo(String sunrise, String sunset, String moonrise, String moonset) {

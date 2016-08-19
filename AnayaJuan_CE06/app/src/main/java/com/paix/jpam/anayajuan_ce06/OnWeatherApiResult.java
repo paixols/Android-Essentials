@@ -6,7 +6,7 @@ package com.paix.jpam.anayajuan_ce06;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
 
-public interface OnWeatherApiResult {
+interface OnWeatherApiResult {
 
     void onWeatherApiResult(Weather weather);
 

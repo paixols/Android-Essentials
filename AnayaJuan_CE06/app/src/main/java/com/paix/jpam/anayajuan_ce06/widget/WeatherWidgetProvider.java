@@ -13,8 +13,8 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         //Loop through the widgets
-        for (int i = 0; i < appWidgetIds.length; i++) {
-            WidgetHelper.updateWidget(context, appWidgetManager, appWidgetIds[i]);
+        for (int appWidgetId : appWidgetIds) {
+            WidgetHelper.updateWidget(context, appWidgetManager, appWidgetId);
         }
     }
 }

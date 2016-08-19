@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 public class LocationInfo implements Serializable {
 
-    String cityName;
-    String localTime;
-    String utcOffset;
+    private final String cityName;
+    private final String localTime;
+    private final String utcOffset;
     //Todo add LatLng for location services and query in the API
 
     public LocationInfo(String cityName, String localTime, String utcOffset) {

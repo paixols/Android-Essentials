@@ -18,15 +18,10 @@
         <activity
             android:name=".WeatherActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--Widget Preferences-->
-        <activity android:name=".widget.preferences.WeatherWidgetPreferencesAct"></activity>
+        <activity android:name=".widget.preferences.WeatherWidgetPreferencesAct"/>
 
         <!--Widget Provider-->
         <receiver android:name=".widget.WeatherWidgetProvider">
@@ -39,7 +34,7 @@
         </receiver>
 
         <!--Weather Widget API Service-->
-        <service android:name=".services.WeatherWidgetService"/>
+        <service android:name=".services.WeatherWidgetService" />
     </application>
 
 </manifest>

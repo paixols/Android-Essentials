@@ -5,10 +5,8 @@
 package com.paix.jpam.anayajuan_ce06.widget.preferences;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +20,7 @@ public class WeatherWidgetPreferencesFrag extends PreferenceFragment {
     private static final String TAG = "WeatherWidgetPrefFrag";
 
     /*Properties*/
-    OnSelectedPreferences listener;
+    private OnSelectedPreferences listener;
 
     /*LifeCycle*/
 
@@ -59,12 +57,7 @@ public class WeatherWidgetPreferencesFrag extends PreferenceFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.menu_reloadApi) {
-            //Preferences (User Choices)
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//            listener.selectedCity(prefs.getString("CITY_WIDGET", "Orlando"));
-//            listener.selectedTheme(prefs.getString("THEME_WIDGET", "Light"));
-            listener.selectedCityAndTheme(prefs.getString("CITY_WIDGET", "Orlando"),
-                    prefs.getString("THEME_WIDGET", "Light"));
+            listener.selectedCityAndTheme();
             return true;
         }
         return false;

@@ -16,8 +16,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 
 import com.paix.jpam.anayajuan_ce06.R;

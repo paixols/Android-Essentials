@@ -21,8 +21,6 @@ public class LocationFragment extends Fragment {
 
     //TAG
     private static final String TAG = "LocationFragment";
-    /*Properties*/
-    TextView tv;
 
     /*Constructor*/
     public LocationFragment newInstanceOf(Context context, Weather weather) {
@@ -48,7 +46,7 @@ public class LocationFragment extends Fragment {
             Weather weather = (Weather) args.getSerializable(getString(R.string.weather_key));
             if (weather != null) {
                 //UI
-                tv = (TextView) view.findViewById(R.id.TextView_Location_City);
+                TextView tv = (TextView) view.findViewById(R.id.TextView_Location_City);
                 tv.setText(weather.getLocationInfo().getCityName());
                 tv = (TextView) view.findViewById(R.id.TextView_Location_UtcOffset);
                 String utcOffset = "UTC Offset: " + weather.getLocationInfo().getUtcOffset();

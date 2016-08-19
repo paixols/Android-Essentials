@@ -5,7 +5,6 @@
 package com.paix.jpam.anayajuan_ce06.utilities;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
 import com.paix.jpam.anayajuan_ce06.dataModel.climateAverage.ClimateAverageYear;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 public class ParseWeatherAPI {
 
     //TAG
-    private static final String TAG = "ParseWeatherAPI";
+    //private static final String TAG = "ParseWeatherAPI";
 
 
     public static Weather parseApi(Context mContext, String chosenCity) {
@@ -65,7 +64,6 @@ public class ParseWeatherAPI {
                 //Current Condition Info
                 JSONArray currentCondition = data.getJSONArray("current_condition");
                 JSONObject currentConditionObject = (JSONObject) currentCondition.get(0);
-                String observationTime = currentConditionObject.getString("observation_time");
                 String tempC = currentConditionObject.getString("temp_C");
                 String tempF = currentConditionObject.getString("temp_F");
                 String feelsLikeTempC = currentConditionObject.getString("FeelsLikeC");
@@ -79,9 +77,9 @@ public class ParseWeatherAPI {
                 String windSpeedMiles = currentConditionObject.getString("windspeedMiles");
                 String windSpeedKmph = currentConditionObject.getString("windspeedKmph");
                 String humidity = currentConditionObject.getString("humidity");
-                CurrentConditionInfo currentConditionInfo = new CurrentConditionInfo(observationTime,
-                        tempC, tempF, feelsLikeTempC, feelsLikeTempF, iconUrl, weatherDescription,
-                        windSpeedMiles, windSpeedKmph, humidity);
+                CurrentConditionInfo currentConditionInfo = new CurrentConditionInfo(tempC, tempF,
+                        feelsLikeTempC, feelsLikeTempF, iconUrl, weatherDescription, windSpeedMiles,
+                        windSpeedKmph, humidity);
                 //Three Day Forecast
                 JSONArray weather = data.getJSONArray("weather");
                 DayForecast dayForecastOne = null;
@@ -124,19 +122,14 @@ public class ParseWeatherAPI {
                 ThreeDayWeatherForecast threeDayWeatherForecast = new ThreeDayWeatherForecast(dayForecastOne, dayForecastTwo, dayForecastThree);
                 //Climate Average Year
                 JSONArray climateAveragesArray = data.getJSONArray("ClimateAverages");
-                JSONObject climateAveragesObj = (JSONObject) climateAveragesArray.getJSONObject(0);
+                JSONObject climateAveragesObj = climateAveragesArray.getJSONObject(0);
                 JSONArray monthArray = climateAveragesObj.getJSONArray("month");
                 ArrayList<MonthAverage> months = new ArrayList<>();
                 for (int i = 0; i < monthArray.length(); i++) {
                     JSONObject month = (JSONObject) monthArray.get(i);
-                    String index = month.getString("index");
-                    String name = month.getString("name");
-                    String avgMinTempC = month.getString("avgMinTemp");
-                    String avgMinTempF = month.getString("avgMinTemp_F");
                     String absMaxTempC = month.getString("absMaxTemp");
                     String absMaxTempF = month.getString("absMaxTemp_F");
-                    MonthAverage monthAverage = new MonthAverage(index, name, avgMinTempC, avgMinTempF,
-                            absMaxTempC, absMaxTempF);
+                    MonthAverage monthAverage = new MonthAverage(absMaxTempC, absMaxTempF);
                     months.add(monthAverage);
                 }
                 ClimateAverageYear climateAverageYear = new ClimateAverageYear(months.get(0), months.get(1),
@@ -151,7 +144,7 @@ public class ParseWeatherAPI {
 //                Log.i(TAG, "doInBackground: " + "City: " + city + "/" + "LocalTime: " + localTime +
 //                        "Utc_Offset: " + utcOffset);
 //                //Current Condition info
-//                Log.i(TAG, "doInBackground: " + "Observation Time: " + observationTime + " / TempC: " +
+//                Log.i(TAG, "doInBackground: " + " / TempC: " +
 //                        tempC + " / TempF:" + tempF + " / Feels Like TempC: " + feelsLikeTempC +
 //                        " / Feels Like TempF: " + tempF + " / Icon Url: " + iconUrl + " / Weather Desc: " +
 //                        weatherDescription + " / Wind Speed M: " + windSpeedMiles + " / Wind Speed Kmph: " +
@@ -192,7 +185,7 @@ public class ParseWeatherAPI {
     }
 
     //Download Image Byte Array
-    public static byte[] getImageAsByteArray(String _url) {
+    private static byte[] getImageAsByteArray(String _url) {
 
         try {
             //Get URL

@@ -9,24 +9,21 @@ import java.io.Serializable;
 
 public class CurrentConditionInfo implements Serializable {
 
-    /*Properties*/
-    String observationTime;
-    String tempC;
-    String tempF;
-    String feelsLikeTempC;
-    String feelsLikeTempF;
-    String weatherIconUrl;
-    String weatherDescription;
-    String windSpeedMiles;
-    String windSpeedKm;
-    String humidity; // %
+    private final String tempC;
+    private final String tempF;
+    private final String feelsLikeTempC;
+    private final String feelsLikeTempF;
+    private final String weatherIconUrl;
+    private final String weatherDescription;
+    private final String windSpeedMiles;
+    private final String windSpeedKm;
+    private final String humidity; // %
 
     /*Constructor*/
-    public CurrentConditionInfo(String observationTime, String tempC, String tempF,
+    public CurrentConditionInfo(String tempC, String tempF,
                                 String feelsLikeTempC, String feelsLikeTempF, String weatherIconUrl,
                                 String weatherDescription, String windSpeedMiles, String windSpeedKm,
                                 String humidity) {
-        this.observationTime = observationTime;
         this.tempC = tempC;
         this.tempF = tempF;
         this.feelsLikeTempC = feelsLikeTempC;
@@ -39,11 +36,6 @@ public class CurrentConditionInfo implements Serializable {
     }
 
     /*Getters*/
-    //Observation Time
-    public String getObservationTime() {
-        return observationTime;
-    }
-
     //Temperature in Celsius
     public String getTempC() {
         return tempC;

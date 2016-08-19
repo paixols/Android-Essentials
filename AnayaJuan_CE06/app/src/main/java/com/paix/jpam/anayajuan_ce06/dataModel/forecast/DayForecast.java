@@ -11,15 +11,15 @@ import java.io.Serializable;
 public class DayForecast implements Serializable {
 
     /*Properties*/
-    String date;
-    AstronomyInfo astronomyInfo; //
-    String maxTempC;
-    String minTempC;
-    String maxTempF;
-    String minTempF;
-    String weatherIconUrl;
-    String weatherDescription;
-    String humidity; // %
+    private final String date;
+    private final AstronomyInfo astronomyInfo; //
+    private final String maxTempC;
+    private final String minTempC;
+    private final String maxTempF;
+    private final String minTempF;
+    private final String weatherIconUrl;
+    private final String weatherDescription;
+    private final String humidity; // %
 
     /*Constructor*/
     public DayForecast(String date, AstronomyInfo astronomyInfo, String maxTempC,

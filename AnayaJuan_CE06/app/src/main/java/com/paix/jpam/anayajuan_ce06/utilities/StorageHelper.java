@@ -5,7 +5,6 @@
 package com.paix.jpam.anayajuan_ce06.utilities;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
@@ -14,7 +13,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,8 +23,8 @@ public class StorageHelper {
     //TAG
     private static final String TAG = "StorageHelper";
     /*Properties*/
-    public static final String FILE_NAME = "com.paix.jpam.anayajuan_ce06.WEATHER_DATA";
-    public static final String ICON_FILE_NAME = "com.paix.jpam.anayajuan_ce06.WEATHER_ICON";
+    private static final String FILE_NAME = "com.paix.jpam.anayajuan_ce06.WEATHER_DATA";
+    private static final String ICON_FILE_NAME = "com.paix.jpam.anayajuan_ce06.WEATHER_ICON";
 
     /*Save to Internal Storage*/
     public static void save(Context context, Weather weather) {

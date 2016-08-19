@@ -14,10 +14,10 @@ import java.io.Serializable;
 public class Weather implements Serializable {
 
     /*Properties*/
-    LocationInfo locationInfo;
-    CurrentConditionInfo currentConditionInfo;
-    ThreeDayWeatherForecast threeDayWeatherForecast;
-    ClimateAverageYear climateAverageYear;
+    private final LocationInfo locationInfo;
+    private final CurrentConditionInfo currentConditionInfo;
+    private final ThreeDayWeatherForecast threeDayWeatherForecast;
+    private final ClimateAverageYear climateAverageYear;
 
     /*Constructor*/
     public Weather(LocationInfo locationInfo, CurrentConditionInfo currentConditionInfo,

@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NetworkUtility {
+class NetworkUtility {
 
     //TAG
     private static final String TAG = "NetworkUtility";

@@ -13,31 +13,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
-import com.paix.jpam.anayajuan_ce06.dataModel.climateAverage.ClimateAverageYear;
-import com.paix.jpam.anayajuan_ce06.dataModel.climateAverage.MonthAverage;
-import com.paix.jpam.anayajuan_ce06.dataModel.currentWeather.AstronomyInfo;
-import com.paix.jpam.anayajuan_ce06.dataModel.currentWeather.CurrentConditionInfo;
-import com.paix.jpam.anayajuan_ce06.dataModel.forecast.DayForecast;
-import com.paix.jpam.anayajuan_ce06.dataModel.forecast.ThreeDayWeatherForecast;
-import com.paix.jpam.anayajuan_ce06.dataModel.locationInfo.LocationInfo;
-import com.paix.jpam.anayajuan_ce06.utilities.NetworkUtility;
 import com.paix.jpam.anayajuan_ce06.utilities.ParseWeatherAPI;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
+class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
 
     //TAG
     private static final String TAG = "WeatherActivityTask";
 
     /*Properties*/
-    Context mContext;
-    OnWeatherApiResult onWeatherApiResult;
-    ProgressDialog progressDialog;
+    private final Context mContext;
+    private OnWeatherApiResult onWeatherApiResult;
+    private ProgressDialog progressDialog;
 
     /*Constructor*/
     public WeatherActivityTask(Context context) {

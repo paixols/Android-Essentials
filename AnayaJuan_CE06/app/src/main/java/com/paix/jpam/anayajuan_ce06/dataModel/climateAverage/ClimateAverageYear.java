@@ -9,18 +9,18 @@ import java.io.Serializable;
 public class ClimateAverageYear implements Serializable {
 
     /*Properties*/
-    MonthAverage january;
-    MonthAverage february;
-    MonthAverage march;
-    MonthAverage april;
-    MonthAverage may;
-    MonthAverage june;
-    MonthAverage july;
-    MonthAverage august;
-    MonthAverage september;
-    MonthAverage october;
-    MonthAverage november;
-    MonthAverage december;
+    private final MonthAverage january;
+    private final MonthAverage february;
+    private final MonthAverage march;
+    private final MonthAverage april;
+    private final MonthAverage may;
+    private final MonthAverage june;
+    private final MonthAverage july;
+    private final MonthAverage august;
+    private final MonthAverage september;
+    private final MonthAverage october;
+    private final MonthAverage november;
+    private final MonthAverage december;
 
     /*Constructor*/
     public ClimateAverageYear(MonthAverage january, MonthAverage february, MonthAverage march,
