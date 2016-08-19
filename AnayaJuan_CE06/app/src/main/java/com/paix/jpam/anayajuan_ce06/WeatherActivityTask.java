@@ -64,6 +64,7 @@ public class WeatherActivityTask extends AsyncTask<Void, Void, Weather> {
 
     @Override
     protected Weather doInBackground(Void... voids) {
+
         //Parse Weather Info
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         Weather weather = ParseWeatherAPI.

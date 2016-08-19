@@ -64,6 +64,8 @@
         <item>Light</item>
         <item>Dark</item>
     </string-array>
+    <string name="ThemeLight">Light</string>
+    <string name="ThemeDark">Dark</string>
     <!--KEYS-->
     <string name="weather_key">weather_key</string>
     <string name="widget_id">widget_id_key</string>

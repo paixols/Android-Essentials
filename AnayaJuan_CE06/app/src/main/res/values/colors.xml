@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryTransparent">#553F51B5</color>
     <color name="appBackgroiund">#AAE5E5FF</color>
+    <color name="colorGold">#DDE3B029</color>
+    <color name="colorGoldLight">#88E3B029</color>
 </resources>

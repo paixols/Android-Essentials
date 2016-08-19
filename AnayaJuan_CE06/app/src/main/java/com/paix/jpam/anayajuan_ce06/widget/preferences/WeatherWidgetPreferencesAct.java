@@ -6,9 +6,12 @@ package com.paix.jpam.anayajuan_ce06.widget.preferences;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.paix.jpam.anayajuan_ce06.R;
 import com.paix.jpam.anayajuan_ce06.services.WeatherWidgetService;
@@ -33,8 +36,8 @@ public class WeatherWidgetPreferencesAct extends AppCompatActivity implements On
             setResult(RESULT_CANCELED, resultIntent); //Removes the Widget from the HomeScreen
             finish();
         }
-        //Dev
-        Log.i(TAG, "onCreate: " + "Widget Pref Activity");
+//        //Dev
+//        Log.i(TAG, "onCreate: " + "Widget Pref Activity");
         //Set Preferences Fragment
         WeatherWidgetPreferencesFrag prefFrag = new WeatherWidgetPreferencesFrag();
         getFragmentManager().beginTransaction().
@@ -45,11 +48,9 @@ public class WeatherWidgetPreferencesAct extends AppCompatActivity implements On
 
     @Override
     public void selectedCityAndTheme(String city, String theme) {
-        //Dev
-        Log.i(TAG, "selectedCityAndTheme: " + "City: " + city + "/ Theme: " + theme);
-        Log.i(TAG, "selectedCityAndTheme: " + "Widget ID: " + widgetId);
-
-        //Todo Start Service Api Download & Update UI with Widget ID
+//        //Dev
+//        Log.i(TAG, "selectedCityAndTheme: " + "City: " + city + "/ Theme: " + theme);
+//        Log.i(TAG, "selectedCityAndTheme: " + "Widget ID: " + widgetId);
         Intent serviceIntent = new Intent(getApplicationContext(), WeatherWidgetService.class);
         serviceIntent.putExtra(getString(R.string.widget_id), widgetId);
         getApplicationContext().startService(serviceIntent);

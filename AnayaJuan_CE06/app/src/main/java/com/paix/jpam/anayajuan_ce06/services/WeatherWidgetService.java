@@ -32,14 +32,13 @@ public class WeatherWidgetService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         //Get Preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Log.i(TAG, "onHandleIntent: " + prefs.getString("CITY_WIDGET", "Orlando"));
-        Log.i(TAG, "onHandleIntent: " + prefs.getString("THEME_WIDGET", "Light"));
+//        Log.i(TAG, "onHandleIntent: " + prefs.getString("CITY_WIDGET", "Orlando"));
+//        Log.i(TAG, "onHandleIntent: " + prefs.getString("THEME_WIDGET", "Light"));
         int widgetId = intent.getIntExtra(getString(R.string.widget_id), AppWidgetManager.INVALID_APPWIDGET_ID);
         //Parse Weather Data
         Weather weather = ParseWeatherAPI.parseApi(this, prefs.getString("CITY_WIDGET", "Orlando"));
         if (weather != null) {
             Log.i(TAG, "onHandleIntent: " + weather.getLocationInfo().getCityName());
-            //Todo save Weather Info
             //Update Widget
             if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
                 AppWidgetManager mgr = AppWidgetManager.getInstance(getApplicationContext());

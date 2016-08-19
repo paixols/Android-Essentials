@@ -5,6 +5,7 @@
 package com.paix.jpam.anayajuan_ce06.utilities;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce06.dataModel.Weather;
 import com.paix.jpam.anayajuan_ce06.dataModel.climateAverage.ClimateAverageYear;
@@ -15,24 +16,32 @@ import com.paix.jpam.anayajuan_ce06.dataModel.forecast.DayForecast;
 import com.paix.jpam.anayajuan_ce06.dataModel.forecast.ThreeDayWeatherForecast;
 import com.paix.jpam.anayajuan_ce06.dataModel.locationInfo.LocationInfo;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ParseWeatherAPI {
 
+    //TAG
+    private static final String TAG = "ParseWeatherAPI";
 
-    public static Weather parseApi(Context mContext,String chosenCity) {
+
+    public static Weather parseApi(Context mContext, String chosenCity) {
 
         //Weather Object (Return value)
         Weather weatherInfo = null;
-
+        byte[] currentWeatherIcon = null;
         if (NetworkUtility.isConnected(mContext)) {
             //Fixed URL
             String apiUrl = "https://api.worldweatheronline.com/premium/v1/weather.ashx" +
-                    "?key=990c8537d96c4d4fb9d180539161608&q="+chosenCity+"&format=json&num_of_days=3" +
+                    "?key=990c8537d96c4d4fb9d180539161608&q=" + chosenCity + "&format=json&num_of_days=3" +
                     "&tp=12&showlocaltime=yes&showmap=yes";
             String api = NetworkUtility.getNetworkData(apiUrl);
             //Data Checkpoint
@@ -135,6 +144,8 @@ public class ParseWeatherAPI {
                         months.get(8), months.get(9), months.get(10), months.get(11));
                 //Weather Object
                 weatherInfo = new Weather(locationInfo, currentConditionInfo, threeDayWeatherForecast, climateAverageYear);
+                //Download Icon for Widget
+                currentWeatherIcon = getImageAsByteArray(weatherInfo.getCurrentConditionInfo().getWeatherIconUrl());
 //                //Dev
 //                //Location Info
 //                Log.i(TAG, "doInBackground: " + "City: " + city + "/" + "LocalTime: " + localTime +
@@ -160,15 +171,61 @@ public class ParseWeatherAPI {
 //                        threeDayWeatherForecast.getThirdDay().getDate());
 //                //Weather Info
 //                Log.i(TAG, "doInBackground: " + " Weather Info: " + weatherInfo.getClimateAverageYear().getJanuary().getName());
+//                //Dev
+//                Log.i(TAG, "parseApi: " + currentWeatherIcon.length);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         //Weather Information Successfully downloaded
         if (weatherInfo != null) {
+            /*Save Data Locally*/
+            //Save Weather Object
+            StorageHelper.save(mContext, weatherInfo);
+            //Save Weather Icons
+            if (currentWeatherIcon != null) {
+                StorageHelper.saveWidgetIcon(mContext, currentWeatherIcon);
+            }
             return weatherInfo;
         }
         return null;
+    }
+
+    //Download Image Byte Array
+    public static byte[] getImageAsByteArray(String _url) {
+
+        try {
+            //Get URL
+            URL url = new URL(_url);
+            //Make a connection Object
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //Check for successful response code
+            if (connection.getResponseCode() != 200) {
+                return new byte[0];
+            }
+            //If Network Connection is successful
+            try {
+                //Get the input stream
+                InputStream is = connection.getInputStream();
+                //Send input stream to string (Downloaded as Byte Array)
+                byte[] data = IOUtils.toByteArray(is);
+                //When it's done, close the connection (Required)
+                is.close();
+                //Return Stringified Data
+                return data;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                connection.disconnect();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //If there is no network data return an empty byte array
+        return new byte[0];
     }
 
 }

@@ -6,42 +6,50 @@
     android:padding="@dimen/widget_margin">
 
     <LinearLayout
+        android:id="@+id/LinearLayout_Widget_Root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryTransparent"
+        android:background="@color/colorGold"
         android:orientation="horizontal">
         <!--Left-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.33">
             <!--Icon-->
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/ImageView_WidgetLayout_Icon"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:contentDescription="@string/weather_icon"
-                android:src="@drawable/wind_gauge" />
+                android:src="@drawable/wind_gauge"
+                android:scaleType="center"
+                android:layout_gravity="center"/>
         </LinearLayout>
         <!--Center-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.33"
             android:background="@color/colorPrimaryTransparent"
             android:orientation="vertical">
-            <!--Weather Description-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/weather_description"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/TextView_Widget_LocalTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/local_time"
+                android:lines="2"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+            <!--Weather Description-->
+            <TextView
+                android:id="@+id/TextView_Widget_WeatherDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/weather_description"
+                android:lines="1"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="12sp" />
@@ -57,8 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/config"
-                android:scaleX="0.4"
-                android:scaleY="0.4" />
+                android:scaleX="0.5"
+                android:scaleY="0.6" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
