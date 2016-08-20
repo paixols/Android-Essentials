@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AnayaJuan_CE07</string>
+    <!--Intents-->
+    <!--Widget Intents-->
+    <string name="Started_From_Widget">widget_root</string>
+    <string name="first_name">First_Name</string>
+    <string name="last_name">Last_Name</string>
+    <string name="Age">Age_</string>
+    <string name="to_form">To Form</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+
+</resources>
