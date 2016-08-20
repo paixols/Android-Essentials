@@ -4,7 +4,7 @@
 
 package com.paix.jpam.anayajuan_ce07.list;
 
-import android.app.ListActivity;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,11 +14,12 @@ import com.paix.jpam.anayajuan_ce07.dataModel.Person;
 import com.paix.jpam.anayajuan_ce07.detail.DetailActivity;
 import com.paix.jpam.anayajuan_ce07.form.FormActivity;
 
-public class PersonsListActivity extends AppCompatActivity implements OnPersonClicked  {
+public class PersonsListActivity extends AppCompatActivity implements OnPersonClicked {
 
     //TAG
-    private static final String TAG = "ListActivity";
+    //private static final String TAG = "ListActivity";
 
+    /*LifeCycle*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,20 +31,19 @@ public class PersonsListActivity extends AppCompatActivity implements OnPersonCl
         }
         setContentView(R.layout.activity_list);
         //Set List Fragment
-        CustomListFragment listFragment = new CustomListFragment();
-        setListFragment(listFragment);
+        CustomListFragment customListFragment = new CustomListFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_List_FragHolder, customListFragment).commit();
     }
 
 
-
-    /*List Fragment Interface for Person Clicked - > Detail Activity*/
+    /*Custom List Fragment Interface for Person Clicked - > Detail Activity*/
     @Override
     public void itemClicked(Person person, int position) {
         //Take user to the Detail Activity
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("person_key", person);
-        intent.putExtra("person_position", position);
-        intent.putExtra("widget_root", false);
+        intent.putExtra(getString(R.string.Person_key), person);
+        intent.putExtra(getString(R.string.Person_position), position);
+        intent.putExtra(getString(R.string.Started_From_Widget), false);
         //Finish this activity
         finish();
         //Start New Activity
@@ -51,7 +51,7 @@ public class PersonsListActivity extends AppCompatActivity implements OnPersonCl
 
     }
 
-    /*List Fragment Interface for To Form button -> Form Activity*/
+    /*Custom List Fragment Interface for To Form button -> Form Activity*/
     @Override
     public void toFormForNewPerson() {
         //Take user to new Form
@@ -62,12 +62,6 @@ public class PersonsListActivity extends AppCompatActivity implements OnPersonCl
         //Start New Activity
         startActivity(intent);
 
-    }
-
-
-    /*List Fragment Method*/
-    private void setListFragment(CustomListFragment listFragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_List_FragHolder, listFragment).commit();
     }
 
 }

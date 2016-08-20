@@ -4,12 +4,12 @@
 
 package com.paix.jpam.anayajuan_ce07.form;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.paix.jpam.anayajuan_ce07.R;
+import com.paix.jpam.anayajuan_ce07.list.PersonsListActivity;
 import com.paix.jpam.anayajuan_ce07.utilities.StorageHelper;
 import com.paix.jpam.anayajuan_ce07.dataModel.Person;
 import com.paix.jpam.anayajuan_ce07.widget.UpdateHelper;
@@ -19,11 +19,9 @@ import java.util.ArrayList;
 public class FormActivity extends AppCompatActivity implements NewPersonListener {
 
     //TAG
-    private static final String TAG = "FormActivity";
-    //ArrayList to save Person
-    ArrayList persons;
-    //Started from Widget Flag
-    Boolean startedFromWidget;
+    //private static final String TAG = "FormActivity";
+
+    private Boolean startedFromWidget;//Flag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class FormActivity extends AppCompatActivity implements NewPersonListener
     @Override
     public void saveNewPersonFromForm(Person person) {
         //First Read from internal Storage
-        persons = StorageHelper.readInternalStorage(this);
+        ArrayList persons = StorageHelper.readInternalStorage(this);
         if (person == null) {
             persons = new ArrayList<>();
             persons.clear();
@@ -54,12 +52,11 @@ public class FormActivity extends AppCompatActivity implements NewPersonListener
         UpdateHelper.updateWidgetListView(getApplicationContext());
 
         //Return to List Activity
-        Intent intent = new Intent(FormActivity.this, ListActivity.class);
-        intent.putExtra("widget_root", startedFromWidget);
+        Intent intent = new Intent(FormActivity.this, PersonsListActivity.class);
+        intent.putExtra(getString(R.string.Started_From_Widget), startedFromWidget);
         startActivity(intent);
+
         //Finish This Activity
         finish();
     }
-
-    //Take user to the List Fragment
 }

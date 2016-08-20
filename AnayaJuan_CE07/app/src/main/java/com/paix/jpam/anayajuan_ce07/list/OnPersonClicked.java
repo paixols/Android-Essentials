@@ -6,10 +6,10 @@ package com.paix.jpam.anayajuan_ce07.list;
 
 import com.paix.jpam.anayajuan_ce07.dataModel.Person;
 
-public interface OnPersonClicked {
+interface OnPersonClicked {
     //Selected Person from list
     void itemClicked(Person person, int position);
 
-    //To Form ->
+    //To Form
     void toFormForNewPerson();
 }

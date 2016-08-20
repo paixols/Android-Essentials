@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// CollectionWidgetViewFactory
+
 package com.paix.jpam.anayajuan_ce07.widget;
 
 import android.content.Context;
@@ -11,25 +15,24 @@ import com.paix.jpam.anayajuan_ce07.utilities.StorageHelper;
 
 import java.util.ArrayList;
 
-/**
- * Created by JPAM on 8/20/16.
- */
-public class CollectionWidgetViewFactory implements RemoteViewsService.RemoteViewsFactory {
+class CollectionWidgetViewFactory implements RemoteViewsService.RemoteViewsFactory {
     //TAG
-    private static final String TAG = "CollectionWidgetViewFactory";
+    //private static final String TAG = "CollectionWidgetViewFactory";
+
     //ID CONSTANT
     private static final int ID_CONSTANT = 0x0001;
     //Context
-    Context mContext;
+    private final Context mContext;
     //ArrayList of Persons
-    ArrayList<Person> persons;
+    private ArrayList persons;
 
-    //Constructor
+    /*Constructor*/
     public CollectionWidgetViewFactory(Context context) {
         //Set Context
         mContext = context;
     }
 
+    /*LifeCycle*/
     @Override
     public void onCreate() {
         //Read Data from internal storage (Data used for the Views Factory)
@@ -39,7 +42,6 @@ public class CollectionWidgetViewFactory implements RemoteViewsService.RemoteVie
 
     @Override
     public void onDataSetChanged() {
-        /*Used for handling long running operations*/
         //updateFromInternalStorage();
         updateFromInternalStorage();
     }
@@ -51,8 +53,6 @@ public class CollectionWidgetViewFactory implements RemoteViewsService.RemoteVie
         persons = null;
     }
 
-    /*If the count returns 0 (Zero) It will show the layout we set up to be as the empty one to
-    inform the user there is no data available, in this case the Empty TextView*/
     @Override
     public int getCount() {
         if (persons == null || persons.size() == 0) {
@@ -63,24 +63,20 @@ public class CollectionWidgetViewFactory implements RemoteViewsService.RemoteVie
 
     @Override
     public RemoteViews getViewAt(int position) {
-
-        /*Most of the work is going to happen in this method, like create remote views objects
-        for each of the ListView Items, fill the remote object with the object and return it to
-        be part of the list. */
         //Person
-        Person person = persons.get(position);
+        Person person = (Person) persons.get(position);
         //Remote Views to populate
         RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.viewholder_list);
         //Retrieve each piece of data to populate
-        remoteViews.setTextViewText(R.id.TextView_ViewHolder_FristName, person.getFirstName());
+        remoteViews.setTextViewText(R.id.TextView_ViewHolder_FirstName, person.getFirstName());
         remoteViews.setTextViewText(R.id.TextView_ViewHolder_LastName, person.getLastName());
         String age = String.valueOf(person.getAge());
         remoteViews.setTextViewText(R.id.TextView_ViewHolder_Age, age);
 
-        //Set Fill-in Intent (Intent needs to be on the root layout of the viewholder_list !
+        //Set Fill-in Intent (Intent needs to be on the root layout of the view holder list !
         Intent intent = new Intent();
-        intent.putExtra("person_key", person);
-        intent.putExtra("widget_root", true);//Activity Started From widget
+        intent.putExtra(mContext.getString(R.string.Person_key), person);
+        intent.putExtra(mContext.getString(R.string.Started_From_Widget), true);//Activity Started From widget
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         remoteViews.setOnClickFillInIntent(R.id.LinearLayout_WidgetHolder_List_Root, intent);
 
@@ -93,12 +89,10 @@ public class CollectionWidgetViewFactory implements RemoteViewsService.RemoteVie
     @Override
     public RemoteViews getLoadingView() {
         return null;
-        /*If the view is takin a while to load we could load another view*/
     }
 
     @Override
     public int getViewTypeCount() {
-        /*We only have one type of view*/
         return 1;
     }
 

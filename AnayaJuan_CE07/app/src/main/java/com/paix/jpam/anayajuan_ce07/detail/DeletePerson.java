@@ -4,9 +4,7 @@
 
 package com.paix.jpam.anayajuan_ce07.detail;
 
-import com.paix.jpam.anayajuan_ce07.dataModel.Person;
+interface DeletePerson {
 
-public interface DeletePerson {
-
-    void deletePerson(Person person);
+    void deletePerson();
 }

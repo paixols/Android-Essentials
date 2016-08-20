@@ -9,9 +9,9 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     /*Properties*/
-    String firstName;
-    String lastName;
-    int age;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
 
     /*Constructor*/
     public Person(String firstName, String lastName, int age) {

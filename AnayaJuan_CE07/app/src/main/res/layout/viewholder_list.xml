@@ -3,16 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/LinearLayout_WidgetHolder_List_Root">
     <!--Layout for First & Last Name -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:orientation="vertical">
-        <!--Frist Name-->
+        <!--First Name-->
         <TextView
-            android:id="@+id/TextView_ViewHolder_FristName"
+            android:id="@+id/TextView_ViewHolder_FirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/first_name"

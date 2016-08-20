@@ -22,7 +22,7 @@ public class StorageHelper {
     private static final String TAG = "StorageHelper";
 
     //App's File Name
-    static String FILE_NAME = "LAB_CE07_Persons";
+    private static final String FILE_NAME = "LAB_CE07_Persons";
 
     /*Write Internal Storage*/
     public static void writeInternalStorage(ArrayList<Person> persons, Context context) {
@@ -45,8 +45,7 @@ public class StorageHelper {
         try {
             FileInputStream fis = context.openFileInput(FILE_NAME);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Person> persons = (ArrayList<Person>) ois.readObject();
-            arrayList = persons;
+            arrayList = (ArrayList<Person>) ois.readObject();
             fis.close();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {

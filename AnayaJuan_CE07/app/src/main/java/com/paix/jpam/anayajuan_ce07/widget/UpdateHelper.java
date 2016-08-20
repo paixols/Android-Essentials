@@ -12,22 +12,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.paix.jpam.j_anaya_ce07.Detail.DetailActivity;
-import com.paix.jpam.j_anaya_ce07.Form.FormActivity;
-import com.paix.jpam.j_anaya_ce07.R;
+import com.paix.jpam.anayajuan_ce07.R;
+import com.paix.jpam.anayajuan_ce07.detail.DetailActivity;
+import com.paix.jpam.anayajuan_ce07.form.FormActivity;
 
 public class UpdateHelper {
 
     //TAG
-    private static final String TAG = "UpdateHelper";
+    //private static final String TAG = "UpdateHelper";
 
     /*Update Widget Helper*/
     public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        for (int i = 0; i < appWidgetIds.length; i++) {
+        for (int widgetId : appWidgetIds) {
             //Widget ID
-            int widgetId = appWidgetIds[i];
-
             //Remote Views
             RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
@@ -50,12 +48,12 @@ public class UpdateHelper {
 
             /*Pending intent for the "New" Button on the Widget -> Should open the Form Activity*/
             Intent formActivityIntent = new Intent(context, FormActivity.class);
-            formActivityIntent.putExtra("widget_root", true); // Activity started from widget
+            formActivityIntent.putExtra(context.getString(R.string.Started_From_Widget), true); // Activity started from widget
             formActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent formActivityPendingIntent = PendingIntent.getActivity(context, 0, formActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             widgetView.setOnClickPendingIntent(R.id.Button_Widget_ToForm, formActivityPendingIntent);
 
-            //App Widget Manager ***
+            //App Widget Manager
             appWidgetManager.updateAppWidget(widgetId, widgetView);
         }
 

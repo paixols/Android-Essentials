@@ -25,16 +25,13 @@ public class CustomListFragment extends ListFragment {
 
     //TAG
     private static final String TAG = "CustomListFragment";
-    //Array List for Persons
-    ArrayList persons;
-    //Base Adapter
-    CustomListAdapter adapter;
-    //Interface Listener
-    OnPersonClicked listener;
+
+    /*Properties*/
+    private ArrayList persons;
+    private OnPersonClicked listener;
 
 
     /*Life Cycle*/
-    //On Attach
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -46,7 +43,6 @@ public class CustomListFragment extends ListFragment {
         }
     }
 
-    //On Create
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +51,6 @@ public class CustomListFragment extends ListFragment {
         Log.i(TAG, "onCreate: " + "CUSTOM_LIST_FRAGMENT");
     }
 
-    //
     @Override
     public void onStart() {
         super.onStart();
@@ -65,7 +60,7 @@ public class CustomListFragment extends ListFragment {
             persons = new ArrayList<>();
             persons.clear();
         }
-        adapter = new CustomListAdapter(persons, getActivity());
+        CustomListAdapter adapter = new CustomListAdapter(persons, getActivity());
         this.setListAdapter(adapter);
     }
 
@@ -86,13 +81,12 @@ public class CustomListFragment extends ListFragment {
         return false;
     }
 
-    /*Listener*/
-
+    /*List Item Listener*/
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         //Interface Callback
-        listener.itemClicked((Person)persons.get(position), position);
+        listener.itemClicked((Person) persons.get(position), position);
     }
 
 }

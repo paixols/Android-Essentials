@@ -5,7 +5,7 @@
     android:orientation="vertical">
     <!--First Name-->
     <TextView
-        android:id="@+id/TextView_Detail_FristName"
+        android:id="@+id/TextView_Detail_FirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4sp"

@@ -19,25 +19,22 @@ import java.util.ArrayList;
 public class DetailActivity extends AppCompatActivity implements DeletePerson {
 
     //TAG
-    private static final String TAG = "DetailActivity";
-    //Person (Received From List Activity)
-    Person person;
-    int position;
-    //Array to read persons from Internal Storage
-    ArrayList persons;
-    //Started from Widget Flag
-    Boolean startedFromWidget;
+    //private static final String TAG = "DetailActivity";
+
+    private int position;
+    private Boolean startedFromWidget; //Flag
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
         //Get Intent
         Intent intent = getIntent();
-        person = (Person) intent.getSerializableExtra("person_key");
-        position = intent.getIntExtra("person_position", 0);
-        startedFromWidget = intent.getBooleanExtra("widget_root",false);
+        Person person = (Person) intent.getSerializableExtra(getString(R.string.Person_key));
+        position = intent.getIntExtra(getString(R.string.Person_position), 0);
+        startedFromWidget = intent.getBooleanExtra(getString(R.string.Started_From_Widget), false);
 
         //Terminate Activity if there is no Information
         if (person == null) {
@@ -47,14 +44,16 @@ public class DetailActivity extends AppCompatActivity implements DeletePerson {
 
         //Set Fragment
         DetailFragment detailFragment = DetailFragment.newInstanceOf(person);
-        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_Detail_FragHolder, detailFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout_Detail_FragHolder,
+                detailFragment).commit();
     }
 
-    /*Delete Person Listener*/
+    /*Fragment Interface*/
+    //Delete Person
     @Override
-    public void deletePerson(Person person) {
+    public void deletePerson() {
         //Delete From Internal Storage
-        persons = StorageHelper.readInternalStorage(this);
+        ArrayList persons = StorageHelper.readInternalStorage(this);
         if (persons == null) {
             persons = new ArrayList<>();
             persons.clear();
@@ -69,6 +68,7 @@ public class DetailActivity extends AppCompatActivity implements DeletePerson {
         Intent intent = new Intent(DetailActivity.this, PersonsListActivity.class);
         intent.putExtra(getString(R.string.Started_From_Widget), startedFromWidget);
         startActivity(intent);
+
         //Finish This Activity
         finish();
     }

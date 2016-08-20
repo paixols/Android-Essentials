@@ -16,29 +16,22 @@ import com.paix.jpam.anayajuan_ce07.dataModel.Person;
 
 import java.util.ArrayList;
 
-public class CustomListAdapter extends BaseAdapter {
+class CustomListAdapter extends BaseAdapter {
 
     //TAG
-    private static final String TAG = "CustomListAdapter";
+    //private static final String TAG = "CustomListAdapter";
 
     /*Properties*/
-    //Id
     private static final long ID_CONSTANT = 0XDEADBEEF;
-    //ArrayList for Person's Data
-    ArrayList persons;
-    //Context
-    Context context;
-    //Layout Inflater
-    LayoutInflater layoutInflater;
+    private final ArrayList persons;
+    private final LayoutInflater layoutInflater;
 
     /*Constructor*/
     public CustomListAdapter(ArrayList persons, Context context) {
         this.persons = persons;
-        this.context = context;
-        layoutInflater = LayoutInflater.from(this.context);
+        layoutInflater = LayoutInflater.from(context);
     }
 
-    //Get Count
     @Override
     public int getCount() {
         //Perform Null Check
@@ -48,7 +41,6 @@ public class CustomListAdapter extends BaseAdapter {
         return 0;
     }
 
-    //Get Item
     @Override
     public Object getItem(int position) {
         if (persons != null && position < persons.size() && position >= 0) {
@@ -93,13 +85,13 @@ public class CustomListAdapter extends BaseAdapter {
     //Custom View Holder for the Cell of the List View
     private class PersonViewHolder {
         //Properties
-        TextView firstNameHolder;
-        TextView lastNameHolder;
-        TextView ageHolder;
+        final TextView firstNameHolder;
+        final TextView lastNameHolder;
+        final TextView ageHolder;
 
         //Constructor
         public PersonViewHolder(View v) {
-            firstNameHolder = (TextView) v.findViewById(R.id.TextView_ViewHolder_FristName);
+            firstNameHolder = (TextView) v.findViewById(R.id.TextView_ViewHolder_FirstName);
             lastNameHolder = (TextView) v.findViewById(R.id.TextView_ViewHolder_LastName);
             ageHolder = (TextView) v.findViewById(R.id.TextView_ViewHolder_Age);
         }

@@ -7,7 +7,7 @@ package com.paix.jpam.anayajuan_ce07.form;
 
 import com.paix.jpam.anayajuan_ce07.dataModel.Person;
 
-public interface NewPersonListener {
+interface NewPersonListener {
 
     //Send new Person to be saved on Form Activity
     void saveNewPersonFromForm(Person person);

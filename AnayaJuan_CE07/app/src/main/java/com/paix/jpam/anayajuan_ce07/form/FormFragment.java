@@ -20,21 +20,20 @@ import android.widget.Toast;
 
 import com.paix.jpam.anayajuan_ce07.R;
 import com.paix.jpam.anayajuan_ce07.dataModel.Person;
+import com.paix.jpam.anayajuan_ce07.utilities.FieldsCheck;
 
 public class FormFragment extends Fragment {
 
     //TAG
     private static final String TAG = "FormFragment";
-    //Interface Listener for saving new Person
-    NewPersonListener listener;
-    //Person to be saved
-    Person person;
-    //Edit Texts
+
+    /*Properties*/
+    private NewPersonListener listener;
     private EditText firstNameHolder;
     private EditText lastNameHolder;
     private EditText ageHolder;
 
-    //On Attach
+    /*LifeCycle*/
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -46,7 +45,6 @@ public class FormFragment extends Fragment {
         }
     }
 
-    //On Create
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +64,10 @@ public class FormFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.MenuItem_Save:
                 //Set Listener for activity to save new data
-                if (!isEmpty(firstNameHolder) && !isEmpty(lastNameHolder) && !isEmpty(ageHolder)) {
+                if (!FieldsCheck.isEmpty(firstNameHolder) && !FieldsCheck.isEmpty(lastNameHolder) &&
+                        !FieldsCheck.isEmpty(ageHolder)) {
                     int age = Integer.parseInt(ageHolder.getText().toString().trim());
-                    person = new Person(firstNameHolder.getText().toString().trim(),
+                    Person person = new Person(firstNameHolder.getText().toString().trim(),
                             lastNameHolder.getText().toString().trim(), age);
                     listener.saveNewPersonFromForm(person);
                     return true;
@@ -81,7 +80,8 @@ public class FormFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         //Set Edit Text Views
         View v = inflater.inflate(R.layout.fragment_form, container, false);
@@ -92,21 +92,4 @@ public class FormFragment extends Fragment {
         //Return Custom View
         return v;
     }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //Clear UI
-
-    }
-
-    /*Check For Empty TextFields*/
-    public static Boolean isEmpty(EditText editText) {
-        if (editText.getText().toString().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }

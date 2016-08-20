@@ -17,13 +17,16 @@
             </intent-filter>
         </activity>
         <!--Detail Activity-->
-        <activity android:name=".detail.DetailActivity"
-            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".detail.DetailActivity"
+            android:launchMode="singleInstance" />
         <!--Form Activity-->
-        <activity android:name=".form.FormActivity"
-            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".form.FormActivity"
+            android:launchMode="singleInstance" />
         <!--Widget Provider-->
-        <receiver android:name=".widget.CollectionWidgetProvider"
+        <receiver
+            android:name=".widget.CollectionWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -33,6 +36,10 @@
                 android:resource="@xml/collection_widget_info" />
 
         </receiver>
+        <!--Widget Remote Views Service-->
+        <service
+            android:name=".widget.CollectionWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
