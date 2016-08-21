@@ -1,0 +1,8 @@
+<resources>
+    <!--APP-->
+    <string name="app_name">AnayaJuan_CE08</string>
+    <!--PERMISIONS RATIONALE DIALOG-->
+    <string name="Media_Rationale_Title">Media Storage Permission Required</string>
+    <string name="Media_Rationale_Message">Needed to query your Images</string>
+    <string name="Media_Rationale_Positive_Button">OK</string>
+</resources>
