@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.paix.jpam.anayajuan_ce08.images.MyImageView
+        android:id="@+id/ImageView_GridView_Item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4sp"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_marginTop="4sp"
+        android:contentDescription="@string/My_Image"
+        android:paddingBottom="8sp"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="8sp"
+        android:scaleType="centerCrop" />
+</LinearLayout>
