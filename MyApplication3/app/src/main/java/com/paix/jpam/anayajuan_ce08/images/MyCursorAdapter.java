@@ -6,18 +6,18 @@ package com.paix.jpam.anayajuan_ce08.images;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.Toast;
 
 import com.paix.jpam.anayajuan_ce08.R;
+import com.squareup.picasso.Picasso;
 
-public class MyCursorAdapter extends ResourceCursorAdapter {
+class MyCursorAdapter extends ResourceCursorAdapter {
 
     //TAG
     private static final String TAG = "MyCursorAdapter";
@@ -30,27 +30,28 @@ public class MyCursorAdapter extends ResourceCursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Thumbnails.DATA));
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 4;
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
-        ((MyImageView) view.findViewById(R.id.ImageView_GridView_Item)).setImageBitmap(bitmap);
-        //Dev
         Log.i(TAG, "bindView: " + filePath);
+        //Avoids UI Lag
+        Picasso.with(context).load("file:" + filePath).resize(600, 400).centerCrop()
+                .into((ImageView) view.findViewById(R.id.ImageView_GridView_Item));
+//        //Dev
+//        Log.i(TAG, "bindView: " + filePath);
     }
 
     /*Update Cursor Adapter*/
-    public static void updateCursorAdapter(Context context, Cursor cs, MyCursorAdapter adapter) {
+    public static Cursor updateCursorAdapter(Context context, MyCursorAdapter adapter) {
         //Content Resolver to get the Images from External Public Storage
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; // External Public Storage
-        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA}; // Images ID's
+        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Thumbnails.DATA}; // Images ID's
         //Create the cursor pointing to External Public Storage
-        cs = context.getContentResolver().query(uri,
+        Cursor cursor = context.getContentResolver().query(uri,
                 projection, // Return the ID Column
                 null,
                 null,
-                null);      //Do not sort
-        adapter.swapCursor(cs);
+                null);
+        adapter.swapCursor(cursor); //Swap Existing Cursor
         //Show toast to the user
         Toast.makeText(context, "Adapter Refreshed", Toast.LENGTH_SHORT).show();
+        return cursor;
     }
 }

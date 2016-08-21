@@ -4,9 +4,9 @@
 
 package com.paix.jpam.anayajuan_ce08.images;
 
-import java.util.ArrayList;
+import android.database.Cursor;
 
-public interface AsyncListenerInterface {
+interface AsyncListenerInterface {
 
-    void filePathData(ArrayList<String> filePaths);
+    void filePathData(Cursor cursor);
 }

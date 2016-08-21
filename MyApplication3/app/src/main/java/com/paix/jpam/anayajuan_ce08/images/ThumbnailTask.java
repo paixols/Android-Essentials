@@ -11,18 +11,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 
-import java.util.ArrayList;
-
-public class ThumbnailTask extends AsyncTask<Void, Void, ArrayList<String>> {
-
-    //TAG
-    private static final String TAG = "ThumbnailTask";
+class ThumbnailTask extends AsyncTask<Void, Void, Cursor> {
 
     /*Properties*/
-    AsyncListenerInterface listener;
-    Context mContext;
-    ProgressDialog progressDialog;
-    ArrayList<String> imagesFilePaths;
+    private AsyncListenerInterface listener;
+    private final Context mContext;
+    private ProgressDialog progressDialog;
 
     /*Constructor*/
     public ThumbnailTask(Context context) {
@@ -45,43 +39,30 @@ public class ThumbnailTask extends AsyncTask<Void, Void, ArrayList<String>> {
         progressDialog.setMessage("Searching...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-
-        //Initialize ArrayList
-        imagesFilePaths = new ArrayList<>();
-        imagesFilePaths.clear();
     }
 
     @Override
-    protected ArrayList<String> doInBackground(Void... voids) {
+    protected Cursor doInBackground(Void... voids) {
         //Content Resolver to get the Images from External Public Storage
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; // External Public Storage
+        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA};
         //Create the cursor pointing to External Public Storage
         Cursor cursor = mContext.getContentResolver().query(uri, // Return the ID Column
-                null,
+                projection,
                 null,
                 null,
                 MediaStore.Images.Media.DEFAULT_SORT_ORDER);//Do not sort
         if (cursor != null) {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                if (filePath != null) {
-                    imagesFilePaths.add(filePath);
-                }
-                cursor.moveToNext();
-            }
-            cursor.close();
+            return cursor;
         }
-        //Return Array of File Paths
-        return imagesFilePaths;
+        return null;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<String> filePaths) {
-        super.onPostExecute(filePaths);
-        if (!filePaths.isEmpty()) {
-            listener.filePathData(filePaths);
-        }
+    protected void onPostExecute(Cursor cursor) {
+        super.onPostExecute(cursor);
+        //Share Cursor with Image Activity
+        listener.filePathData(cursor);
         //Dismiss Progress Dialog
         progressDialog.dismiss();
     }

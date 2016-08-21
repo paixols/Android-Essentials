@@ -15,15 +15,15 @@ import android.util.Log;
 
 import com.paix.jpam.anayajuan_ce08.R;
 
-public class MediaStoreRationale extends AsyncTask<Void, Void, Void> {
+class MediaStoreRationale extends AsyncTask<Void, Void, Void> {
 
     //TAG
     private static final String TAG = "MediaStoreRationale";
 
     /*Properties*/
-    Context mContext;
-    Activity mActivity;
-    AlertDialog.Builder mAlertDialogBuilder;
+    private final Context mContext;
+    private final Activity mActivity;
+    private AlertDialog.Builder mAlertDialogBuilder;
 
     /*Constructor*/
     public MediaStoreRationale(Context context, Activity activity) {

@@ -5,25 +5,24 @@
 package com.paix.jpam.anayajuan_ce08.images;
 
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+
 
 import com.paix.jpam.anayajuan_ce08.R;
 import com.paix.jpam.anayajuan_ce08.permissions.PermissionsHelper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ImagesActivity extends AppCompatActivity implements AsyncListenerInterface {
 
     //TAG
     private static final String TAG = "ImagesActivity";
-    View mLayout; //Snackbar
+    private View mLayout; //Snackbar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +40,16 @@ public class ImagesActivity extends AppCompatActivity implements AsyncListenerIn
     }
 
     @Override
-    public void filePathData(ArrayList<String> filePaths) {
-        if (!filePaths.isEmpty()) {
-            //Dev
-            Log.i(TAG, "filePathData: " + filePaths.size());
-            for (int i = 0; i < filePaths.size(); i++) {
-//                //Dev
-//                Log.i(TAG, "filePathData: " + filePaths.get(i));
-            }
-
-            //TODO set fragment with data for the adapter
+    public void filePathData(Cursor cursor) {
+        if (cursor == null) {
+            Snackbar.make(mLayout, "No Images on External Storage !", Snackbar.LENGTH_SHORT).show();
+            return;
         }
+        //Todo set fragment passing cursor to power up the GridView
+        Log.i(TAG, "filePathData: ");
+        ImagesFragment imagesFragment = new ImagesFragment().newInstanceOf(cursor);
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.FrameLayout_GridViewHolder, imagesFragment).commit();
     }
 
     @Override
