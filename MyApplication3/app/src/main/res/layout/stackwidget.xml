@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--Stack View - Widget -->
+    <StackView
+        android:id="@+id/StackView_Widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:loopViews="true" />
+    <!--Empty Text View (No Data)-->
+    <TextView
+        android:id="@+id/TextView_StackView_Widget_EmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/no_images"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+</FrameLayout>

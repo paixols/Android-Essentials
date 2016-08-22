@@ -20,6 +20,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Stack Widget Provider-->
+        <receiver
+            android:name=".widgets.StackWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stackwidget_info" />
+        </receiver>
+        <!--View Flipper Widget Provider-->
+        <!--Stack Widget Service-->
+        <service android:name=".widgets.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false"/>
+        <!--View Flipper Widget Provider-->
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@ import android.view.View;
 
 
 import com.paix.jpam.anayajuan_ce08.R;
-import com.paix.jpam.anayajuan_ce08.permissions.PermissionsHelper;
+import com.paix.jpam.anayajuan_ce08.utilities.permissions.PermissionsHelper;
 
 
 public class ImagesActivity extends AppCompatActivity implements AsyncListenerInterface {
@@ -41,12 +41,12 @@ public class ImagesActivity extends AppCompatActivity implements AsyncListenerIn
 
     @Override
     public void filePathData(Cursor cursor) {
+        //Data checkpoint
         if (cursor == null) {
             Snackbar.make(mLayout, "No Images on External Storage !", Snackbar.LENGTH_SHORT).show();
             return;
         }
-        //Todo set fragment passing cursor to power up the GridView
-        Log.i(TAG, "filePathData: ");
+        //Set Fragment with Cursor Info
         ImagesFragment imagesFragment = new ImagesFragment().newInstanceOf(cursor);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.FrameLayout_GridViewHolder, imagesFragment).commit();

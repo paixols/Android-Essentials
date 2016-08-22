@@ -7,9 +7,12 @@ package com.paix.jpam.anayajuan_ce08.images;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+
+import com.paix.jpam.anayajuan_ce08.utilities.storage.StorageHelper;
+
+import java.util.ArrayList;
 
 class ThumbnailTask extends AsyncTask<Void, Void, Cursor> {
 
@@ -43,16 +46,22 @@ class ThumbnailTask extends AsyncTask<Void, Void, Cursor> {
 
     @Override
     protected Cursor doInBackground(Void... voids) {
-        //Content Resolver to get the Images from External Public Storage
-        Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; // External Public Storage
-        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA};
-        //Create the cursor pointing to External Public Storage
-        Cursor cursor = mContext.getContentResolver().query(uri, // Return the ID Column
-                projection,
-                null,
-                null,
-                MediaStore.Images.Media.DEFAULT_SORT_ORDER);//Do not sort
+        //Get Cursor
+        Cursor cursor = MyCursorAdapter.mediaStoreImagesQuery(mContext);
         if (cursor != null) {
+            //Retrieve File Paths for Media Images
+            ArrayList<String> imageFilePaths = new ArrayList<>();
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                //Log.d(TAG, " - File Path : " + cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA)));
+                String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                if (filePath != null) {
+                    imageFilePaths.add(filePath);
+                }
+                cursor.moveToNext();
+            }
+            cursor.close();
+            StorageHelper.writeInternalStorage(mContext, imageFilePaths);
             return cursor;
         }
         return null;

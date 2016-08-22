@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // PermissionsHelper
 
-package com.paix.jpam.anayajuan_ce08.permissions;
+package com.paix.jpam.anayajuan_ce08.utilities.permissions;
 
 import android.Manifest;
 import android.content.Context;

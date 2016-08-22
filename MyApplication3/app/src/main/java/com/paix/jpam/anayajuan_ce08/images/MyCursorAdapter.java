@@ -40,18 +40,23 @@ class MyCursorAdapter extends ResourceCursorAdapter {
 
     /*Update Cursor Adapter*/
     public static Cursor updateCursorAdapter(Context context, MyCursorAdapter adapter) {
-        //Content Resolver to get the Images from External Public Storage
-        Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; // External Public Storage
-        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Thumbnails.DATA}; // Images ID's
-        //Create the cursor pointing to External Public Storage
-        Cursor cursor = context.getContentResolver().query(uri,
-                projection, // Return the ID Column
-                null,
-                null,
-                null);
+        Cursor cursor = mediaStoreImagesQuery(context);
         adapter.swapCursor(cursor); //Swap Existing Cursor
         //Show toast to the user
         Toast.makeText(context, "Adapter Refreshed", Toast.LENGTH_SHORT).show();
         return cursor;
     }
+
+    public static Cursor mediaStoreImagesQuery(Context context) {
+        //Content Resolver to get the Images from External Public Storage
+        Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI; // External Public Storage
+        String[] projection = {MediaStore.Images.Media._ID, MediaStore.Images.Thumbnails.DATA}; // Images ID's
+        //Create the cursor pointing to External Public Storage
+        return context.getContentResolver().query(uri,
+                projection, // Return the ID Column
+                null,
+                null,
+                null);
+    }
+
 }

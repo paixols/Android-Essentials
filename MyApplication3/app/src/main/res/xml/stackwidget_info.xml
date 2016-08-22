@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:autoAdvanceViewId="@id/StackView_Widget"
+    android:initialLayout="@layout/stackwidget"
+    android:minHeight="220sp"
+    android:minWidth="220sp"
+    android:resizeMode="none"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen">
+
+</appwidget-provider>
