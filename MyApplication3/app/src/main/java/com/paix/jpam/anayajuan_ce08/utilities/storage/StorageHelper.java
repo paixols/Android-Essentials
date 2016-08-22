@@ -22,7 +22,7 @@ public class StorageHelper {
     private static final String TAG = "StorageHelper";
 
     /*Properties*/
-    public static final String FILE_NAME = "LAB_CE07_FILE_PATHS";
+    private static final String FILE_NAME = "LAB_CE07_FILE_PATHS";
 
     /*Write to Internal Storage*/
     public static void writeInternalStorage(Context context, ArrayList filePaths) {

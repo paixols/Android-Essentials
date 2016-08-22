@@ -2,12 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="12sp"
+    android:id="@+id/LinearLayout_StackWidget_Item">
     <!--Image view for StackWidget -->
     <ImageView
         android:id="@+id/ImageView_StackWidget_Item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/media_photos" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:contentDescription="@string/media_photos"
+        android:scaleType="center" />
 
 </LinearLayout>

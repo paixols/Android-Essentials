@@ -4,16 +4,19 @@
 
 package com.paix.jpam.anayajuan_ce08.widgets;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.paix.jpam.anayajuan_ce08.R;
+import com.paix.jpam.anayajuan_ce08.images.ImagesActivity;
 
-public class UpdateHelper {
+class UpdateHelper {
 
     //TAG
     //private static final String TAG = "UpdateHelper";
@@ -31,6 +34,13 @@ public class UpdateHelper {
             stackViewsServiceIntent.setData(Uri.parse(stackViewsServiceIntent.toUri(Intent.URI_INTENT_SCHEME)));//Embeds Extras
             rv.setRemoteAdapter(R.id.StackView_Widget, stackViewsServiceIntent);
             rv.setEmptyView(R.id.StackView_Widget, R.id.TextView_StackView_Widget_EmptyView);
+
+            //Intent to start default image viewer
+            Intent imageViewer = new Intent(Intent.ACTION_VIEW);
+            imageViewer.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent imageViewerPendingIntent = PendingIntent.getActivity(context, 0, imageViewer, PendingIntent.FLAG_UPDATE_CURRENT);
+            rv.setPendingIntentTemplate(R.id.StackView_Widget, imageViewerPendingIntent);
+
 
             //App Widget Manager
             appWidgetManager.updateAppWidget(widgetId, rv);

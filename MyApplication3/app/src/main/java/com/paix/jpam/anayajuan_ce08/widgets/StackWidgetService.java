@@ -4,16 +4,20 @@
 
 package com.paix.jpam.anayajuan_ce08.widgets;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.paix.jpam.anayajuan_ce08.R;
+import com.paix.jpam.anayajuan_ce08.images.ImagesActivity;
 import com.paix.jpam.anayajuan_ce08.utilities.storage.StorageHelper;
 
 import java.util.ArrayList;
@@ -37,7 +41,6 @@ class StackViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     /*Properties*/
     private static final int ID_CONSTANT = 0x0001;
-    private int mWidgetId;
     //Context
     private final Context mContext;
     //ArrayList of Persons
@@ -46,7 +49,7 @@ class StackViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     /*Constructor*/
     public StackViewsFactory(Context context, Intent intent) {
         mContext = context;
-        mWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+        int mWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
         //Dev
         Log.i(TAG, "StackViewsFactory: " + "WIDGET_ID: " + mWidgetId);
@@ -90,14 +93,21 @@ class StackViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         if (filePath != null) {
             //Set Image
             try {
-                Bitmap bitmap = BitmapFactory.decodeFile("file: " + filePath);
+                BitmapFactory.Options bfo = new BitmapFactory.Options();
+                bfo.inSampleSize = 6;
+                Bitmap bitmap = BitmapFactory.decodeFile(filePath, bfo);
                 rv.setImageViewBitmap(R.id.ImageView_StackWidget_Item, bitmap);
             } catch (Exception e) {
                 Log.e(TAG, "getViewAt: Error Loading Bitmap on Widget ", e);
             }
         }
 
-        //TODO setOnClickFillInIntent
+        //TODO Set Fill In Intent
+        Intent intent = new Intent();
+        intent.setDataAndType(Uri.parse("file://" + filePaths.get(i)), "image/jpg");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        rv.setOnClickFillInIntent(R.id.LinearLayout_StackWidget_Item,intent);
+
 
         return rv;
     }
