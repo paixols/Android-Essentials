@@ -37,7 +37,6 @@ public class DetailActivity extends AppCompatActivity implements OnDetailMenuSel
 
     @Override
     public void selectedWindow() {
-        //Todo Should delete current ImageLocation Object
         StorageHelper storageHelper = new StorageHelper();
         if (storageHelper.deleteFile(imageName, this)) {
             Log.i(TAG, "selectedWindow: " + "FILE DELETED");

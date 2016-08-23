@@ -14,5 +14,7 @@
     <string name="media_photos">Media_Photos</string>
     <string name="top_image_flipper_widget">Top Image</string>
     <string name="bottom_image_flipper_widget">Bottom Image</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 
 </resources>

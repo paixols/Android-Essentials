@@ -53,6 +53,7 @@ class StackViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         mContext = context;
         int mWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
+
         //Dev
         Log.i(TAG, "StackViewsFactory: " + "WIDGET_ID: " + mWidgetId);
     }
@@ -62,6 +63,7 @@ class StackViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     public void onCreate() {
         //Data Update
         filePaths = StorageHelper.readInternalStorage(mContext);
+
     }
 
     @Override

@@ -65,6 +65,7 @@ class ThumbnailTask extends AsyncTask<Void, Void, Cursor> {
             StorageHelper.writeInternalStorage(mContext, imageFilePaths);
             //Notify Widgets for new Data
             UpdateHelper.updateStackWidget(mContext); // Notify Data Changed
+            UpdateHelper.updateFlipperWidget(mContext); // Notify Data Changed
             return cursor;
         }
         return null;

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class FlipperWidgetService extends RemoteViewsService {
 
-
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new FlipperWidgetFactory(this.getApplicationContext(), intent);
@@ -38,7 +37,7 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
     private static final String TAG = "FlipperWidgetFactory";
 
     /*Properties*/
-    private static final int ID_CONSTANT = 0x0001;
+    private static final int ID_CONSTANT = 0x0002;
     //Context
     private final Context mContext;
     //ArrayList of Persons
@@ -55,9 +54,9 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onCreate() {
+
         //Data Update
         filePaths = StorageHelper.readInternalStorage(mContext);
-
     }
 
     @Override
@@ -70,6 +69,7 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
     public void onDestroy() {
         filePaths.clear();
         filePaths = null;
+
     }
 
     @Override
@@ -83,13 +83,11 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int i) {
 
-        //TODO get custom ViewFlipper
-        //TODO Make custom method that listens for the buttons and returns the desired image
-
         //File Path (Image)
         String filePath = (String) filePaths.get(i);
         //Remote Views with custom layout
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.fllipperwidget_item);
+
         if (filePath != null) {
             //Set Image
             try {
@@ -106,9 +104,9 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
         Intent intent = new Intent();
         intent.setDataAndType(Uri.parse("file://" + filePaths.get(i)), "image/jpg");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        rv.setOnClickFillInIntent(R.id.LinearLayout_FlipperWidget_Item, intent);
+        rv.setOnClickFillInIntent(R.id.ImageView_ImageTop_ViewFlipper, intent);
 
-        return null;
+        return rv;
     }
 
     @Override
@@ -130,6 +128,9 @@ class FlipperWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
     public boolean hasStableIds() {
         return true;
     }
+
+
+
 }
 
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout_WidgetMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFlipperWidget"
+    android:orientation="vertical">
+    <!--View Flipper-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+        <!--View Flipper-->
+        <AdapterViewFlipper
+            android:id="@+id/ViewFlipper_Widget"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+        <!--Empty View-->
+        <TextView
+            android:id="@+id/TextView_Flipper_Widget_EmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/no_images"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <!--View Flipper Buttons-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ViewFlipper_LeftButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/ViewFlipper_RightButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/next" />
+    </LinearLayout>
+</LinearLayout>
