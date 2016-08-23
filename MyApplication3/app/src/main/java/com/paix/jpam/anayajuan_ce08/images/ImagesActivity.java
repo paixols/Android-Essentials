@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 
@@ -21,7 +20,7 @@ import com.paix.jpam.anayajuan_ce08.utilities.permissions.PermissionsHelper;
 public class ImagesActivity extends AppCompatActivity implements AsyncListenerInterface {
 
     //TAG
-    private static final String TAG = "ImagesActivity";
+    //private static final String TAG = "ImagesActivity";
     private View mLayout; //Snackbar
 
     @Override
@@ -31,8 +30,8 @@ public class ImagesActivity extends AppCompatActivity implements AsyncListenerIn
         mLayout = findViewById(R.id.RelativeLayout_Images_Activity);
 
         if (PermissionsHelper.onRequestPermissions(this, this)) {
-            //Dev
-            Log.i(TAG, "onCreate: " + "Permissions Granted");
+//            //Dev
+//            Log.i(TAG, "onCreate: " + "Permissions Granted");
             //Query Device Images
             ThumbnailTask task = new ThumbnailTask(this);
             task.execute();

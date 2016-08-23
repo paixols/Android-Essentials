@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8sp"
+    android:id="@+id/LinearLayout_FlipperWidget_Item">
+    <!--First Image-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <!--Top Image-->
+        <ImageView
+            android:id="@+id/ImageView_ImageTop_ViewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/top_image_flipper_widget" />
+    </LinearLayout>
+    <!--&lt;!&ndash;Second image&ndash;&gt;-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:orientation="vertical">-->
+    <!--&lt;!&ndash;Bottom Image&ndash;&gt;-->
+    <!--<ImageView-->
+    <!--android:id="@+id/ImageView_ImageBottom_ViewFlipper"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:contentDescription="@string/bottom_image_flipper_widget" />-->
+    <!--</LinearLayout>-->
+</LinearLayout>

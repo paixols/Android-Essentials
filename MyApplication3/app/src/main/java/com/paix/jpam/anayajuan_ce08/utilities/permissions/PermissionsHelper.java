@@ -10,12 +10,11 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 public class PermissionsHelper {
 
     //TAG
-    private static final String TAG = "PermissionsHelper";
+    //private static final String TAG = "PermissionsHelper";
 
     /*Request Codes*/
     //MEDIA STORE
@@ -32,15 +31,16 @@ public class PermissionsHelper {
                 //Permissions Rationale (Background Thread)
                 MediaStoreRationale rationale = new MediaStoreRationale(context, activity);
                 rationale.execute();
-                Log.i(TAG, "onRequestPermissions: " + "SHOULD SHOW DIALOG RATIONALE");
+                //Dev
+                //Log.i(TAG, "onRequestPermissions: " + "SHOULD SHOW DIALOG RATIONALE");
 
             } else {
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         MY_PERMISSIONS_REQUEST_READ_PHOTOS);
-
-                Log.i(TAG, "onRequestPermissions: " + "PERMISSION BEING REQUESTED");
+                //Dev
+                //Log.i(TAG, "onRequestPermissions: " + "PERMISSION BEING REQUESTED");
                 return false;
             }
         } else {

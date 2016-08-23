@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 
 import com.paix.jpam.anayajuan_ce08.utilities.storage.StorageHelper;
+import com.paix.jpam.anayajuan_ce08.widgets.UpdateHelper;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,8 @@ class ThumbnailTask extends AsyncTask<Void, Void, Cursor> {
             }
             cursor.close();
             StorageHelper.writeInternalStorage(mContext, imageFilePaths);
+            //Notify Widgets for new Data
+            UpdateHelper.updateStackWidget(mContext); // Notify Data Changed
             return cursor;
         }
         return null;

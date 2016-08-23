@@ -11,14 +11,14 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+
 
 import com.paix.jpam.anayajuan_ce08.R;
 
 class MediaStoreRationale extends AsyncTask<Void, Void, Void> {
 
     //TAG
-    private static final String TAG = "MediaStoreRationale";
+    //private static final String TAG = "MediaStoreRationale";
 
     /*Properties*/
     private final Context mContext;
@@ -64,6 +64,6 @@ class MediaStoreRationale extends AsyncTask<Void, Void, Void> {
         //Show Alert Dialog
         mAlertDialogBuilder.show();
         //Dev
-        Log.i(TAG, "onPostExecute: " + "Media_Permissions_Rationale");
+        //Log.i(TAG, "onPostExecute: " + "Media_Permissions_Rationale");
     }
 }

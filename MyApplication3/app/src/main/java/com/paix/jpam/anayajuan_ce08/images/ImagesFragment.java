@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +25,7 @@ import com.paix.jpam.anayajuan_ce08.R;
 public class ImagesFragment extends Fragment {
 
     //TAG
-    private static final String TAG = "ImagesFragment";
+    //private static final String TAG = "ImagesFragment";
 
     private Cursor mCursor;
     private MyCursorAdapter mAdapter;
@@ -53,7 +52,7 @@ public class ImagesFragment extends Fragment {
         //Menu
         setHasOptionsMenu(true);
         //Dev
-        Log.i(TAG, "onCreate: " + "IMAGES_FRAGMENT");
+        //Log.i(TAG, "onCreate: " + "IMAGES_FRAGMENT");
 
     }
 
@@ -78,7 +77,6 @@ public class ImagesFragment extends Fragment {
                 /*Open Image with ACTION_VIEW Intent*/
                 Intent viewIntent = new Intent();
                 viewIntent.setAction(Intent.ACTION_VIEW);
-                //mCursor.moveToPosition(position);
                 int column_index = mCursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 viewIntent.setDataAndType(Uri.parse("file://" + mCursor.getString(column_index))
                         , "image/jpg");

@@ -22,7 +22,7 @@
         </activity>
         <!--Stack Widget Provider-->
         <receiver
-            android:name=".widgets.StackWidgetProvider"
+            android:name=".widgets.stackWidget.StackWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -32,11 +32,26 @@
                 android:resource="@xml/stackwidget_info" />
         </receiver>
         <!--View Flipper Widget Provider-->
+        <receiver
+            android:name=".widgets.flipperWidget.FlipperWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/flipperwidget_info" />
+        </receiver>
         <!--Stack Widget Service-->
-        <service android:name=".widgets.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"
-            android:exported="false"/>
+        <service
+            android:name=".widgets.stackWidget.StackWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
         <!--View Flipper Widget Provider-->
+        <service
+            android:name=".widgets.flipperWidget.FlipperWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
