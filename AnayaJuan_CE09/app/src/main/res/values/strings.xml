@@ -1,3 +1,10 @@
 <resources>
+    <!--App-->
     <string name="app_name">AnayaJuan_CE09</string>
+    <string name="new_form">New Form</string>
+    <!--Intent Keys-->
+    <string name="First_Name_Key">firstName_key</string>
+    <string name="Last_Name_Key">lastName_key</string>
+    <string name="Age_Key">age_key</string>
+    <string name="delete_form">Delete Form</string>
 </resources>

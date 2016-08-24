@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html>
+<body>
+</body>
+
+<script>
+
+    //Parse Persons data to JSON again on javascript
+    var data = JSON.parse(Android.getPerson());
+
+    for(var i = 0; i < data.length; i++){
+
+        //Get each person
+        var person = data[i];
+
+        console.log(person.firstName);
+        console.log(person.lastName);
+        console.log(person.age);
+
+        //Write Person Information to Screen
+        document.write(person.firstName + "   ");
+        document.write(person.lastName + "   ");
+        document.write(person.age);
+
+    }
+
+</script>
+
+</html>

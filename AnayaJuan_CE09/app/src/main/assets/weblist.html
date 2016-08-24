@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<!--List on WebView-->
+
+<ul id="list" style="list-style-type:circle"/>
+
+
+<script>
+
+        //Parse Persons data to JSON again on javascript
+        var data = JSON.parse(Android.createJsonArray());
+        //Get List by Element
+        var ul = document.getElementById("list");
+        //Loop through all data elements
+        for(var i = 0; i < data.length; i++){
+            //Get each person
+            var person = data[i];
+            //Add each person to the List with First Name & Last Name
+            var a = document.createElement("a");
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(person.firstName));
+            li.appendChild(document.createTextNode(person.lastName));
+            a.appendChild(li);
+            //Add Custom Url
+            a.href = person.url;
+            console.log(person.url);
+            //Append Link to List
+            ul.appendChild(a);
+        }
+
+
+
+</script>

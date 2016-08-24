@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--New Form Menu Item-->
+    <item
+        android:id="@+id/MenuItem_NewForm"
+        android:icon="@drawable/new_form"
+        android:title="@string/new_form"
+        app:showAsAction="always" />
+</menu>

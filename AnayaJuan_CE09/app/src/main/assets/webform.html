@@ -1,0 +1,40 @@
+<!doctype html>
+<title>Web Form HTML</title>
+<!--Heading 1-->
+<h1>Web Form</h1>
+<!--Form-->
+<form name="WebViewForm">
+
+    <!--First Section - First Name-->
+    <div>
+        <label for="firstName">Name:</label>
+        <input type="text" id="firstName" name="user_firstName"/>
+    </div>
+
+    <!--Second Section - Last Name-->
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="user_lastName"/>
+    </div>
+
+    <!--Third Section - Age-->
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="user_age">
+    </div>
+
+    <!--Fourth Section - Submit Form Button-->
+    <div>
+        <button onclick="submitWebForm()">Submit Form</button>
+    </div>
+</form>
+
+<script>
+
+    function submitWebForm(){
+        Android.getFormInfo(document.forms["WebViewForm"]["firstName"].value
+        ,document.forms["WebViewForm"]["lastName"].value
+        ,parseInt(document.getElementById('age').value, 10));
+    }
+
+</script>
