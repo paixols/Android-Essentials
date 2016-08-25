@@ -23,7 +23,7 @@ public class VoteInfoFragment extends Fragment {
 	public static final String TAG = "VoteInfoFragment.TAG";
 	public static final String ARG_VOTE_ID = "VoteInfoFragment.ARG_VOTE_ID";
 	
-	public static VoteInfoFragment newInstance() {
+	public static VoteInfoFragment newInstance(int voteId) {
 		VoteInfoFragment frag = new VoteInfoFragment();
 		Bundle args = new Bundle();
 		args.putInt(ARG_VOTE_ID, voteId);
@@ -91,7 +91,7 @@ public class VoteInfoFragment extends Fragment {
 	}
 
 	// TODO: Fix class declaration to have proper return type.
-	private class VoteLoaderTask extends AsyncTask<Integer, Void, Void> {
+	private class VoteLoaderTask extends AsyncTask<Integer, Void, Vote> {
 		
 		@Override
 		protected Vote doInBackground(Integer... params) {

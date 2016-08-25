@@ -27,7 +27,7 @@ public class VoteInfoActivity extends Activity {
 		}
 		
 		if(savedInstanceState == null) {
-			VoteInfoFragment frag = VoteInfoFragment.newInstance();
+			VoteInfoFragment frag = VoteInfoFragment.newInstance(voteId);
 			getFragmentManager().beginTransaction().replace(R.id.container, frag, VoteInfoFragment.TAG).commit();
 		}
 	}

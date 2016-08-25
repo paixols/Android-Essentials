@@ -29,7 +29,7 @@ public class PoliticianWidget extends AppWidgetProvider {
 			rv.setEmptyView(R.id.list, R.id.empty);
 			
 			Intent historyInfo = new Intent(context, VotingHistoryActivity.class);
-			PendingIntent pIntent = PendingIntent.getActivities(context, 0, historyInfo, PendingIntent.FLAG_UPDATE_CURRENT);
+			PendingIntent pIntent = PendingIntent.getActivity(context, 0, historyInfo, PendingIntent.FLAG_UPDATE_CURRENT);
 			rv.setPendingIntentTemplate(R.id.list, pIntent);
 			
 			appWidgetManager.updateAppWidget(widgetId, rv);

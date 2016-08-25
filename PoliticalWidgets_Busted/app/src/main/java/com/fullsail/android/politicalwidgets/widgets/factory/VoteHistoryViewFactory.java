@@ -25,7 +25,7 @@ public class VoteHistoryViewFactory implements RemoteViewsFactory {
 	public VoteHistoryViewFactory(Context context, int widgetId) {
 		mContext = context;
 		mWidgetId = widgetId;
-		mVotes = ArrayList<>();
+		mVotes = new ArrayList<>();
 	}
 
 	@Override
@@ -52,6 +52,11 @@ public class VoteHistoryViewFactory implements RemoteViewsFactory {
 		rv.setOnClickFillInIntent(R.id.root, intent);
 		
 		return rv;
+	}
+
+	@Override
+	public RemoteViews getLoadingView() {
+		return null;//Default Loading View
 	}
 
 	@Override

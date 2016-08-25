@@ -13,18 +13,22 @@ import com.fullsail.android.politicalwidgets.fragments.PoliticiansListFragment;
 
 public class MainActivity extends Activity implements ActionBar.OnNavigationListener {
 
+    /*Properties*/
+
 	public static final String ACTION_SAVE_COMPLETE = "com.fullsail.android.politicalwidgets.ACTION_SAVE_COMPLETE";
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
+    /*LifeCycle*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+        //Action Bar
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-
+        //Politicians Selection
 		actionBar.setListNavigationCallbacks(
 				new ArrayAdapter<>(actionBar.getThemedContext(),
 						android.R.layout.simple_list_item_1,
@@ -32,7 +36,7 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
 							getString(R.string.all),
 							getString(R.string.favorites) }),
 						this);
-
+        //Saved Instance
 		if (savedInstanceState != null && savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
 			getActionBar().setSelectedNavigationItem(
 					savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
@@ -45,9 +49,11 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
 				.getSelectedNavigationIndex());
 	}
 
+    /*User fragment selection*/
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
 		PoliticiansListFragment frag = null;
+        //Set chosen fragment
 		if(position == 0) {
 			frag = PoliticiansListFragment.newInstance(PoliticiansListFragment.FILTER_ALL);
 		} else {
@@ -59,18 +65,19 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
 	
 	protected void onResume() {
 		super.onResume();
-		
+
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ACTION_SAVE_COMPLETE);
 		registerReceiver(mReceiver, filter);
 	}
-	
+
 	protected void onPause() {
 		super.onPause();
-		
+
 		unregisterReceiver(mReceiver);
 	}
 
+    /*Receiver*/
 	BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
 		@Override

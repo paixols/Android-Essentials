@@ -27,7 +27,7 @@ public class VoteHistoryFragment extends ListFragment {
 	
 	private static final int REQUEST_VOTE_INFO = 0x05001;
 	
-	private static VoteHistoryFragment newInstance(Politician politician) {
+	public static VoteHistoryFragment newInstance(Politician politician) {
 		VoteHistoryFragment frag = new VoteHistoryFragment();
 		Bundle args = new Bundle();
 		args.putSerializable(ARG_POLITICIAN, politician);

@@ -52,6 +52,11 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 	}
 
 	@Override
+	public RemoteViews getLoadingView() {
+		return null;//Default View
+	}
+
+	@Override
 	public int getViewTypeCount() {
 		return 1;
 	}
@@ -88,6 +93,11 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 	@Override
 	public void onDestroy() {
 		mPoliticians.clear();
+	}
+
+	@Override
+	public int getCount() {
+		return 0;//TODO Change the count
 	}
 
 }
