@@ -1,0 +1,292 @@
+[
+    {
+        "outputFile": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 35,
+                    "endOffset": 86
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 409,
+                        "endColumn": 35,
+                        "endOffset": 440
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 91,
+                    "endColumn": 54,
+                    "endOffset": 141
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 54,
+                        "endOffset": 106
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 146,
+                    "endColumn": 44,
+                    "endOffset": 186
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 684,
+                        "endColumn": 44,
+                        "endOffset": 724
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 191,
+                    "endColumn": 55,
+                    "endOffset": 242
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 220,
+                        "endColumn": 55,
+                        "endOffset": 271
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 247,
+                    "endColumn": 47,
+                    "endOffset": 290
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 445,
+                        "endColumn": 47,
+                        "endOffset": 488
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 295,
+                    "endColumn": 64,
+                    "endOffset": 355
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 618,
+                        "endColumn": 64,
+                        "endOffset": 678
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 360,
+                    "endColumn": 85,
+                    "endOffset": 441
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 532,
+                        "endColumn": 85,
+                        "endOffset": 613
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 446,
+                    "endColumn": 44,
+                    "endOffset": 486
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 821,
+                        "endColumn": 44,
+                        "endOffset": 861
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 491,
+                    "endColumn": 63,
+                    "endOffset": 550
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 276,
+                        "endColumn": 63,
+                        "endOffset": 335
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 555,
+                    "endColumn": 46,
+                    "endOffset": 597
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 774,
+                        "endColumn": 46,
+                        "endOffset": 816
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 602,
+                    "endColumn": 37,
+                    "endOffset": 635
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 493,
+                        "endColumn": 37,
+                        "endOffset": 526
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 640,
+                    "endColumn": 44,
+                    "endOffset": 680
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 729,
+                        "endColumn": 44,
+                        "endOffset": 769
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 685,
+                    "endColumn": 53,
+                    "endOffset": 734
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 111,
+                        "endColumn": 53,
+                        "endOffset": 160
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 739,
+                    "endColumn": 67,
+                    "endOffset": 802
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 340,
+                        "endColumn": 67,
+                        "endOffset": 403
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 807,
+                    "endColumn": 54,
+                    "endOffset": 857
+                },
+                "from": {
+                    "file": "/Users/celey/MDV Courses/MDF3/Campus/Day 11/PoliticalWidgets_Busted/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 165,
+                        "endColumn": 54,
+                        "endOffset": 215
+                    }
+                }
+            }
+        ]
+    }
+]

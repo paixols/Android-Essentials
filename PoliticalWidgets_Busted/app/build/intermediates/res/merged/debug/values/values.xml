@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all">All</string>
+    <string name="app_name">Political Widgets</string>
+    <string name="chamber">Chamber:</string>
+    <string name="configuration">Configuration</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_data_to_display">No Data Available</string>
+    <string name="no_favorites">You have not saved any favorite politicians.</string>
+    <string name="outcome">Outcome:</string>
+    <string name="politician_widget">Politician Widget</string>
+    <string name="question">Question:</string>
+    <string name="save">Save</string>
+    <string name="session">Session:</string>
+    <string name="vote_history">Vote History</string>
+    <string name="vote_history_widget">Vote History Widget</string>
+    <string name="vote_info">Vote Information</string>
+</resources>
