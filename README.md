@@ -1,4 +1,4 @@
-## Java_3_Repeating - ANDROID DEV
+## Android Development
 Second attempt for MDF 3 / Java 3 / Full Sail University / 9 Apps built in 1 month
 
 #Broadcasting CRUD
