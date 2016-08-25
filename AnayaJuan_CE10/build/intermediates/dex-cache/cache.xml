@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5119c40ea8c8e1257677088d0df21b76f6a6504d">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f232cc2a741ea15062269c5d8fe0b3fbaa8bf4c9/classes.dex" />
+    </item>
+
+</items>

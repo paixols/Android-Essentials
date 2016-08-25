@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:2:1-35:12
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:3:5-50
 		INJECTED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml
@@ -12,7 +12,7 @@ ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/An
 	android:name
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:7:5-33:19
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:7:5-31:19
 	android:label
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:10:9-41
 	android:allowBackup
@@ -38,17 +38,17 @@ ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/An
 	android:name
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:18:27-74
 activity#com.fullsail.android.anayajuan_ce10.VotingHistoryActivity
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:22:9-24:20
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:22:9-68
 	android:name
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:22:19-56
 activity#com.fullsail.android.anayajuan_ce10.VoteInfoActivity
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:26:9-28:20
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:24:9-63
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:26:19-51
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:24:19-51
 service#com.fullsail.android.anayajuan_ce10.FavoriteSaverService
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:30:9-57
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:26:9-57
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:30:18-54
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:26:18-54
 uses-sdk
 INJECTED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion

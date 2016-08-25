@@ -24,9 +24,16 @@
         <activity android:name=".VoteInfoActivity"></activity>
         <!--Favorite Save Service-->
         <service android:name=".FavoriteSaverService" />
-
-        
-        <!-- TODO: Register everything in the manifest. -->
+        <!--WIDGETS-->
+        <!--List Widget Service-->
+        <service android:name=".widgets.ListWidgetService"></service>
+        <!--Widget Updater-->
+        <receiver android:name=".WidgetUpdater"></receiver>
+        <!--Politician Widget-->
+        <receiver android:name=".widgets.PoliticianWidget"></receiver>
+        <!--Vote History Widget-->
+        <receiver android:name=".widgets.VoteHistoryWidget"></receiver>
+        <!-- TODO: Register everything in the manifest. and check exported and intent filters for receivers -->
 
     </application>
 

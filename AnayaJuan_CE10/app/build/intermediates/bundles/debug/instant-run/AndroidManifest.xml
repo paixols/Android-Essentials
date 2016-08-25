@@ -26,13 +26,12 @@
             </intent-filter>
         </activity>
         <!-- Voting History Activity -->
-        <activity android:name="com.fullsail.android.anayajuan_ce10.VotingHistoryActivity" >
-        </activity>
+        <activity android:name="com.fullsail.android.anayajuan_ce10.VotingHistoryActivity" />
         <!-- Voting Information Activity -->
-        <activity android:name="com.fullsail.android.anayajuan_ce10.VoteInfoActivity" >
-        </activity>
+        <activity android:name="com.fullsail.android.anayajuan_ce10.VoteInfoActivity" />
         <!-- Favorite Save Service -->
         <service android:name="com.fullsail.android.anayajuan_ce10.FavoriteSaverService" />
+
         <!-- TODO: Register everything in the manifest. -->
 
     </application>
