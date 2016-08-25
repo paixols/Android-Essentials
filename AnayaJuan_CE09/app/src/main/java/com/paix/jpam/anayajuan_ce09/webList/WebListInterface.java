@@ -17,25 +17,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class WebListInterface {
+class WebListInterface {
 
     //TAG
     private static final String TAG = "WebListInterface";
     //Context
-    Context context;
-    //List Activity Interface
-    OnNewForm listener;
+    private final Context context;
 
     //Constructor
     public WebListInterface(Context context) {
         //Set Context
         this.context = context;
-        //Outer Class Interface
-        if (context instanceof OnNewForm) {
-            listener = (OnNewForm) context;
-        } else {
-            throw new IllegalArgumentException("Please Add Interface");
-        }
     }
 
     //Create JSON Array with existing data

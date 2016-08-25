@@ -21,12 +21,12 @@ import android.webkit.WebViewFragment;
 import com.paix.jpam.anayajuan_ce09.R;
 
 public class WebListFragment extends WebViewFragment {
-    
+
     //TAG
     private static final String TAG = "WebListFragment";
 
     /*Properties*/
-    OnNewForm listener;
+    private OnNewForm listener;
 
     //On Attach
     @Override

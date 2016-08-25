@@ -6,7 +6,7 @@ package com.paix.jpam.anayajuan_ce09.webForm;
 
 import com.paix.jpam.anayajuan_ce09.dataModel.BaseballPlayer;
 
-public interface OnFormSaved {
+interface OnFormSaved {
 
     void saveFormData(BaseballPlayer baseballPlayer);
 }

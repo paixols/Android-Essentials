@@ -4,13 +4,9 @@
 
 package com.paix.jpam.anayajuan_ce09.webDetail;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -24,8 +20,6 @@ public class WebDetailFragment extends WebViewFragment {
     //TAG
     private static final String TAG = "WebDetailFragment";
 
-    //Interface
-    OnDeleteForm listener;
     /*Properties*/
     private String mFirstName;
     private String mLastName;
@@ -44,18 +38,6 @@ public class WebDetailFragment extends WebViewFragment {
         detailWebViewFragment.setArguments(arguments);
         //Return Instance
         return detailWebViewFragment;
-    }
-
-    //On Attach
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        //Outer Class Interface
-        if (context instanceof OnDeleteForm) {
-            listener = (OnDeleteForm) context;
-        } else {
-            throw new IllegalArgumentException("Please Add Interface");
-        }
     }
 
     //On Create
@@ -78,31 +60,14 @@ public class WebDetailFragment extends WebViewFragment {
         WebView webView = (WebView) view.findViewById(R.id.WebView_DetailFrag);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("file:///android_asset/webdetail.html");//WebDetail html
-        Log.i(TAG, "onCreateView: " + mFirstName+"/"+ mLastName+"/"+ mAge);
-        webView.addJavascriptInterface(new WebDetailInterface(mFirstName, mLastName, mAge),"Android");
+        Log.i(TAG, "onCreateView: " + mFirstName + "/" + mLastName + "/" + mAge);
+        webView.addJavascriptInterface(new WebDetailInterface(getActivity(), mFirstName, mLastName, mAge), "Android");
         webView.setWebViewClient(new WebViewClient());
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_detail_webviewfrag, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.MenuItem_Delete:
-                //TODO delete record
-                listener.deleteFrom();
-                return true;
-        }
-        return false;
-    }
-
     //Handle Arguments
-    public void handleArguments(Bundle arguments) {
+    private void handleArguments(Bundle arguments) {
         mFirstName = arguments.getString("firstName_key");
         mLastName = arguments.getString("lastName_key");
         mAge = arguments.getString("age_key");

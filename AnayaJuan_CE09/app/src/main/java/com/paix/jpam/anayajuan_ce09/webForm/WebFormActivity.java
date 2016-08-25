@@ -36,7 +36,7 @@ public class WebFormActivity extends AppCompatActivity implements OnFormSaved {
         //Save Person to Internal Storage
         ArrayList<BaseballPlayer> baseballPlayers = StorageHelper.readInternalStorage(this);
         if (baseballPlayers == null) {
-            baseballPlayers = new ArrayList<BaseballPlayer>();
+            baseballPlayers = new ArrayList<>();
             baseballPlayers.clear();
         }
         baseballPlayers.add(baseballPlayer);

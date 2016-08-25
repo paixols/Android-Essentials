@@ -20,7 +20,6 @@ public class WebFormFragment extends WebViewFragment {
     //private static final String TAG = "WebFormFragment";
 
     //On Create View
-    /*Called to instantiate the View. Creates and returns the Web View*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);

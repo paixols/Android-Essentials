@@ -4,7 +4,7 @@
 
 package com.paix.jpam.anayajuan_ce09.webList;
 
-public interface OnNewForm {
+interface OnNewForm {
 
     //ListWebViewFragment - > ListViewActivity Interface
     void newFrom();

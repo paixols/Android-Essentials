@@ -5,20 +5,16 @@
 package com.paix.jpam.anayajuan_ce09.webForm;
 
 import android.content.Context;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.paix.jpam.anayajuan_ce09.dataModel.BaseballPlayer;
-import com.paix.jpam.anayajuan_ce09.utilities.StorageHelper;
 
-import java.util.ArrayList;
-
-public class WebFormInterface {
+class WebFormInterface {
     //TAG
-    private static final String TAG = "WebFormInterface";
-    Context context;
-    OnFormSaved listener;
+    //private static final String TAG = "WebFormInterface";
+    private final Context context;
+    private OnFormSaved listener;
 
     //Constructor
     public WebFormInterface(Context context) {
@@ -42,12 +38,8 @@ public class WebFormInterface {
     }
 
     //Check Empty Fields on WebView
-    public static Boolean isEmpty(String inputText) {
-        if (inputText.equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+    private static Boolean isEmpty(String inputText) {
+        return inputText.equals("");
     }
 
 }

@@ -22,7 +22,7 @@ public class StorageHelper {
     private static final String TAG = "StorageHelper";
 
     //App's File Name for Witting and Reading Person Data
-    private static String FILE_NAME = "Baseball_Players";
+    private static final String FILE_NAME = "Baseball_Players";
 
     //Write data to internal Storage
     public static void writeInternalStorage(ArrayList<BaseballPlayer> baseballPlayers, Context context) {
@@ -43,7 +43,7 @@ public class StorageHelper {
 
     //Read data from internal Storage
     public static ArrayList<BaseballPlayer> readInternalStorage(Context context) {
-        ArrayList<BaseballPlayer> baseballPlayers = new ArrayList<BaseballPlayer>();
+        ArrayList<BaseballPlayer> baseballPlayers = new ArrayList<>();
         try {
             FileInputStream fis = context.openFileInput(FILE_NAME);
             ObjectInputStream ois = new ObjectInputStream(fis);

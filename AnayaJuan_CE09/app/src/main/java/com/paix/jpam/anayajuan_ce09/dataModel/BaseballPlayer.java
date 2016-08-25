@@ -9,18 +9,18 @@ import java.io.Serializable;
 public class BaseballPlayer implements Serializable {
 
     /*Properties*/
-    String firstName;
-    String lastName;
-    int age;
-    /*Constructor*/
+    private final String firstName;
+    private final String lastName;
+    private final int age;
 
+    /*Constructor*/
     public BaseballPlayer(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
-    /*Getters*/
 
+    /*Getters*/
     public String getFirstName() {
         return firstName;
     }
@@ -38,6 +38,5 @@ public class BaseballPlayer implements Serializable {
         String ageAsString = String.valueOf(age);
         return "paix://details-screen?first=" + firstName.trim() + "&last=" + lastName.trim() + "&age=" + ageAsString.trim();
     }
-
 
 }

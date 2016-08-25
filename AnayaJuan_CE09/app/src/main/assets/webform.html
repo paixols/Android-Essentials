@@ -30,11 +30,12 @@
 </form>
 
 <script>
-
+    //Javascript Interface (WebFormInterface)
     function submitWebForm(){
         Android.getFormInfo(document.forms["WebViewForm"]["firstName"].value
         ,document.forms["WebViewForm"]["lastName"].value
         ,parseInt(document.getElementById('age').value, 10));
     }
+
 
 </script>

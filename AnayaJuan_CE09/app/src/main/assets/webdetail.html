@@ -2,28 +2,41 @@
 
 <html>
 <body>
+<!--Form-->
+<form name="WebViewForm">
+    <!--Player Name Place Holder-->
+    <div>
+        <a id="firstName" type="text"></a>
+        <a id="lastName" type="text"></a>
+        <a id="age" type="text"></a>
+    </div>
+    <!--Delete Button-->
+    <div>
+        <button onclick="deletePlayer()">Delete</button>
+    </div>
+</form>
 </body>
 
 <script>
 
     //Parse Persons data to JSON again on javascript
-    var data = JSON.parse(Android.getPerson());
-
+    var data = JSON.parse(Android.getPlayer());
     for(var i = 0; i < data.length; i++){
-
         //Get each person
-        var person = data[i];
-
-        console.log(person.firstName);
-        console.log(person.lastName);
-        console.log(person.age);
-
-        //Write Person Information to Screen
-        document.write(person.firstName + "   ");
-        document.write(person.lastName + "   ");
-        document.write(person.age);
-
+        var player = data[i];
+        //First Name
+        document.getElementById("firstName").innerHTML = player.firstName_key;
+        //Last Name
+        document.getElementById("lastName").innerHTML = player.lastName_key;
+        //Age
+        document.getElementById("age").innerHTML = player.age_key;
     }
+    //Delete Player
+    function deletePlayer(){
+        //JavaScript Interface (WebDetailInterface)
+        Android.deletePlayer();
+    }
+
 
 </script>
 
