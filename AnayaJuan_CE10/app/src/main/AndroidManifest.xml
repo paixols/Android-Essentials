@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fullsail.android.anayajuan_ce10">
+    <!--Permissions-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+        <!--Main Activity holding Politicians List Fragment-->
+        <activity
+            android:name="com.fullsail.android.anayajuan_ce10.MainActivity"
+            android:label="@string/Politicians_List_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--Voting History Activity-->
+        <activity android:name=".VotingHistoryActivity"></activity>
+        <!--Voting Information Activity-->
+        <activity android:name=".VoteInfoActivity"></activity>
+        <!--Favorite Save Service-->
+        <service android:name=".FavoriteSaverService" />
+
+        
+        <!-- TODO: Register everything in the manifest. -->
+
+    </application>
+
+</manifest>

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/res/merged/debug/xml/vote_history_widget_info.xml",
+        "source": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/xml/vote_history_widget_info.xml"
+    },
+    {
+        "merged": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/res/merged/debug/xml/politician_widget_info.xml",
+        "source": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/xml/politician_widget_info.xml"
+    }
+]

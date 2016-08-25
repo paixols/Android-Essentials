@@ -1,0 +1,206 @@
+[
+    {
+        "outputFile": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 79,
+                    "endOffset": 130
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 866,
+                        "endColumn": 79,
+                        "endOffset": 941
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 135,
+                    "endColumn": 35,
+                    "endOffset": 166
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 171,
+                    "endColumn": 54,
+                    "endOffset": 221
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 226,
+                    "endColumn": 44,
+                    "endOffset": 266
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 271,
+                    "endColumn": 55,
+                    "endOffset": 322
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 327,
+                    "endColumn": 47,
+                    "endOffset": 370
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 375,
+                    "endColumn": 64,
+                    "endOffset": 435
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 440,
+                    "endColumn": 85,
+                    "endOffset": 521
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 526,
+                    "endColumn": 44,
+                    "endOffset": 566
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 571,
+                    "endColumn": 63,
+                    "endOffset": 630
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 635,
+                    "endColumn": 46,
+                    "endOffset": 677
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 682,
+                    "endColumn": 37,
+                    "endOffset": 715
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 720,
+                    "endColumn": 44,
+                    "endOffset": 760
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 765,
+                    "endColumn": 53,
+                    "endOffset": 814
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 819,
+                    "endColumn": 67,
+                    "endOffset": 882
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 887,
+                    "endColumn": 54,
+                    "endOffset": 937
+                },
+                "from": {
+                    "file": "/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/res/values/strings.xml"
+                }
+            }
+        ]
+    }
+]

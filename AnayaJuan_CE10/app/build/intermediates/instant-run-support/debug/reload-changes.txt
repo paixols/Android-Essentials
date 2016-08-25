@@ -1,0 +1,2 @@
+CHANGED,/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
+CHANGED,/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/fullsail/android/anayajuan_ce10/fragments/VoteInfoFragment$override.class

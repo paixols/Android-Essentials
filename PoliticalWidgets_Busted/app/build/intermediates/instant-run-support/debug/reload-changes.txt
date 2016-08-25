@@ -1,2 +1,0 @@
-CHANGED,/Users/JPAM/Documents/Java_3_Repeating/PoliticalWidgets_Busted/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
-CHANGED,/Users/JPAM/Documents/Java_3_Repeating/PoliticalWidgets_Busted/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/fullsail/android/politicalwidgets/fragments/PoliticiansListFragment$override.class
