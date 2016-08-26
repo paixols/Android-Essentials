@@ -27,6 +27,22 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
     public static final String ACTION_SAVE_COMPLETE = "com.fullsail.android.politicalwidgets.ACTION_SAVE_COMPLETE";
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
+    /*Broadcast Receiver*/
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Refresh UI
+            if (intent.getAction().equals(ACTION_SAVE_COMPLETE)) {
+                PoliticiansListFragment frag = (PoliticiansListFragment) getFragmentManager()
+                        .findFragmentByTag(PoliticiansListFragment.TAG);
+                frag.refresh();
+                //Dev
+                Log.i(TAG, "onReceive: " + "ACTION_SAVE_COMPLETE_RECEIVED");
+            }
+        }
+    };
+
     /*LifeCycle*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +69,20 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_SAVE_COMPLETE);
+        registerReceiver(mReceiver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar()
                 .getSelectedNavigationIndex());
@@ -71,33 +101,6 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
         getFragmentManager().beginTransaction().replace(R.id.container, frag, PoliticiansListFragment.TAG).commit();
         return true;
     }
-
-    protected void onResume() {
-        super.onResume();
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_SAVE_COMPLETE);
-        registerReceiver(mReceiver, filter);
-    }
-
-    protected void onPause() {
-        super.onPause();
-
-        unregisterReceiver(mReceiver);
-    }
-
-    /*Receiver*/
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ACTION_SAVE_COMPLETE)) {
-                PoliticiansListFragment frag = (PoliticiansListFragment) getFragmentManager()
-                        .findFragmentByTag(PoliticiansListFragment.TAG);
-                frag.refresh();
-            }
-        }
-    };
 
     /*Politicians List Fragment - Politician Selector Interface*/
     @Override

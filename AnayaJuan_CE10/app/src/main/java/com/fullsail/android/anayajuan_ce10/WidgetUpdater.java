@@ -4,12 +4,16 @@
 
 package com.fullsail.android.anayajuan_ce10;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.widget.RemoteViews;
 
+import com.fullsail.android.anayajuan_ce10.widgets.ListWidgetService;
 import com.fullsail.android.anayajuan_ce10.widgets.PoliticianWidget;
 
 public class WidgetUpdater extends BroadcastReceiver {
@@ -19,9 +23,11 @@ public class WidgetUpdater extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_UPDATE_WIDGETS)) {
+            //Update Widgets
             AppWidgetManager mgr = AppWidgetManager.getInstance(context);
             int[] ids = mgr.getAppWidgetIds(new ComponentName(context, PoliticianWidget.class));
-            // TODO: Tell politician widgets to update their data.
+            mgr.notifyAppWidgetViewDataChanged(ids, R.id.list);
+
         }
     }
 }

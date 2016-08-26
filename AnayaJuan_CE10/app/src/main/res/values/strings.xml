@@ -20,5 +20,8 @@
     <string name="question">Question:</string>
     <string name="outcome">Outcome:</string>
     <string name="Politicians_List_Activity">Politicians_List_Activity</string>
+    <string name="Politician_Name">Name</string>
+    <string name="Politician_Party">Party</string>
+    <string name="Politician_Description">Description</string>
 
 </resources>

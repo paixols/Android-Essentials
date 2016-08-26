@@ -31,7 +31,11 @@ public class FavoriteSaverService extends IntentService {
         Politician p = (Politician) intent.getSerializableExtra(EXTRA_POLITICIAN);
         PoliticiansHelper.saveToFavorites(this, p);
 
-        //TODO Check this intent
+        /*Broadcast to Main Activity*/
+        Intent updateSaveComplete = new Intent(MainActivity.ACTION_SAVE_COMPLETE);
+        sendBroadcast(updateSaveComplete);
+
+        /*Broadcast to update widgets*/
         Intent updateIntent = new Intent(WidgetUpdater.ACTION_UPDATE_WIDGETS);
         sendBroadcast(updateIntent);
     }

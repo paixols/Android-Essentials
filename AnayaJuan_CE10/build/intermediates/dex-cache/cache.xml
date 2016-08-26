@@ -5,8 +5,22 @@
         jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="5119c40ea8c8e1257677088d0df21b76f6a6504d">
+        sha1="d2da240bb364a95ba4fd27bcc56e3d6f2a28b251">
         <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f232cc2a741ea15062269c5d8fe0b3fbaa8bf4c9/classes.dex" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-io-2.4_db9d9c7f5dc9abc44c05f9a56b43532b2a4af315/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1950682f0924bac5cbc4f2aaa6df87e2367d7168">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_99658e58e7db8bdcdeea79a572a4d3f83ff36e8b/classes.dex" />
     </item>
 
 </items>

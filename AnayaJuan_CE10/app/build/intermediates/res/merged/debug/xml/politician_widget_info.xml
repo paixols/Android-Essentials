@@ -10,5 +10,4 @@
     android:widgetCategory="home_screen"
     tools:ignore="UnusedAttribute" >
 
-
 </appwidget-provider>

@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// PoliticianViewFactory
+
 package com.fullsail.android.anayajuan_ce10.widgets.factory;
 
 import java.util.ArrayList;
@@ -17,18 +21,20 @@ import com.fullsail.android.anayajuan_ce10.utils.PoliticiansHelper;
 
 public class PoliticianViewFactory implements RemoteViewsFactory {
 
+    /*Properties*/
 	private static final int ID_CONSTANT = 0x040404040;
-	
 	private Context mContext;
 	private int mWidgetId;
 	private ArrayList<Politician> mPoliticians;
-	
+
+    /*Constructor*/
 	public PoliticianViewFactory(Context context, int widgetId) {
 		mContext = context;
 		mWidgetId = widgetId;
 		mPoliticians = new ArrayList<>();
 	}
 
+    /*LifeCycle*/
 	@Override
 	public long getItemId(int position) {
 		return ID_CONSTANT + position;
@@ -48,7 +54,7 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 		intent.putExtra(VotingHistoryActivity.EXTRA_POLITICIAN, politician);
 		rv.setOnClickFillInIntent(R.id.root, intent);
 		
-		return null;
+		return rv;
 	}
 
 	@Override
@@ -68,9 +74,11 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 
 	@Override
 	public void onCreate() {
+
+        //Filter  Politicians: All || Favorites
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-		int filter = prefs.getInt("Filter" + mWidgetId, -1);
-		
+		int filter = prefs.getInt("Filter" + mWidgetId, -1);//Check Filter
+
 		if(filter == PoliticiansListFragment.FILTER_ALL) {
 			mPoliticians = PoliticiansHelper.getAllPoliticians();
 		} else if(filter == PoliticiansListFragment.FILTER_FAVORITES) {
@@ -79,7 +87,9 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 	}
 
 	@Override
-	public void onDataSetChanged() {
+	public void onDataSetChanged() { //Triggered with Broadcast (Widget Updater)
+
+        //Filter  Politicians: All || Favorites
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		int filter = prefs.getInt("Filter" + mWidgetId, -1);
 		
@@ -97,7 +107,7 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 
 	@Override
 	public int getCount() {
-		return 0;//TODO Change the count
+		return mPoliticians.size();
 	}
 
 }

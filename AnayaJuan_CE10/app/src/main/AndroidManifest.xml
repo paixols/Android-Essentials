@@ -19,20 +19,51 @@
             </intent-filter>
         </activity>
         <!--Voting History Activity-->
-        <activity android:name=".VotingHistoryActivity"></activity>
+        <activity android:name=".VotingHistoryActivity"/>
         <!--Voting Information Activity-->
-        <activity android:name=".VoteInfoActivity"></activity>
+        <activity android:name=".VoteInfoActivity"/>
+        <!--Politician Widget Configure Activity-->
+        <activity android:name=".widgets.PoliticianWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <!--Favorite Save Service-->
-        <service android:name=".FavoriteSaverService" />
+        <service android:name=".FavoriteSaverService"/>
         <!--WIDGETS-->
         <!--List Widget Service-->
-        <service android:name=".widgets.ListWidgetService"></service>
+        <service android:name=".widgets.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
         <!--Widget Updater-->
-        <receiver android:name=".WidgetUpdater"></receiver>
-        <!--Politician Widget-->
-        <receiver android:name=".widgets.PoliticianWidget"></receiver>
-        <!--Vote History Widget-->
-        <receiver android:name=".widgets.VoteHistoryWidget"></receiver>
+        <receiver android:name=".WidgetUpdater"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.fullsail.android.politicalwidgets.ACTION_UPDATE_WIDGETS" />
+            </intent-filter>
+        </receiver>
+        <!--Politician Widget Provider-->
+        <receiver android:name=".widgets.PoliticianWidget"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/politician_widget_info" />
+        </receiver>
+        <!--Vote History Widget Provider-->
+        <receiver android:name=".widgets.VoteHistoryWidget"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vote_history_widget_info" />
+        </receiver>
         <!-- TODO: Register everything in the manifest. and check exported and intent filters for receivers -->
 
     </application>

@@ -28,10 +28,55 @@
         <activity android:name="com.fullsail.android.anayajuan_ce10.VotingHistoryActivity" />
         <!-- Voting Information Activity -->
         <activity android:name="com.fullsail.android.anayajuan_ce10.VoteInfoActivity" />
+        <!-- Politician Widget Configure Activity -->
+        <activity android:name="com.fullsail.android.anayajuan_ce10.widgets.PoliticianWidgetConfigureActivity" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <!-- Favorite Save Service -->
         <service android:name="com.fullsail.android.anayajuan_ce10.FavoriteSaverService" />
+        <!-- WIDGETS -->
+        <!-- List Widget Service -->
+        <service
+            android:name="com.fullsail.android.anayajuan_ce10.widgets.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <!-- Widget Updater -->
+        <receiver
+            android:name="com.fullsail.android.anayajuan_ce10.WidgetUpdater"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.fullsail.android.politicalwidgets.ACTION_UPDATE_WIDGETS" />
+            </intent-filter>
+        </receiver>
+        <!-- Politician Widget Provider -->
+        <receiver
+            android:name="com.fullsail.android.anayajuan_ce10.widgets.PoliticianWidget"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-        <!-- TODO: Register everything in the manifest. -->
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/politician_widget_info" />
+        </receiver>
+        <!-- Vote History Widget Provider -->
+        <receiver
+            android:name="com.fullsail.android.anayajuan_ce10.widgets.VoteHistoryWidget"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vote_history_widget_info" />
+        </receiver>
+        <!-- TODO: Register everything in the manifest. and check exported and intent filters for receivers -->
 
     </application>
 

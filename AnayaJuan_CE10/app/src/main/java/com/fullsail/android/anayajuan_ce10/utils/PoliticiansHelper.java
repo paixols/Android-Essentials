@@ -17,8 +17,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import com.fullsail.android.anayajuan_ce10.MainActivity;
 import com.fullsail.android.anayajuan_ce10.storage.Politician;
 
 public class PoliticiansHelper {
@@ -121,6 +123,7 @@ public class PoliticiansHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         //Dev
         Log.i(TAG, "saveToFavorites: " + "Politicians Storage: " + data.size());
     }

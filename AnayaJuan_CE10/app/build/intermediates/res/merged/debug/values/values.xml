@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="Politician_Description">Description</string>
+    <string name="Politician_Name">Name</string>
+    <string name="Politician_Party">Party</string>
     <string name="Politicians_List_Activity">Politicians_List_Activity</string>
     <string name="all">All</string>
     <string name="app_name">Political Widgets</string>
