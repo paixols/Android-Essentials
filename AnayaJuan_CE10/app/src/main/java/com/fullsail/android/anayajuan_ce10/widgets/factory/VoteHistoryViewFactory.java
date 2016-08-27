@@ -22,8 +22,8 @@ public class VoteHistoryViewFactory implements RemoteViewsFactory {
 
 	/*Properties*/
 	private static final int ID_CONSTANT = 0x030303030;
-	private Context mContext;
-	private int mWidgetId;
+	private final Context mContext;
+	private final int mWidgetId;
 	private ArrayList<VoteInfo> mVotes;
 
 	/*Constructor*/

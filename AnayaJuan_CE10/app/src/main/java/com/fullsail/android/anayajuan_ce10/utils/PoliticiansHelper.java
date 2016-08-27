@@ -17,10 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
-import com.fullsail.android.anayajuan_ce10.MainActivity;
 import com.fullsail.android.anayajuan_ce10.storage.Politician;
 
 public class PoliticiansHelper {
@@ -29,7 +27,7 @@ public class PoliticiansHelper {
     private static final String TAG = "PoliticiansHelper";
 
     /*Properties*/
-    public static final String FILE_NAME = "favorites.dat";
+    private static final String FILE_NAME = "favorites.dat";
 
     /*All Politicians*/
     public static ArrayList<Politician> getAllPoliticians() {

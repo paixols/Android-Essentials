@@ -29,7 +29,7 @@ public class VoteHistoryFragment extends ListFragment {
     //TAG
     public static final String TAG = "VoteHistoryFragment.TAG";
     /*Properties*/
-    public static final String ARG_POLITICIAN = "VoteHistoryFragment.ARG_POLITICIAN";
+    private static final String ARG_POLITICIAN = "VoteHistoryFragment.ARG_POLITICIAN";
     private static final int REQUEST_VOTE_INFO = 0x05001;
     private Politician mPolitician;
     private VoteHistoryTask mTask;
@@ -105,8 +105,8 @@ public class VoteHistoryFragment extends ListFragment {
 
         private static final int ID_CONSTANT = 0x20202020;
 
-        private Context mContext;
-        private ArrayList<VoteInfo> mVotes;
+        private final Context mContext;
+        private final ArrayList<VoteInfo> mVotes;
 
         public VoteHistoryAdapter(Context context, ArrayList<VoteInfo> votes) {
             mContext = context;
@@ -155,9 +155,7 @@ public class VoteHistoryFragment extends ListFragment {
 
             int politicianId = params[0];
 
-            ArrayList<VoteInfo> votes = VoteInfoHelper.getVoteHistory(politicianId);
-
-            return votes;
+            return VoteInfoHelper.getVoteHistory(politicianId);
         }
 
         @Override

@@ -27,12 +27,12 @@ public class PoliticiansListFragment extends ListFragment {
     //TAG
     public static final String TAG = "PoliticiansListFragment";
     //Intent Filter
-    public static final String ARG_FILTER = "PoliticiansListFragment.ARG_FILTER";
+    private static final String ARG_FILTER = "PoliticiansListFragment.ARG_FILTER";
     //Filter Value
     public static final int FILTER_ALL = 0x01001;
     public static final int FILTER_FAVORITES = 0x01002;
     //Request Code
-    private static final int REQUEST_VOTING_HISTORY = 0x02001;
+    //private static final int REQUEST_VOTING_HISTORY = 0x02001;
 
     /*Properties*/
     private int mFilter;
@@ -89,7 +89,7 @@ public class PoliticiansListFragment extends ListFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Load Politicians // TODO CHECK INTENT DATA RESULT CODE (where is it comming from)
+        //Load Politicians
         loadPoliticians();
     }
 
@@ -136,8 +136,8 @@ public class PoliticiansListFragment extends ListFragment {
 
         private static final int ID_CONSTANT = 0x0101010;
 
-        private Context mContext;
-        private ArrayList<Politician> mPoliticians;
+        private final Context mContext;
+        private final ArrayList<Politician> mPoliticians;
 
         public PoliticiansAdapter(Context context, ArrayList<Politician> politicians) {
             mContext = context;
@@ -180,12 +180,13 @@ public class PoliticiansListFragment extends ListFragment {
             return convertView;
         }
 
+
     }
 
     /*Politicians Loader Async Task*/
     private class PoliticiansLoaderTask extends AsyncTask<Integer, Void, ArrayList<Politician>> {
 
-        private Context mContext;
+        private final Context mContext;
 
         public PoliticiansLoaderTask(Context context) {
             mContext = context;
@@ -201,11 +202,11 @@ public class PoliticiansListFragment extends ListFragment {
                         "the execute method of this task.");
             }
 
-            ArrayList<Politician> politicians = null;
+            ArrayList<Politician> politicians;
 
             if (filter == FILTER_ALL) {
                 politicians = PoliticiansHelper.getAllPoliticians();
-            } else if (filter == FILTER_FAVORITES) {
+            } else {
                 politicians = PoliticiansHelper.getFavoritePoliticians(mContext);
             }
 

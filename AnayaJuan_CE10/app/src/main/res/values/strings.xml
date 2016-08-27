@@ -23,5 +23,8 @@
     <string name="Politician_Name">Name</string>
     <string name="Politician_Party">Party</string>
     <string name="Politician_Description">Description</string>
+    <string name="votes_question">Question</string>
+    <string name="vote">Vote</string>
+    <string name="all_or_only_favorite_politicians">All or only Favorite Politicians ?</string>
 
 </resources>

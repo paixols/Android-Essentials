@@ -23,8 +23,8 @@ public class PoliticianViewFactory implements RemoteViewsFactory {
 
     /*Properties*/
 	private static final int ID_CONSTANT = 0x040404040;
-	private Context mContext;
-	private int mWidgetId;
+	private final Context mContext;
+	private final int mWidgetId;
 	private ArrayList<Politician> mPoliticians;
 
     /*Constructor*/

@@ -26,7 +26,7 @@ import com.fullsail.android.anayajuan_ce10.R;
 public class VoteInfoFragment extends Fragment {
 
     public static final String TAG = "VoteInfoFragment.TAG";
-    public static final String ARG_VOTE_ID = "VoteInfoFragment.ARG_VOTE_ID";
+    private static final String ARG_VOTE_ID = "VoteInfoFragment.ARG_VOTE_ID";
 
     public static VoteInfoFragment newInstance(int voteId) {
         VoteInfoFragment frag = new VoteInfoFragment();
@@ -85,7 +85,7 @@ public class VoteInfoFragment extends Fragment {
     private void updateUI(Vote vote) {
         View root = getView();
         //Set Politician Info
-        TextView tv = null;
+        TextView tv;
         if (root != null) {
             tv = (TextView) root.findViewById(R.id.chamber);
             tv.setText(vote.chamber);

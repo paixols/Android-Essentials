@@ -35,4 +35,5 @@ public class VoteInfoActivity extends Activity {
             getFragmentManager().beginTransaction().replace(R.id.container, frag, VoteInfoFragment.TAG).commit();
         }
     }
+
 }

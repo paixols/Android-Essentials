@@ -4,16 +4,12 @@
 
 package com.fullsail.android.anayajuan_ce10;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.widget.RemoteViews;
 
-import com.fullsail.android.anayajuan_ce10.widgets.ListWidgetService;
 import com.fullsail.android.anayajuan_ce10.widgets.PoliticianWidget;
 
 public class WidgetUpdater extends BroadcastReceiver {

@@ -28,7 +28,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
     //TAG
     public static final String TAG = "SettingsFragment.TAG";
     /*Properties*/
-    public static final String ARG_WIDGET_ID = "SettingsFragment.ARG_WIDGET_ID";
+    private static final String ARG_WIDGET_ID = "SettingsFragment.ARG_WIDGET_ID";
     private int mWidgetId;
 
     /*Constructor*/

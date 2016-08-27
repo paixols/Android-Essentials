@@ -17,7 +17,7 @@ public class VotingHistoryActivity extends Activity {
 
     /*Properties*/
     public static final String EXTRA_POLITICIAN = "VotingHistoryActivity.EXTRA_POLITICIAN";
-    Politician mPolitician;
+    private Politician mPolitician;
 
     /*LifeCycle*/
     @Override

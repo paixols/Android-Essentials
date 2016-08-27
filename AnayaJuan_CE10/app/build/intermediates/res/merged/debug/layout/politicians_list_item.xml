@@ -2,14 +2,19 @@
     android:id="@+id/root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_marginBottom="6sp"
+    android:layout_marginTop="4sp"
+    android:background="@color/colorBackground"
     android:minHeight="48dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8sp">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/colorBackgroundLight"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -20,28 +25,52 @@
             android:layout_weight="1.0"
             android:hint="@string/Politician_Name"
             android:lines="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorName" />
 
         <TextView
             android:id="@+id/party"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8sp"
             android:hint="@string/Politician_Party"
             android:lines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorParty" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
+    <!--Description-->
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="@string/Politician_Description"
-        android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_marginTop="16sp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:hint="@string/Politician_Description"
+            android:lines="1"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="0.3"/>
+        <ImageView
+            android:contentDescription="@string/vote_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:src="@drawable/info"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:scaleType="fitCenter"
+            android:layout_weight="0.7"/>
+
+    </LinearLayout>
 
 </LinearLayout>

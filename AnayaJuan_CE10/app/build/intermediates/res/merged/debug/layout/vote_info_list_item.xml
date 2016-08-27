@@ -5,20 +5,28 @@
     android:minHeight="48dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="8dp" >
+    android:padding="8dp"
+    android:background="@color/colorBackground">
 
     <TextView android:id="@+id/question"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:maxLines="2"
+        android:maxLines="3"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:textColor="@color/colorName"
+        android:hint="@string/votes_question"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView android:id="@+id/vote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:lines="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:hint="@string/vote"
+        android:shadowColor="@color/colorName"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

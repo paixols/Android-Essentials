@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// ListWidgetService
+
 package com.fullsail.android.anayajuan_ce10.widgets;
 
 import com.fullsail.android.anayajuan_ce10.widgets.factory.PoliticianViewFactory;

@@ -2,11 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="94bf9b9f5d2b62e7a9b89289d64762a8d092aac0">
-        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f232cc2a741ea15062269c5d8fe0b3fbaa8bf4c9/classes.dex" />
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/com.google.android.gms-play-services-basement-8.1.0_0774bbc18ab189372aec1ade3a0e59e6c35bc666.jar" />
+    </item>
+    <item
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/com.google.android.gms-play-services-appindexing-8.1.0_e47fc14f7dfb9d080de56a23efd9dd05c12f2ea1.jar" />
+    </item>
+    <item
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/internal_impl-22.2.0_c6a87003f3599e44c0a06af3b12134cf97b0a5ad.jar" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/commons-io-2.4_db9d9c7f5dc9abc44c05f9a56b43532b2a4af315.jar" />
+    </item>
+    <item
+        jar="/Users/JPAM/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/support-annotations-22.2.0_f6eb921a55bd7d48fafabdf0ec8f5670490223ab.jar" />
+    </item>
+    <item
+        jar="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-22.2.0_ff5f02c8325019e57d969a7b465c0987e35d8234.jar" />
     </item>
 
 </items>

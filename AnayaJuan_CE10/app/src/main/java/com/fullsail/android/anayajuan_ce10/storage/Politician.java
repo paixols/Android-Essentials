@@ -66,10 +66,7 @@ public class Politician implements Serializable {
         }
 
         Politician p = (Politician) o;
-        if (p.mId == mId) {
-            return true;
-        }
+        return p.mId == mId;
 
-        return false;
     }
 }

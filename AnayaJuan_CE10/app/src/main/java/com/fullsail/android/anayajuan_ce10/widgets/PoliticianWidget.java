@@ -21,9 +21,7 @@ public class PoliticianWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        for (int i = 0; i < appWidgetIds.length; i++) {
-
-            int widgetId = appWidgetIds[i];
+        for (int widgetId : appWidgetIds) {
 
             Intent intent = new Intent(context, ListWidgetService.class);
             intent.setData(Uri.fromParts("content", String.valueOf(widgetId), null)); // Leave this line alone.

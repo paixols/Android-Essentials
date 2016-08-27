@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
     /*Broadcast Receiver*/
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -51,7 +51,8 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
 
         //Action Bar
         final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle("Busted !");
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         //Politicians Selection
         actionBar.setListNavigationCallbacks(
@@ -91,7 +92,7 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
     /*User fragment selection*/
     @Override
     public boolean onNavigationItemSelected(int position, long id) {
-        PoliticiansListFragment frag = null;
+        PoliticiansListFragment frag;
         //Set chosen fragment
         if (position == 0) {
             frag = PoliticiansListFragment.newInstance(PoliticiansListFragment.FILTER_ALL);
@@ -110,5 +111,10 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
         Intent intentVotingHistory = new Intent(this, VotingHistoryActivity.class);
         intentVotingHistory.putExtra(VotingHistoryActivity.EXTRA_POLITICIAN, p);
         startActivity(intentVotingHistory);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }
