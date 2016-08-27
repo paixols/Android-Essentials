@@ -28,6 +28,12 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+        <!--Vote History Widget Configure Activity-->
+        <activity android:name=".widgets.VoteHistoryWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <!--Favorite Save Service-->
         <service android:name=".FavoriteSaverService"/>
         <!--WIDGETS-->

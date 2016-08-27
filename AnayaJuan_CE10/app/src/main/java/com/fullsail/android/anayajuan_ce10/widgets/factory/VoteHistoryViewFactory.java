@@ -1,3 +1,7 @@
+// Juan Pablo Anaya
+// MDF3 - 201608
+// VoteHistoryViewFactory
+
 package com.fullsail.android.anayajuan_ce10.widgets.factory;
 
 import java.util.ArrayList;
@@ -15,13 +19,14 @@ import com.fullsail.android.anayajuan_ce10.storage.VoteInfo;
 import com.fullsail.android.anayajuan_ce10.utils.VoteInfoHelper;
 
 public class VoteHistoryViewFactory implements RemoteViewsFactory {
-	
+
+	/*Properties*/
 	private static final int ID_CONSTANT = 0x030303030;
-	
 	private Context mContext;
 	private int mWidgetId;
 	private ArrayList<VoteInfo> mVotes;
-	
+
+	/*Constructor*/
 	public VoteHistoryViewFactory(Context context, int widgetId) {
 		mContext = context;
 		mWidgetId = widgetId;
@@ -71,11 +76,22 @@ public class VoteHistoryViewFactory implements RemoteViewsFactory {
 
 	@Override
 	public void onCreate() {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		int politicianId = prefs.getInt("Widget" + mWidgetId, -1);
+
+		if(politicianId == -1) {
+			throw new IllegalArgumentException("Politician ID should not be -1. " +
+					"Make sure preferences are saving properly.");
+		}
+
+		mVotes = VoteInfoHelper.getVoteHistory(politicianId);
+
 
 	}
 
 	@Override
 	public void onDataSetChanged() {
+
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		int politicianId = prefs.getInt("Widget" + mWidgetId, -1);
 

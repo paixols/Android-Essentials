@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:2:1-71:12
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:2:1-77:12
 	package
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:3:5-50
 		INJECTED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml
@@ -12,7 +12,7 @@ ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/An
 	android:name
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:7:5-69:19
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:7:5-75:19
 	android:label
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:10:9-41
 	android:allowBackup
@@ -55,58 +55,62 @@ action#android.appwidget.action.APPWIDGET_CONFIGURE
 ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:28:17-87
 	android:name
 		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:28:25-84
+activity#com.fullsail.android.anayajuan_ce10.widgets.VoteHistoryWidgetConfigureActivity
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:32:9-36:20
+	android:name
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:32:19-77
 service#com.fullsail.android.anayajuan_ce10.FavoriteSaverService
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:32:9-56
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:38:9-56
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:32:18-54
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:38:18-54
 service#com.fullsail.android.anayajuan_ce10.widgets.ListWidgetService
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:35:9-36:71
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:41:9-42:71
 	android:permission
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:36:13-69
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:42:13-69
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:35:18-59
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:41:18-59
 receiver#com.fullsail.android.anayajuan_ce10.WidgetUpdater
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:38:9-44:20
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:44:9-50:20
 	android:enabled
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:40:13-35
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:46:13-35
 	android:exported
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:39:13-36
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:45:13-36
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:38:19-48
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:44:19-48
 intent-filter#com.fullsail.android.politicalwidgets.ACTION_UPDATE_WIDGETS
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:41:13-43:29
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:47:13-49:29
 action#com.fullsail.android.politicalwidgets.ACTION_UPDATE_WIDGETS
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:42:17-102
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:48:17-102
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:42:25-99
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:48:25-99
 receiver#com.fullsail.android.anayajuan_ce10.widgets.PoliticianWidget
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:46:9-55:20
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:52:9-61:20
 	android:enabled
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:48:13-35
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:54:13-35
 	android:exported
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:47:13-36
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:53:13-36
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:46:19-59
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:52:19-59
 intent-filter#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:49:13-51:29
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:55:13-57:29
 action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:50:17-84
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:56:17-84
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:50:25-81
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:56:25-81
 meta-data#android.appwidget.provider
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:52:13-54:66
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:58:13-60:66
 	android:resource
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:54:17-63
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:60:17-63
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:53:17-58
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:59:17-58
 receiver#com.fullsail.android.anayajuan_ce10.widgets.VoteHistoryWidget
-ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:57:9-66:20
+ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:63:9-72:20
 	android:enabled
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:59:13-35
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:65:13-35
 	android:exported
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:58:13-36
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:64:13-36
 	android:name
-		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:57:19-60
+		ADDED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml:63:19-60
 uses-sdk
 INJECTED from /Users/JPAM/Documents/Java_3_Repeating/AnayaJuan_CE10/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion
