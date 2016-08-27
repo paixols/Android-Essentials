@@ -31,4 +31,4 @@ StackView Widget & ViewFlipper Widget
 ![alt text][JavaScript & WebViews]
 [JavaScript & WebViews]: https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE09/AnayaJuanCE09.gif
 #US Political Senators & 2 Political Widgets
-![alt text][US Political Senators & 2 Political Widgets]: https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE10/AnayaJuan_CE10.gif
+![alt text][US Political Senators & 2 Political Widgets]:https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE10/AnayaJuan_CE10.gif
