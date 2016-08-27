@@ -32,4 +32,4 @@ StackView Widget & ViewFlipper Widget
 [JavaScript & WebViews]: https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE09/AnayaJuanCE09.gif
 #Senators App 
 ![alt text][Senators App]
-[Senators App]: https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE09/AnayaJuanCE09.gif
+[Senators App]: https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE10/AnayaJuan_CE10.gif
