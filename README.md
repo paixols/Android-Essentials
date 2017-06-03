@@ -1,5 +1,5 @@
 ## Android Development
-Java 3 / Full Sail University / 9 Apps built in 1 month
+
 
 - [X] Broadcasting CRUD
 ![Broadcasting CRUD](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE01/AnayaJuanCE01.gif)
