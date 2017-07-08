@@ -2,13 +2,14 @@
 // MDF3 - 201608
 // GridViewFragment
 
-package com.paix.jpam.anayajuan_ce02.GridView;
+package com.paix.jpam.anayajuan_ce02.gridView;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.paix.jpam.anayajuan_ce02.BuildConfig;
 import com.paix.jpam.anayajuan_ce02.R;
-import com.paix.jpam.anayajuan_ce02.Storage.ExternalStorage;
+import com.paix.jpam.anayajuan_ce02.storage.ExternalStorage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class GridViewFragment extends Fragment {
@@ -44,7 +47,12 @@ public class GridViewFragment extends Fragment {
                 /*Open image with ACTION_VIEW Intent*/
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse("file://" + images.get(i)), "image/jpg"); // Adding "file://" is necessary
+                //File (SDK 24 Content Provider)
+                File imageFile = new File(images.get(i).toString());
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                Uri photoUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", imageFile);
+
+                intent.setDataAndType(photoUri, "image/jpeg"); // Adding "file://" is necessary
                 startActivity(intent);
                 //Dev
                 Log.i(TAG, "onItemClick: " + "Image Clicked in GridView");

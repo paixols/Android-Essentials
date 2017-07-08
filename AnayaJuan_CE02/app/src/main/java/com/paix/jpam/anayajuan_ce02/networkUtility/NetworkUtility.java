@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // NetworkUtility
 
-package com.paix.jpam.anayajuan_ce02.NetworkUtility;
+package com.paix.jpam.anayajuan_ce02.networkUtility;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

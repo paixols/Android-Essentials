@@ -23,9 +23,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.paix.jpam.anayajuan_ce02.Services.ImageDownloadService;
-import com.paix.jpam.anayajuan_ce02.GridView.GridViewFragment;
-import com.paix.jpam.anayajuan_ce02.NetworkUtility.NetworkUtility;
+import com.paix.jpam.anayajuan_ce02.services.ImageDownloadService;
+import com.paix.jpam.anayajuan_ce02.gridView.GridViewFragment;
+import com.paix.jpam.anayajuan_ce02.networkUtility.NetworkUtility;
 
 
 public class MainActivity extends AppCompatActivity {
