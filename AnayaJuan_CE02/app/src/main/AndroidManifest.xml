@@ -13,6 +13,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--File Provider-->
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
         <!--Activities-->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,7 +32,7 @@
             </intent-filter>
         </activity>
         <!--Services-->
-        <service android:name=".Services.ImageDownloadService" />
+        <service android:name=".services.ImageDownloadService" />
     </application>
 
 </manifest>

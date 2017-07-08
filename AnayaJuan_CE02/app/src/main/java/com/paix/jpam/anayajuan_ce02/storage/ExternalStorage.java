@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // ExternalStorage
 
-package com.paix.jpam.anayajuan_ce02.Storage;
+package com.paix.jpam.anayajuan_ce02.storage;
 
 import android.content.Context;
 import android.util.Log;
@@ -50,7 +50,10 @@ public class ExternalStorage {
         File externalDir = context.getExternalFilesDir(null); //Protected External Storage
         //File
         File image = new File(externalDir, photoName);
-        //Save to External Storage
+        //Dev
+        Log.i(TAG, "writeExternal: " + "Absolute Path: " + image.getAbsolutePath());
+
+        /// /Save to External Storage
         try {
             FileOutputStream fos = new FileOutputStream(image);
             fos.write(photoData);

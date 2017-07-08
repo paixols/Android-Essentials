@@ -2,7 +2,7 @@
 // MDF3 - 201608
 // GridViewAdapter
 
-package com.paix.jpam.anayajuan_ce02.GridView;
+package com.paix.jpam.anayajuan_ce02.gridView;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;

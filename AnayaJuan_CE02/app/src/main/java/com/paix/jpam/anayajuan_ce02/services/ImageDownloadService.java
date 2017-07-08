@@ -2,14 +2,14 @@
 // MDF3 - 201608
 // ImageDownloadService
 
-package com.paix.jpam.anayajuan_ce02.Services;
+package com.paix.jpam.anayajuan_ce02.services;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import com.paix.jpam.anayajuan_ce02.NetworkUtility.NetworkUtility;
-import com.paix.jpam.anayajuan_ce02.Storage.ExternalStorage;
+import com.paix.jpam.anayajuan_ce02.networkUtility.NetworkUtility;
+import com.paix.jpam.anayajuan_ce02.storage.ExternalStorage;
 
 public class ImageDownloadService extends IntentService {
 
@@ -20,16 +20,16 @@ public class ImageDownloadService extends IntentService {
             "com.paix.jpam.j_anaya_ce02.android.ACTION_GRIDVIEW_UPDATE";
     //Images suffix array
     private final String[] IMAGES = {
-            "MgmzpOJ.jpg", "VZmFngH.jpg", "ptE5z9u.jpg",
-            "4QKO8Up.jpg", "Vm2UdDH.jpg", "C040ctB.jpg",
-            "MScR8za.jpg", "tM1bsAH.jpg", "fS1lKZx.jpg",
-            "h8e5rBX.jpg", "KBtUxzq.jpg", "wYXWJZz.jpg",
-            "LOUwRC4.jpg", "7ZSQfIu.jpg", "XLJiKqp.jpg",
-            "nXVLE9W.jpg", "HYQuj4b.jpg", "R8YIb8d.jpg",
-            "cLv3TVc.jpg", "f7pMMdA.jpg", "Dl1aIHV.jpg",
-            "UE3ng26.jpg", "1oyYfr0.jpg", "YSJ28fr.jpg",
-            "Ey39hl5.jpg", "HAnhjCI.jpg", "En3J4ZF.jpg",
-            "wr65Geg.jpg", "7D35kbV.jpg", "Z2WQBPI.jpg"
+            "WJB086a.jpg", "sWydfiZ.jpg", "g4x7Ate.jpg",
+            "KKAt6uj.jpg", "JYgyi5J.jpg", "GXKBEwM.jpg",
+            "qvUqb39.jpg", "KKL0zCt.jpg", "iHpQIVr.jpg",
+            "iHpQIVr.jpg", "skssLZk.jpg", "MhH358I.jpg",
+            "WV17m5P.jpg", "xIeXpgk.jpg", "xIeXpgk.jpg",
+            "opI9jXc.jpg", "WxvCY5C.jpg", "PS3auwq.jpg",
+            "DuAaARL.jpg", "Tm1rWRq.jpg", "Br8O8jt.jpg",
+            "HWw8PTE.jpg", "cuWL0fU.jpg", "dLJAONk.jpg",
+            "CWJZqTP.jpg", "Rixk08S.jpg", "7m2DpDY.jpg",
+            "fUvQR7d.jpg", "ZQAlNxD.jpg", "AXuP8za.jpg"
     };
 
     //Required Constructor (Thread name)
@@ -47,7 +47,7 @@ public class ImageDownloadService extends IntentService {
             if (!ExternalStorage.imageExists(this, IMAGE)) {
                 //If there's no duplicate
                 //Build URL
-                String URL_BASE = "http://i.imgur.com/";
+                String URL_BASE = "http://imgur.com/";
                 String uri = URL_BASE + IMAGE;
 
                 //Get Image as Byte Array
