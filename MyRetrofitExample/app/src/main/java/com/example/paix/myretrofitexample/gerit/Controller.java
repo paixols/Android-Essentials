@@ -1,5 +1,7 @@
 package com.example.paix.myretrofitexample.gerit;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by paix on 8/1/17.
+ * - This class creates the Retrofit client, calls the Gerrit API and handles the result
  */
 
 public class Controller implements Callback<List<Change>> {
@@ -43,13 +46,24 @@ public class Controller implements Callback<List<Change>> {
     //Retrofit Callback required methods
     @Override
     public void onResponse(Call<List<Change>> call, Response<List<Change>> response) {
-        if(response.isSuccessful()){
-
+        if (response.isSuccessful()) {
+            List<Change> changesList = response.body();
+            //Dev
+            for(Change change: changesList){
+                Log.i(TAG, "onResponse: " + change.getSubject());
+            }
+        } else {
+            //Dev
+            Log.i(TAG, "onResponse failure: " + response.errorBody());
         }
     }
 
     @Override
     public void onFailure(Call<List<Change>> call, Throwable t) {
-
+        //Dev
+        Log.i(TAG, "onFailure:  GerritAPI Failure" );
+        //Dev
+        t.printStackTrace();
     }
+
 }
