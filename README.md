@@ -13,11 +13,12 @@
 ![Media Player](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE05/AnayaJuanCE05.gif)
 - [X] Weather App + Widget
 ![Weather Widget](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE06/AnayaJuanCE06.gif)
-- [X] Widget CRUD 
+- [X] Widget CRUD
 ![Widget CRUD](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE07/AnayaJuanCE07.gif)
 - [X] StackView Widget & ViewFlipper Widget
 ![Gallery Widgets](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE08/AnayaJuanCE08.gif)
 - [X] JavaScript Interfaces & WebView
 ![JavaScript & WebViews](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE09/AnayaJuanCE09.gif)
-- [X] Senators App 
+- [X] Senators App
 ![Senators App](https://github.com/paixols/Java_3_Repeating/blob/master/AnayaJuan_CE10/AnayaJuan_CE10.gif)
+- [X] Retrofit REST API examples
