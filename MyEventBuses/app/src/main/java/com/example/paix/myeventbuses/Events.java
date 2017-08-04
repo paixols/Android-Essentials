@@ -2,6 +2,8 @@ package com.example.paix.myeventbuses;
 
 import android.util.Log;
 
+import com.example.paix.myeventbuses.core.CoreActivity;
+
 /**
  * Created by paix on 8/3/17.
  * Event that will be broadcasted when needed
