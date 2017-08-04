@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_064a4610f36743656aaab7b09c5adbdfef5c4962/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_cd61c19f3b732397576b3dc15384d7ba458350fe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_d7d3c15624fd061c89888d18285a0b54cd3527fe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_eceeb7465dc24ad14fa1d0a09c26a58cf9ac127f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/d6fb3c7179199d69eafd3e1e5432dbffd5911269/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_84c736273e3da1466b8b5524ac8d1f5c01870b50/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/9d0106618bf3814266ef557799b1ace15d1a9a64/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7af251e0c5fd82fc52be12d569010d7e35780f36/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_48e236df6a3731a69b95138dec74a80c7be895f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/bfd7399fb3ee87f8cb7f16800d44f68aa07e9315/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_54d697a7646eee4b02429ed3cd799afd2b380cd8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/5ea806b34b97c25a43e52c2dd5ebbcbe985aa8fa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cbdbeface537ec535d3dabe87b444ecd9de92c92/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_ba99c81a562612a2868ae70dad9577b5f53a0d6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/f3e4b389c449c40645fd9f64c7be0490c39b9022/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_aa7f121fe0c443bd2281ace3afeb10b9eb7e8fa2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_97f74ffae1f096f7d964e2509dd51155515b0840/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_5155246b49cbee6fe320826a0d68d398b60794f2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/603f9357dfec2c50d9acd626ce05f8a647b1980d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8b58399774f97e91fec066eb569b9833ba7cd0fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_71e74d58d4c1a9a75b69db78c3037ad045ffa240/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/0ae2489b6928514b4a248117c7498215ce51b90d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_924909a16671343eba9e9c34a68eaa3c387d494a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/fac7cd7416755066e7cfc076e01cef0ad697f826/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b89855136e20cc1e9f2e8eee50faee87f3c2e364/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/.android/build-cache/ca7fbd953f0583d159acba3f3e21a5b5f8d3d183/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b8cee3fa560ccc4d7241b3920777ed93102c5109/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="649a02c9d30541205d0c12d503e52c4042831435">
+        <dex dex="/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ec592c71179d4283f20abe78c3db000043f2cf08/classes.dex" />
+    </item>
+
+</items>

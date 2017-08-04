@@ -1,0 +1,91 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:3:5-49
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:6:22-64
+application
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:8:5-22:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/603f9357dfec2c50d9acd626ce05f8a647b1980d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/d6fb3c7179199d69eafd3e1e5432dbffd5911269/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/ca7fbd953f0583d159acba3f3e21a5b5f8d3d183/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/0ae2489b6928514b4a248117c7498215ce51b90d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/9d0106618bf3814266ef557799b1ace15d1a9a64/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/bfd7399fb3ee87f8cb7f16800d44f68aa07e9315/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/f3e4b389c449c40645fd9f64c7be0490c39b9022/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/5ea806b34b97c25a43e52c2dd5ebbcbe985aa8fa/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/juanpabloanayamuedano/.android/build-cache/fac7cd7416755066e7cfc076e01cef0ad697f826/output/AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:11:9-41
+	android:supportsRtl
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:13:9-35
+	android:roundIcon
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:12:9-54
+	android:allowBackup
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:9:9-35
+	android:icon
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:10:9-43
+	android:theme
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:14:9-40
+activity#com.example.paix.myretrofitexample.MainActivity
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:15:9-21:20
+	android:name
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:15:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml:19:27-74
+uses-sdk
+INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/603f9357dfec2c50d9acd626ce05f8a647b1980d/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/d6fb3c7179199d69eafd3e1e5432dbffd5911269/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/ca7fbd953f0583d159acba3f3e21a5b5f8d3d183/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/0ae2489b6928514b4a248117c7498215ce51b90d/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/9d0106618bf3814266ef557799b1ace15d1a9a64/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/bfd7399fb3ee87f8cb7f16800d44f68aa07e9315/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/f3e4b389c449c40645fd9f64c7be0490c39b9022/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/5ea806b34b97c25a43e52c2dd5ebbcbe985aa8fa/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/juanpabloanayamuedano/.android/build-cache/fac7cd7416755066e7cfc076e01cef0ad697f826/output/AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/603f9357dfec2c50d9acd626ce05f8a647b1980d/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/d6fb3c7179199d69eafd3e1e5432dbffd5911269/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/ca7fbd953f0583d159acba3f3e21a5b5f8d3d183/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/0ae2489b6928514b4a248117c7498215ce51b90d/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/9d0106618bf3814266ef557799b1ace15d1a9a64/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/bfd7399fb3ee87f8cb7f16800d44f68aa07e9315/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/f3e4b389c449c40645fd9f64c7be0490c39b9022/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/5ea806b34b97c25a43e52c2dd5ebbcbe985aa8fa/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/juanpabloanayamuedano/.android/build-cache/6ef1ab59f45107c2fbbbd60d201632edb128e1b4/output/AndroidManifest.xml:26:9-47

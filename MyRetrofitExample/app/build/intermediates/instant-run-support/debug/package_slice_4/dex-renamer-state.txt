@@ -1,0 +1,4 @@
+#Tue Aug 01 17:38:44 PDT 2017
+base.0=/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4
+renamed.0=classes.dex
+file.0=/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex

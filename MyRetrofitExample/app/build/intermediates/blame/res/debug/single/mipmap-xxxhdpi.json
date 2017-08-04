@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/juanpabloanayamuedano/Android/MyRetrofitExample/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/juanpabloanayamuedano/Android/MyRetrofitExample/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/juanpabloanayamuedano/Android/MyRetrofitExample/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/Users/juanpabloanayamuedano/Android/MyRetrofitExample/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/juanpabloanayamuedano/Android/Android-Essentials/MyRetrofitExample/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    }
+]
